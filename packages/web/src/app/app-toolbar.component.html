@@ -1,16 +1,25 @@
 <style>
-.spacer {
-  flex: 1 1 auto;
-}
+  .spacer {
+    flex: 1 1 auto;
+  }
 </style>
 
 <mat-toolbar color="primary">
-  <button mat-icon-button aria-label="x2 Home">
+  <button mat-icon-button aria-label="Open drawer" (click)="onDrawer()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>x2-Angular</span>
+  <span>x2 Angular</span>
   <span class="spacer"></span>
-  <button mat-icon-button aria-label="x2 Home">
+  <button mat-icon-button aria-label="Toggle light/dark theme" (click)="onDark()">
+    <mat-icon>brightness_high</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="Settings" (click)="onSettings()">
+    <mat-icon>build</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="Search" (click)="onSearch()">
+    <mat-icon>search</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="x2 Home" (click)="onHome()">
     <mat-icon>home</mat-icon>
   </button>
 </mat-toolbar>
