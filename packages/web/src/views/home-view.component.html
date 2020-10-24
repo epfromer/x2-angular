@@ -1,27 +1,6 @@
-<div fxLayout='row' fxLayout.xs="column" fxFlexFill>
-  <div fxFlex='auto' fxFlex.sm='50' fxFlex.md='25'>
-    <home-card image="assets/pie.png" title="Pie" description="Pie chart of email volume of Enron key custodians."
-      link="PieView">
-    </home-card>
-  </div>
-  <div fxFlex='auto' fxFlex.sm='50' fxFlex.md='25'>
-    <home-card image="assets/pie.png" title="Pie" description="Pie chart of email volume of Enron key custodians."
-      link="PieView">
-    </home-card>
-  </div>
-  <div fxFlex='auto' fxFlex.sm='50' fxFlex.md='25'>
-    <home-card image="assets/pie.png" title="Pie" description="Pie chart of email volume of Enron key custodians."
-      link="PieView">
-    </home-card>
-  </div>
-  <div fxFlex='auto' fxFlex.sm='50' fxFlex.md='25'>
-    <home-card image="assets/pie.png" title="Pie" description="Pie chart of email volume of Enron key custodians."
-      link="PieView">
-    </home-card>
-  </div>
-  <div fxFlex='auto' fxFlex.sm='50' fxFlex.md='25'>
-    <home-card image="assets/pie.png" title="Pie" description="Pie chart of email volume of Enron key custodians."
-      link="PieView">
+<div fxLayout='row wrap' fxLayout.xs="column" fxFlexFill>
+  <div fxFlex.sm='50' fxFlex='25' *ngFor="let card of cards">
+    <home-card [image]="card.image" [title]="card.title" [description]="card.description" [link]="card.link">
     </home-card>
   </div>
 </div>

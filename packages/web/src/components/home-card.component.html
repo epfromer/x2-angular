@@ -2,10 +2,13 @@
   .card {
     margin: 10px;
   }
+  .image {
+    height: 250px;
+  }
 </style>
 
 <mat-card class="card">
-  <img mat-card-image src={{image}}>
+  <img mat-card-image class="image" src={{image}}>
   <mat-card-title>{{title}}</mat-card-title>
   <mat-card-content>{{description}}</mat-card-content>
 </mat-card>
