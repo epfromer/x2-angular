@@ -8,9 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module'
 import { AppToolbarComponent } from './app-toolbar.component'
 import { AppComponent } from './app.component'
+import { HomeViewComponent } from '../views/home-view.component'
 
 @NgModule({
-  declarations: [AppComponent, AppToolbarComponent],
+  declarations: [AppComponent, AppToolbarComponent, HomeViewComponent],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -23,4 +24,4 @@ import { AppComponent } from './app.component'
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

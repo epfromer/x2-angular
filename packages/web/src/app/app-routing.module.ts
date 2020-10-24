@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core'
-import { Routes, RouterModule } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router'
+import { HomeViewComponent } from '../views/home-view.component'
+import { SearchViewComponent } from '../views/search-view.component'
 
-const routes: Routes = []
+const routes: Routes = [
+  { path: 'HomeView', component: HomeViewComponent },
+  { path: 'SearchView', component: SearchViewComponent },
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+// eslint-disable-next-line prettier/prettier
+export class AppRoutingModule { }
