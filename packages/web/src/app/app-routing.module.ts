@@ -6,6 +6,7 @@ import { SearchViewComponent } from '../views/search-view.component'
 const routes: Routes = [
   { path: 'HomeView', component: HomeViewComponent },
   { path: 'SearchView', component: SearchViewComponent },
+  { path: '', redirectTo: '/HomeView', pathMatch: 'full' },
 ]
 
 @NgModule({

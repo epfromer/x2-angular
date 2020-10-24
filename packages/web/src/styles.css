@@ -4,7 +4,9 @@
 @import './assets/red.css';
 /* @import './assets/yellow.css'; */
 
-/* TODO switch themes https://material.angular.io/guide/theming */
+/* TODO switch themes https://material.angular.io/guide/theming
+  - seems like dark and light may be tied to theme?
+*/
 
 html,
 body {

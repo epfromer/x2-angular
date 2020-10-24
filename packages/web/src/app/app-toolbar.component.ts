@@ -6,6 +6,7 @@ import { Router } from '@angular/router'
   templateUrl: './app-toolbar.component.html',
 })
 export class AppToolbarComponent {
+  // eslint-disable-next-line prettier/prettier
   constructor(private _router: Router) { }
 
   onDrawer(): void {

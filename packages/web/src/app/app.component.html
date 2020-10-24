@@ -1,22 +1,20 @@
 <style>
-  .content {
+  .content-DELETE {
     display: flex;
     margin: 82px auto 32px;
-    padding: 0 16px;
+    padding: 20px;
     max-width: 960px;
     flex-direction: column;
     align-items: center;
+  }
+
+  .container {
+    padding: 10px;
   }
 </style>
 
 <app-toolbar></app-toolbar>
 
-<div class="content" role="main">
-  <button mat-raised-button>Basic</button>
-  <button mat-raised-button color="primary">Primary</button>
-  <button mat-raised-button color="accent">Accent</button>
-  <button mat-raised-button color="warn">Warn</button>
-  <button mat-raised-button disabled>Disabled</button>
+<div class="mat-app-background container" role="main">
+  <router-outlet></router-outlet>
 </div>
-
-<router-outlet></router-outlet>
