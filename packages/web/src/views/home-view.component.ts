@@ -32,86 +32,53 @@ export class HomeViewComponent {
       link: 'PieView',
     },
     {
-      image: 'assets/pie.png',
-      title: 'Pie',
-      description: 'Pie chart of email volume of Enron key custodians.',
-      link: 'PieView',
+      image: 'assets/chord.png',
+      title: 'Chord',
+      description: 'Chord diagram of Enron key custodian communication.',
+      link: 'ChordView',
     },
     {
-      image: 'assets/pie.png',
-      title: 'Pie',
-      description: 'Pie chart of email volume of Enron key custodians.',
-      link: 'PieView',
+      image: 'assets/wordcloud.png',
+      title: 'Word Cloud',
+      description: 'Word cloud of fraudulent project names.',
+      link: 'WordCloudView',
     },
     {
-      image: 'assets/pie.png',
-      title: 'Pie',
-      description: 'Pie chart of email volume of Enron key custodians.',
-      link: 'PieView',
+      image: 'assets/volumetimeline.png',
+      title: 'Volume Timeline',
+      description: 'XY timeline of Enron email per day with drill down.',
+      link: 'VolumeTimelineView',
     },
     {
-      image: 'assets/pie.png',
-      title: 'Pie',
-      description: 'Pie chart of email volume of Enron key custodians.',
-      link: 'PieView',
+      image: 'assets/networkgraph.png',
+      title: 'Network Graph',
+      description: 'Network graph of Enron key custodian communication.',
+      link: 'NetworkGraphView',
     },
     {
-      image: 'assets/pie.png',
-      title: 'Pie',
-      description: 'Pie chart of email volume of Enron key custodians.',
-      link: 'PieView',
+      image: 'assets/treemap.png',
+      title: 'Tree Map',
+      description: 'Tree map of email volume of Enron key custodians.',
+      link: 'TreeMapView',
+    },
+    {
+      image: 'assets/eventTimeline.png',
+      title: 'Event Timeline',
+      description: 'Event timeline of Enron fraud and litigation.',
+      link: 'EventTimelineView',
+    },
+    {
+      image: 'assets/polar.png',
+      title: 'Polar',
+      description: 'Polar chart of email volume of Enron key custodians.',
+      link: 'PolarView',
+    },
+    {
+      image: 'assets/search.png',
+      title: 'Search',
+      description:
+        'Full text search with field filtering and hit highlighting.',
+      link: 'SearchView',
     },
   ]
 }
-
-/*
-      {makeCard(
-        chord,
-        'Chord',
-        'Chord diagram of Enron key custodian communication.',
-        '/ChordView'
-      )}
-      {makeCard(
-        wordcloud,
-        'Word Cloud',
-        'Word cloud of fraudulent project names.',
-        '/WordCloudView'
-      )}
-      {makeCard(
-        volumetimeline,
-        'Volume Timeline',
-        'XY timeline of Enron email per day with drill down.',
-        '/VolumeTimelineView'
-      )}
-      {makeCard(
-        networkgraph,
-        'Network Graph',
-        'Network graph of Enron key custodian communication.',
-        '/NetworkGraphView'
-      )}
-      {makeCard(
-        treemap,
-        'Tree Map',
-        'Tree map of email volume of Enron key custodians.',
-        '/TreeMapView'
-      )}
-      {makeCard(
-        eventTimeline,
-        'Event Timeline',
-        'Event timeline of Enron fraud and litigation.',
-        '/EventTimelineView'
-      )}
-      {makeCard(
-        polar,
-        'Polar',
-        'Polar chart of email volume of Enron key custodians.',
-        '/PolarView'
-      )}
-      {makeCard(
-        search,
-        'Search',
-        'Full text search with field filtering and hit highlighting.',
-        '/SearchView'
-      )}
-
-*/
