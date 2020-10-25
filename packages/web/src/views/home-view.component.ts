@@ -29,7 +29,7 @@ export class HomeViewComponent {
       image: 'assets/barchart.png',
       title: 'Bar',
       description: 'Bar chart of email volume of Enron key custodians.',
-      link: 'PieView',
+      link: 'BarView',
     },
     {
       image: 'assets/chord.png',
