@@ -16,13 +16,12 @@ export class AppToolbarComponent {
     console.log('dark')
   }
   onSettings(): void {
-    console.log('settings')
+    this._router.navigateByUrl('/AppSettingsView')
   }
   onSearch(): void {
     this._router.navigateByUrl('/SearchView')
-    console.log('search')
   }
   onHome(): void {
-    console.log('home')
+    this._router.navigateByUrl('/HomeView')
   }
 }
