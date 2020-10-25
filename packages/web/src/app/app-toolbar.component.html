@@ -2,9 +2,18 @@
   .spacer {
     flex: 1 1 auto;
   }
+  .toolbar {
+    position: sticky;
+    /* For macOS/iOS Safari */
+    position: -webkit-sticky;
+    /* Sets the sticky toolbar to be on top */
+    top: 0;
+    /* Ensure that your app's content doesn't overlap the toolbar */
+    z-index: 1000;
+  }
 </style>
 
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" role="toolbar" class="toolbar">
   <button mat-icon-button aria-label="Open drawer" (click)="onDrawer()">
     <mat-icon>menu</mat-icon>
   </button>
