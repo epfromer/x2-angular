@@ -10,7 +10,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HomeCardComponent } from '../components/home-card.component'
 import { HomeViewComponent } from '../views/home-view.component'
-import { AppRoutingModule } from './app-routing.module'
+import { AppRoutingModule } from '../router/app-routing.module'
 import { AppToolbarComponent } from './app-toolbar.component'
 import { AppComponent } from './app.component'
 
