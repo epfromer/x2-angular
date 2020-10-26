@@ -17,7 +17,6 @@ import { custodiansReducer } from '../store/custodians'
 import { AppSettingsViewComponent } from '../views/app-settings-view.component'
 import { BarViewComponent } from '../views/bar-view.component'
 import { ChordViewComponent } from '../views/chord-view.component'
-import { CustomerViewComponent } from '../views/customer-view.component'
 import { EmailDetailViewComponent } from '../views/email-detail-view.component'
 import { EmailTimelineViewComponent } from '../views/email-timeline-view.component'
 import { EventTimelineViewComponent } from '../views/event-timeline-view.component'
@@ -35,7 +34,6 @@ import { AppComponent } from './app.component'
 
 @NgModule({
   declarations: [
-    CustomerViewComponent,
     AppComponent,
     AppSettingsViewComponent,
     AppToolbarComponent,

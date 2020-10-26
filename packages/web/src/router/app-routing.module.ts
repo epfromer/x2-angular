@@ -15,10 +15,8 @@ import { SearchViewComponent } from '../views/search-view.component'
 import { TreeMapViewComponent } from '../views/tree-map-view.component'
 import { VolumeTimelineViewComponent } from '../views/volume-timeline-view.component'
 import { WordCloudViewComponent } from '../views/word-cloud-view.component'
-import { CustomerViewComponent } from '../views/customer-view.component'
 
 const routes: Routes = [
-  { path: 'CustomerView', component: CustomerViewComponent },
   { path: 'AppSettingsView', component: AppSettingsViewComponent },
   { path: 'BarView', component: BarViewComponent },
   { path: 'ChordView', component: ChordViewComponent },
