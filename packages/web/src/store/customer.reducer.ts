@@ -2,7 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store'
 import * as CustomerActions from './customer.actions'
 import { Customer } from './customer'
 
-export const customerFeatureKey = 'customer'
+export const customerFeatureKey = 'customers'
 
 export interface CustomerState {
   customers: Customer[]

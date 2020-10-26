@@ -10,9 +10,10 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { StoreModule } from '@ngrx/store'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { HomeCardComponent } from '../components/home-card.component'
 import { AppRoutingModule } from '../router/app-routing.module'
-import { customerFeatureKey, reducer } from '../store/customer.reducer'
+import { reducer } from '../store/customer.reducer'
 import { AppSettingsViewComponent } from '../views/app-settings-view.component'
 import { BarViewComponent } from '../views/bar-view.component'
 import { ChordViewComponent } from '../views/chord-view.component'
@@ -30,9 +31,6 @@ import { VolumeTimelineViewComponent } from '../views/volume-timeline-view.compo
 import { WordCloudViewComponent } from '../views/word-cloud-view.component'
 import { AppToolbarComponent } from './app-toolbar.component'
 import { AppComponent } from './app.component'
-import { CustomerModule } from '../store/customer.module'
-import { reducers, metaReducers } from '../store/reducers'
-import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
 @NgModule({
   declarations: [
@@ -67,11 +65,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
     MatSliderModule,
     MatTableModule,
     MatToolbarModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument(),
-    CustomerModule,
-    // StoreModule.forFeature(customerFeatureKey, reducer),
-    // StoreModule.forRoot({ custodians: custodiansReducer }),
+    StoreModule.forRoot({ customers: reducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],
