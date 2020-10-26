@@ -6,10 +6,8 @@ import {
   createSelector,
   on,
 } from '@ngrx/store'
-import { Custodian } from './types'
+import { Custodian } from '../types'
 // import { cloneDeep } from 'lodash.clonedeep'
-
-export const custodiansFeatureKey = 'custodians'
 
 export interface CustodiansState {
   custodiansLoading: boolean
@@ -17,7 +15,6 @@ export interface CustodiansState {
 }
 const initialState: CustodiansState = {
   custodiansLoading: false,
-  // custodians: undefined, TODO
   custodians: [
     {
       id: 'fastow',
@@ -41,37 +38,36 @@ const initialState: CustodiansState = {
 }
 
 // Actions
-export const setCustodiansLoading = createAction(
-  'custodians/setCustodiansLoading'
-)
-export const setCustodians = createAction('custodians/setCustodians')
+export const setCustodiansLoading = createAction('setCustodiansLoading')
+export const setCustodians = createAction('setCustodians')
 
 // Reducer
-const reducer = createReducer(
-  initialState,
-  on(setCustodiansLoading, (state, val) => {
-    // TODO figure out shape of val
-    console.log(val)
-    return { ...state }
-  }),
-  on(setCustodians, (state, val) => {
-    // TODO figure out shape of val, use lodash or maybe immer to copy
-    console.log(val)
-    return { ...state }
-  })
-)
 export function custodiansReducer(
   state: CustodiansState | undefined,
   action: Action
 ): CustodiansState {
+  const reducer = createReducer(
+    initialState,
+    on(setCustodiansLoading, (state, val) => {
+      // TODO figure out shape of val
+      console.log(val)
+      return { ...state }
+    }),
+    on(setCustodians, (state, val) => {
+      // TODO figure out shape of val, use lodash or maybe immer to copy
+      console.log(val)
+      return { ...state }
+    })
+  )
   return reducer(state, action)
 }
 
-// selectors
-export const selectCustodiansState = createFeatureSelector<CustodiansState>(
-  custodiansFeatureKey
+// Selectors
+export const selectCustodiansLoading = createSelector(
+  createFeatureSelector<CustodiansState>('custodians'),
+  (state) => state.custodiansLoading
 )
 export const selectCustodians = createSelector(
-  selectCustodiansState,
-  (state: CustodiansState) => state.custodians
+  createFeatureSelector<CustodiansState>('custodians'),
+  (state) => state.custodians
 )
