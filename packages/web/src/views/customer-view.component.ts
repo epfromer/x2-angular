@@ -1,17 +1,17 @@
 import { Component } from '@angular/core'
-import { Observable } from 'rxjs'
 import { select, Store } from '@ngrx/store'
-import { selectCustomers } from '../store/customer'
-import { Customer, CustomerState } from '../store/customer'
+import { Observable } from 'rxjs'
+import { CustodiansState, selectCustodians } from '../store/custodians'
+import { Custodian } from '../store/types'
 
 @Component({
   selector: 'app-customer-view',
   templateUrl: './customer-view.component.html',
 })
 export class CustomerViewComponent {
-  customers$: Observable<Customer[]>
+  custodians$: Observable<Custodian[]>
 
-  constructor(private store: Store<CustomerState>) {
-    this.customers$ = this.store.pipe(select(selectCustomers))
+  constructor(private store: Store<CustodiansState>) {
+    this.custodians$ = this.store.pipe(select(selectCustodians))
   }
 }

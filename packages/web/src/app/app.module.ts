@@ -13,10 +13,11 @@ import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { HomeCardComponent } from '../components/home-card.component'
 import { AppRoutingModule } from '../router/app-routing.module'
-import { reducer } from '../store/customer'
+import { custodiansReducer } from '../store/custodians'
 import { AppSettingsViewComponent } from '../views/app-settings-view.component'
 import { BarViewComponent } from '../views/bar-view.component'
 import { ChordViewComponent } from '../views/chord-view.component'
+import { CustomerViewComponent } from '../views/customer-view.component'
 import { EmailDetailViewComponent } from '../views/email-detail-view.component'
 import { EmailTimelineViewComponent } from '../views/email-timeline-view.component'
 import { EventTimelineViewComponent } from '../views/event-timeline-view.component'
@@ -31,7 +32,6 @@ import { VolumeTimelineViewComponent } from '../views/volume-timeline-view.compo
 import { WordCloudViewComponent } from '../views/word-cloud-view.component'
 import { AppToolbarComponent } from './app-toolbar.component'
 import { AppComponent } from './app.component'
-import { CustomerViewComponent } from '../views/customer-view.component'
 
 @NgModule({
   declarations: [
@@ -68,7 +68,7 @@ import { CustomerViewComponent } from '../views/customer-view.component'
     MatTableModule,
     MatToolbarModule,
     StoreDevtoolsModule.instrument(),
-    StoreModule.forRoot({ customers: reducer }),
+    StoreModule.forRoot({ custodians: custodiansReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

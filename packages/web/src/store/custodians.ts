@@ -1,7 +1,15 @@
-import { Action, createReducer, createSelector, on } from '@ngrx/store'
-import { setCustodians, setCustodiansLoading } from './custodians.actions'
+import {
+  Action,
+  createAction,
+  createFeatureSelector,
+  createReducer,
+  createSelector,
+  on,
+} from '@ngrx/store'
 import { Custodian } from './types'
 // import { cloneDeep } from 'lodash.clonedeep'
+
+export const custodiansFeatureKey = 'custodians'
 
 export interface CustodiansState {
   custodiansLoading: boolean
@@ -32,6 +40,13 @@ const initialState: CustodiansState = {
   ],
 }
 
+// Actions
+export const setCustodiansLoading = createAction(
+  'custodians/setCustodiansLoading'
+)
+export const setCustodians = createAction('custodians/setCustodians')
+
+// Reducer
 const reducer = createReducer(
   initialState,
   on(setCustodiansLoading, (state, val) => {
@@ -45,7 +60,6 @@ const reducer = createReducer(
     return { ...state }
   })
 )
-
 export function custodiansReducer(
   state: CustodiansState | undefined,
   action: Action
@@ -54,5 +68,10 @@ export function custodiansReducer(
 }
 
 // selectors
-export const selectCustodians = (state: CustodiansState): Array<Custodian> =>
-  state.custodians
+export const selectCustodiansState = createFeatureSelector<CustodiansState>(
+  custodiansFeatureKey
+)
+export const selectCustodians = createSelector(
+  selectCustodiansState,
+  (state: CustodiansState) => state.custodians
+)
