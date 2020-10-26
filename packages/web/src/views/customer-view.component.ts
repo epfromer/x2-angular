@@ -1,9 +1,8 @@
 import { Component } from '@angular/core'
 import { Observable } from 'rxjs'
-import { Customer } from '../store/customer'
 import { select, Store } from '@ngrx/store'
-import { selectCustomers } from '../store/customer.selectors'
-import { CustomerState } from '../store/customer.reducer'
+import { selectCustomers } from '../store/customer'
+import { Customer, CustomerState } from '../store/customer'
 
 @Component({
   selector: 'app-customer-view',

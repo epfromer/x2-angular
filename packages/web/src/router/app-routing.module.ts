@@ -16,10 +16,8 @@ import { TreeMapViewComponent } from '../views/tree-map-view.component'
 import { VolumeTimelineViewComponent } from '../views/volume-timeline-view.component'
 import { WordCloudViewComponent } from '../views/word-cloud-view.component'
 import { CustomerViewComponent } from '../views/customer-view.component'
-import { CustomerAddComponent } from '../views/customer-add.component'
 
 const routes: Routes = [
-  { path: 'CustomerAdd', component: CustomerAddComponent },
   { path: 'CustomerView', component: CustomerViewComponent },
   { path: 'AppSettingsView', component: AppSettingsViewComponent },
   { path: 'BarView', component: BarViewComponent },
