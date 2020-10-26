@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { MatButtonModule } from '@angular/material/button'
@@ -12,20 +13,44 @@ import { StoreModule } from '@ngrx/store'
 import { HomeCardComponent } from '../components/home-card.component'
 import { AppRoutingModule } from '../router/app-routing.module'
 import { custodiansReducer } from '../store/custodians.reducer'
+import { AppSettingsViewComponent } from '../views/app-settings-view.component'
+import { BarViewComponent } from '../views/bar-view.component'
+import { ChordViewComponent } from '../views/chord-view.component'
+import { EmailDetailViewComponent } from '../views/email-detail-view.component'
+import { EmailTimelineViewComponent } from '../views/email-timeline-view.component'
+import { EventTimelineViewComponent } from '../views/event-timeline-view.component'
 import { HomeViewComponent } from '../views/home-view.component'
+import { NetworkGraphViewComponent } from '../views/network-graph-view.component'
 import { PieViewComponent } from '../views/pie-view.component'
+import { PolarViewComponent } from '../views/polar-view.component'
+import { SearchHistoryViewComponent } from '../views/search-history-view.component'
+import { SearchViewComponent } from '../views/search-view.component'
+import { TreeMapViewComponent } from '../views/tree-map-view.component'
+import { VolumeTimelineViewComponent } from '../views/volume-timeline-view.component'
+import { WordCloudViewComponent } from '../views/word-cloud-view.component'
 import { AppToolbarComponent } from './app-toolbar.component'
 import { AppComponent } from './app.component'
-import { CommonModule } from '@angular/common'
 
 @NgModule({
   declarations: [
     AppComponent,
+    AppSettingsViewComponent,
     AppToolbarComponent,
+    BarViewComponent,
+    ChordViewComponent,
+    EmailDetailViewComponent,
+    EmailTimelineViewComponent,
+    EventTimelineViewComponent,
     HomeCardComponent,
     HomeViewComponent,
+    NetworkGraphViewComponent,
     PieViewComponent,
-    // TODO - add all components
+    PolarViewComponent,
+    SearchHistoryViewComponent,
+    SearchViewComponent,
+    TreeMapViewComponent,
+    VolumeTimelineViewComponent,
+    WordCloudViewComponent,
   ],
   imports: [
     AppRoutingModule,
