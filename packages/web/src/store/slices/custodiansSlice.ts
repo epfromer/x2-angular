@@ -7,7 +7,7 @@ import {
   on,
 } from '@ngrx/store'
 import { Custodian } from '../types'
-// import { cloneDeep } from 'lodash.clonedeep'
+import cloneDeep from 'lodash.clonedeep'
 
 export interface CustodiansState {
   custodiansLoading: boolean
@@ -38,8 +38,14 @@ const initialState: CustodiansState = {
 }
 
 // Actions
-export const setCustodiansLoading = createAction('setCustodiansLoading')
-export const setCustodians = createAction('setCustodians')
+export const setCustodiansLoading = createAction(
+  'setCustodiansLoading',
+  (custodiansLoading: boolean) => ({ custodiansLoading })
+)
+export const setCustodians = createAction(
+  'setCustodians',
+  (custodians: Array<Custodian>) => ({ custodians })
+)
 
 // Reducer
 export function custodiansReducer(
@@ -49,9 +55,9 @@ export function custodiansReducer(
   const reducer = createReducer(
     initialState,
     on(setCustodiansLoading, (state, val) => {
-      // TODO figure out shape of val
-      console.log(val)
-      return { ...state }
+      const s = cloneDeep(state)
+      s.custodiansLoading = val.custodiansLoading
+      return s
     }),
     on(setCustodians, (state, val) => {
       // TODO figure out shape of val, use lodash or maybe immer to copy

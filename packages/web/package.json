@@ -26,6 +26,8 @@
     "@ngrx/schematics": "^10.0.1",
     "@ngrx/store": "^10.0.1",
     "@ngrx/store-devtools": "^10.0.1",
+    "graphql": "^15.3.0",
+    "graphql-request": "^3.2.0",
     "lodash.clonedeep": "^4.5.0",
     "material": "^0.4.3",
     "rxjs": "~6.6.3",
