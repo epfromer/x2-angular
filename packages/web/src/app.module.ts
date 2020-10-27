@@ -11,6 +11,9 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { AppComponent } from './app.component'
+import { AppToolbarComponent } from './components/app/app-toolbar.component'
+import { PieHighchartsComponent } from './components/Highcharts/pie-highcharts.component'
 import { HomeCardComponent } from './components/home-card.component'
 import { AppRoutingModule } from './router/app-routing.module'
 import { custodiansReducer } from './store/slices/custodiansSlice'
@@ -29,8 +32,6 @@ import { SearchViewComponent } from './views/search-view.component'
 import { TreeMapViewComponent } from './views/tree-map-view.component'
 import { VolumeTimelineViewComponent } from './views/volume-timeline-view.component'
 import { WordCloudViewComponent } from './views/word-cloud-view.component'
-import { AppToolbarComponent } from './components/app/app-toolbar.component'
-import { AppComponent } from './app.component'
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { AppComponent } from './app.component'
     HomeCardComponent,
     HomeViewComponent,
     NetworkGraphViewComponent,
+    PieHighchartsComponent,
     PieViewComponent,
     PolarViewComponent,
     SearchHistoryViewComponent,

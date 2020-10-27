@@ -15,7 +15,11 @@
           "options": {
             "outputPath": "dist/x2-angular",
             "allowedCommonJsDependencies": [
-              "graphql-request"
+              "graphql-request",
+              "highcharts",
+              "highcharts/modules/boost",
+              "highcharts/modules/no-data-to-display",
+              "highcharts/highcharts-more"
             ],
             "index": "src/index.html",
             "main": "src/main.ts",

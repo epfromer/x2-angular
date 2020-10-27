@@ -2192,6 +2192,13 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
+"@types/highcharts@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@types/highcharts/-/highcharts-7.0.0.tgz#88fc2140504dac329eb93d6e06a457c8db0d7f7e"
+  integrity sha512-YDevls0s9uqz6VEbchxp+NEaKssAPq5aDZgqEUpxOIUCQEncQtXxibp1w4lvgKyhM4qDejAcSZ+DKfA/kzqR0A==
+  dependencies:
+    highcharts "*"
+
 "@types/jasmine@*":
   version "3.5.14"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.5.14.tgz#f41a14e8ffa939062a71cf9722e5ee7d4e1f94af"
@@ -6254,6 +6261,11 @@ hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
+
+highcharts@*, highcharts@^8.2.0:
+  version "8.2.2"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-8.2.2.tgz#3eb1a694cff013d3385c3ca8e58e69a27be52cab"
+  integrity sha512-F63TXO7RxsvTcpO/KOubQZWualYpCMyCTuKtoWbt7KCsfQ3Kl7Fr6HEyyJdjkYl+XlnmnKlSRi9d3HjLK9Q0wg==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"

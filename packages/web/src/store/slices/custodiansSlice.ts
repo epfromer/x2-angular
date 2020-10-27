@@ -6,7 +6,7 @@ import {
   createSelector,
   on,
 } from '@ngrx/store'
-import { Custodian } from '../types'
+import { Custodian, EmailXferedDatum } from '../types'
 import cloneDeep from 'lodash.clonedeep'
 
 export interface CustodiansState {
@@ -23,6 +23,7 @@ export const setCustodiansLoading = createAction(
   'setCustodiansLoading',
   (custodiansLoading: boolean) => ({ custodiansLoading })
 )
+
 export const setCustodians = createAction(
   'setCustodians',
   (custodians: Array<Custodian>) => ({ custodians })
@@ -54,7 +55,80 @@ export const selectCustodiansLoading = createSelector(
   createFeatureSelector<CustodiansState>('custodians'),
   (state) => state.custodiansLoading
 )
+
 export const selectCustodians = createSelector(
   createFeatureSelector<CustodiansState>('custodians'),
   (state) => state.custodians
 )
+
+export const selectEmailSenders = createSelector(
+  createFeatureSelector<CustodiansState>('custodians'),
+  (state) => {
+    const custodians = state.custodians
+    const data: Array<EmailXferedDatum> = []
+    if (custodians) {
+      custodians.forEach((custodian: Custodian) => {
+        if (custodian.senderTotal) {
+          data.push({
+            name: custodian.name,
+            value: custodian.senderTotal,
+            color: custodian.color,
+          })
+        }
+      })
+    }
+    return data
+  }
+)
+
+export const selectEmailReceivers = createSelector(
+  createFeatureSelector<CustodiansState>('custodians'),
+  (state) => {
+    const custodians = state.custodians
+    const data: Array<EmailXferedDatum> = []
+    if (custodians) {
+      custodians.forEach((custodian: Custodian) => {
+        if (custodian.senderTotal) {
+          data.push({
+            name: custodian.name,
+            value: custodian.receiverTotal,
+            color: custodian.color,
+          })
+        }
+      })
+    }
+    return data
+  }
+)
+
+// interface IDColorKey {
+//   id: string
+//   color: string
+// }
+// export function selectEmailSentByCustodian(state: any) {
+//   const custodianNameFromId = (id: string) =>
+//     state.custodians.custodians.find((c: Custodian) => c.id === id).name
+
+//   const custodians = state.custodians.custodians
+//   const data: Array<any> = []
+//   const nodes: Array<IDColorKey> = []
+
+//   if (custodians) {
+//     //  create array of [from, to, number sent]
+//     custodians.forEach((fromCustodian: Custodian) => {
+//       fromCustodian.toCustodians.forEach((toCustodian) => {
+//         data.push([
+//           fromCustodian.name,
+//           custodianNameFromId(toCustodian.custodianId),
+//           toCustodian.total,
+//         ])
+//       })
+//     })
+//     // and array of color keys
+//     custodians.forEach((custodian: Custodian) => {
+//       nodes.push({ id: custodian.name, color: custodian.color })
+//     })
+//   }
+
+//   return { data, nodes }
+// }
