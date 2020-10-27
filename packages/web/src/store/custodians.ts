@@ -1,8 +1,10 @@
+import { Store } from '@ngrx/store'
 import { gql, request } from 'graphql-request'
 import { environment } from '../environments/environment'
-import { Store } from '@ngrx/store'
-import { setCustodiansLoading } from '../store/slices/custodiansSlice'
-// import { setCustodians, setCustodiansLoading, store } from './index'
+import {
+  setCustodians,
+  setCustodiansLoading,
+} from '../store/slices/custodiansSlice'
 
 export function getCustodiansAsync(store: Store): void {
   store.dispatch(setCustodiansLoading(true))
@@ -25,10 +27,8 @@ export function getCustodiansAsync(store: Store): void {
   `
   request(`${server}/graphql/`, query)
     .then((data) => {
-      // console.log(data)
+      store.dispatch(setCustodians(data.getCustodians))
       store.dispatch(setCustodiansLoading(false))
-      // store.dispatch(setCustodians(data.getCustodians))
-      // store.dispatch(setCustodiansLoading(false))
     })
     .catch((err) => console.error('getCustodiansAsync: ', err))
 }

@@ -15,26 +15,7 @@ export interface CustodiansState {
 }
 const initialState: CustodiansState = {
   custodiansLoading: false,
-  custodians: [
-    {
-      id: 'fastow',
-      name: 'Fastow, Andrew',
-      title: 'Chief Financial Officer',
-      color: '#e91e63',
-      senderTotal: 5,
-      receiverTotal: 34,
-      toCustodians: [{ custodianId: 'lay', total: 1 }],
-    },
-    {
-      id: 'lay',
-      name: 'Lay, Kenneth',
-      title: 'Founder, CEO and Chairman',
-      color: '#ffff00',
-      senderTotal: 40,
-      receiverTotal: 2690,
-      toCustodians: [{ custodianId: 'fastow', total: 1 }],
-    },
-  ],
+  custodians: [],
 }
 
 // Actions
@@ -60,9 +41,9 @@ export function custodiansReducer(
       return s
     }),
     on(setCustodians, (state, val) => {
-      // TODO figure out shape of val, use lodash or maybe immer to copy
-      console.log(val)
-      return { ...state }
+      const s = cloneDeep(state)
+      s.custodians = val.custodians
+      return s
     })
   )
   return reducer(state, action)
