@@ -1,25 +1,20 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { select, Store } from '@ngrx/store'
-import { Observable } from 'rxjs'
 import {
   CustodiansState,
-  selectCustodians,
-  selectEmailSenders,
   selectEmailReceivers,
+  selectEmailSenders,
 } from '../store/slices/custodiansSlice'
-import { Custodian, EmailXferedDatum } from '../store/types'
+import { EmailXferedDatum } from '../store/types'
 
 @Component({
   templateUrl: './pie-view.component.html',
 })
-export class PieViewComponent implements OnInit {
-  custodians$: Observable<Custodian[]>
+export class PieViewComponent {
   emailSenders: EmailXferedDatum[]
   emailReceivers: EmailXferedDatum[]
 
-  constructor(private store: Store<CustodiansState>) {
-    this.custodians$ = this.store.pipe(select(selectCustodians))
-  }
+  constructor(private store: Store<CustodiansState>) { }
 
   ngOnInit(): void {
     this.store
