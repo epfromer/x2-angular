@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store'
 import {
   CustodiansState,
   getEmailReceivers,
+  getEmailSenders,
   selectCustodians,
 } from '../store/slices/custodiansSlice'
 import { Custodian, EmailXferedDatum } from '../store/types'
@@ -18,6 +19,11 @@ export class PieViewComponent {
   constructor(private store: Store<CustodiansState>) { }
 
   ngOnInit(): void {
+    this.store
+      .pipe(select(selectCustodians))
+      .subscribe((custodians: Custodian[]) => {
+        this.emailSenders = getEmailSenders(custodians)
+      })
     this.store
       .pipe(select(selectCustodians))
       .subscribe((custodians: Custodian[]) => {

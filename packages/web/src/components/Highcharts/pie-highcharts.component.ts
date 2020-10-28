@@ -50,14 +50,16 @@ export class PieHighchartsComponent {
     const options: unknown = {
       chart: {
         type: 'pie',
-        backgroundColor: 'black',
-        height: 700,
-        width: 500,
+        // eslint-disable-next-line angular/document-service
+        backgroundColor: getComputedStyle(document.body).getPropertyValue(
+          'background-color'
+        ),
       },
       title: {
         text: this.title,
         style: {
-          color: 'white',
+          // eslint-disable-next-line angular/document-service
+          color: getComputedStyle(document.body).getPropertyValue('color'),
         },
       },
       tooltip: {
@@ -85,7 +87,7 @@ export class PieHighchartsComponent {
       ],
     }
 
-    Highcharts.chart('container', options)
+    Highcharts.chart('container-' + this.title, options)
   }
 
   ngOnChanges(): void {
