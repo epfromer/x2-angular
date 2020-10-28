@@ -81,25 +81,23 @@ export const selectEmailSenders = createSelector(
   }
 )
 
-export const selectEmailReceivers = createSelector(
-  createFeatureSelector<CustodiansState>('custodians'),
-  (state) => {
-    const custodians = state.custodians
-    const data: Array<EmailXferedDatum> = []
-    if (custodians) {
-      custodians.forEach((custodian: Custodian) => {
-        if (custodian.senderTotal) {
-          data.push({
-            name: custodian.name,
-            value: custodian.receiverTotal,
-            color: custodian.color,
-          })
-        }
-      })
-    }
-    return data
+export function getEmailReceivers(
+  custodians: Array<Custodian>
+): Array<EmailXferedDatum> {
+  const data: Array<EmailXferedDatum> = []
+  if (custodians) {
+    custodians.forEach((custodian: Custodian) => {
+      if (custodian.receiverTotal) {
+        data.push({
+          name: custodian.name,
+          value: custodian.receiverTotal,
+          color: custodian.color,
+        })
+      }
+    })
   }
-)
+  return data
+}
 
 // interface IDColorKey {
 //   id: string
