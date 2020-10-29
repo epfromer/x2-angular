@@ -1,13 +1,14 @@
 import { Component, Input } from '@angular/core'
 import { Router } from '@angular/router'
-import { EmailXferedDatum } from '../../store/types'
-import { ChartType, ChartOptions } from 'chart.js'
+import { ChartOptions } from 'chart.js'
 import {
-  SingleDataSet,
+  Color,
   Label,
   monkeyPatchChartJsLegend,
   monkeyPatchChartJsTooltip,
+  SingleDataSet,
 } from 'ng2-charts'
+import { EmailXferedDatum } from '../../store/types'
 
 @Component({
   selector: 'pie-chartjs',
@@ -25,20 +26,45 @@ export class PieChartJSComponent {
     monkeyPatchChartJsLegend()
   }
 
-  public chartHeight = '350'
-
   // https://www.npmjs.com/package/ng2-charts
 
-  public pieChartOptions: ChartOptions = {
-    responsive: true,
+  public chartHeight = '400'
+  public options: ChartOptions = {}
+  public labels: Label[] = []
+  public cData: SingleDataSet = []
+  public colors: Color[] = []
+
+  createChart(): void {
+    this.cData = this.data.map((datum) => datum.value)
+    this.labels = this.data.map((datum) => datum.name)
+    this.colors = [{ backgroundColor: this.data.map((datum) => datum.color) }]
+    this.options = {
+      legend: {
+        position: 'bottom',
+      },
+      title: {
+        display: true,
+        // eslint-disable-next-line angular/document-service
+        fontColor: getComputedStyle(document.body).getPropertyValue('color'),
+        fontSize: 16,
+        padding: 10,
+        text: this.title,
+      },
+      // TODO https://www.npmjs.com/package/ng2-charts#events
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // onClick: (e: unknown, item: any) => {
+      //   if (item && item.length > 0) {
+      //     this.handleClick(this.search, this.data[item[0]._index].name)
+      //   }
+      // },
+    }
   }
-  public pieChartLabels: Label[] = [
-    ['Download', 'Sales'],
-    ['In', 'Store', 'Sales'],
-    'Mail Sales',
-  ]
-  public pieChartData: SingleDataSet = [300, 500, 100]
-  public pieChartType: ChartType = 'pie'
-  public pieChartLegend = true
-  public pieChartPlugins = []
+
+  ngOnChanges(): void {
+    this.createChart()
+  }
+
+  ngOnInit(): void {
+    this.createChart()
+  }
 }

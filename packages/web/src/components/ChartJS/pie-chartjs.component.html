@@ -1,6 +1,5 @@
-<p>{{title}}</p>
-<div>
-  <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-    [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend" [height]="chartHeight">
+<div *ngIf="cData.length > 0">
+  <canvas baseChart chartType="pie" legend="true" [data]="cData" [labels]="labels" [options]="options" [colors]="colors"
+    [height]="chartHeight">
   </canvas>
 </div>

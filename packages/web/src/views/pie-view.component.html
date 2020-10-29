@@ -4,7 +4,7 @@
   <pie-highcharts id="container-Receivers" title="Receivers" [data]="emailReceivers"></pie-highcharts>
 </div>
 <div class="mat-headline">ChartJS</div>
-<div fxLayout="row wrap" fxLayoutAlign="space-around center">
+<div fxLayout="row wrap" fxLayoutAlign="space-around center" fxLayout.xs="column" fxLayout.sm="column">
   <pie-chartjs id="container-Senders" title="Senders" [data]="emailSenders"></pie-chartjs>
   <pie-chartjs id="container-Receivers" title="Receivers" [data]="emailReceivers"></pie-chartjs>
 </div>
