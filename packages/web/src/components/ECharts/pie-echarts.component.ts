@@ -53,7 +53,8 @@ export class PieEChartsComponent {
         top: 20,
         left: 'center',
         textStyle: {
-          color: 'white',
+          // eslint-disable-next-line angular/document-service
+          color: getComputedStyle(document.body).getPropertyValue('color'),
         },
       },
       tooltip: {
