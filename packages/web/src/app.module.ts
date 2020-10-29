@@ -11,8 +11,10 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { ChartsModule } from 'ng2-charts'
 import { AppComponent } from './app.component'
 import { AppToolbarComponent } from './components/app/app-toolbar.component'
+import { PieChartJSComponent } from './components/ChartJS/pie-chartjs.component'
 import { PieHighchartsComponent } from './components/Highcharts/pie-highcharts.component'
 import { HomeCardComponent } from './components/home-card.component'
 import { AppRoutingModule } from './router/app-routing.module'
@@ -46,6 +48,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     HomeCardComponent,
     HomeViewComponent,
     NetworkGraphViewComponent,
+    PieChartJSComponent,
     PieHighchartsComponent,
     PieViewComponent,
     PolarViewComponent,
@@ -59,6 +62,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    ChartsModule,
     CommonModule,
     FlexLayoutModule,
     MatButtonModule,
