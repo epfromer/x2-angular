@@ -15,6 +15,7 @@ import { ChartsModule } from 'ng2-charts'
 import { AppComponent } from './app.component'
 import { AppToolbarComponent } from './components/app/app-toolbar.component'
 import { PieChartJSComponent } from './components/ChartJS/pie-chartjs.component'
+import { PieEChartsComponent } from './components/ECharts/pie-echarts.component'
 import { PieHighchartsComponent } from './components/Highcharts/pie-highcharts.component'
 import { HomeCardComponent } from './components/home-card.component'
 import { AppRoutingModule } from './router/app-routing.module'
@@ -34,6 +35,7 @@ import { SearchViewComponent } from './views/search-view.component'
 import { TreeMapViewComponent } from './views/tree-map-view.component'
 import { VolumeTimelineViewComponent } from './views/volume-timeline-view.component'
 import { WordCloudViewComponent } from './views/word-cloud-view.component'
+import { NgxEchartsModule } from 'ngx-echarts'
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     HomeViewComponent,
     NetworkGraphViewComponent,
     PieChartJSComponent,
+    PieEChartsComponent,
     PieHighchartsComponent,
     PieViewComponent,
     PolarViewComponent,
@@ -71,6 +74,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     MatSliderModule,
     MatTableModule,
     MatToolbarModule,
+    NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
     StoreDevtoolsModule.instrument(),
     StoreModule.forRoot({ custodians: custodiansReducer }),
   ],

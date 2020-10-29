@@ -20,7 +20,6 @@ export class PieChartJSComponent {
   @Input() data: Array<EmailXferedDatum>
   @Input() handleClick: (search: string, name: string) => void
 
-  // eslint-disable-next-line prettier/prettier
   constructor(private _router: Router) {
     monkeyPatchChartJsTooltip()
     monkeyPatchChartJsLegend()
