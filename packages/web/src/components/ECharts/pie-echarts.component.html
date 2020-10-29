@@ -1,2 +1,10 @@
-<div>{{title}}</div>
-<div echarts [options]="chartOption" class="demo-chart"></div>
+<style>
+  .container {
+    height: 400px;
+    width: 500px;
+  }
+</style>
+
+<div class="container">
+  <div echarts [options]="options"></div>
+</div>

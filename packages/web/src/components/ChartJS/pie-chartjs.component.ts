@@ -10,6 +10,8 @@ import {
 } from 'ng2-charts'
 import { EmailXferedDatum } from '../../store/types'
 
+// https://www.npmjs.com/package/ng2-charts
+
 @Component({
   selector: 'pie-chartjs',
   templateUrl: './pie-chartjs.component.html',
@@ -25,13 +27,11 @@ export class PieChartJSComponent {
     monkeyPatchChartJsLegend()
   }
 
-  // https://www.npmjs.com/package/ng2-charts
-
-  public chartHeight = '400'
-  public options: ChartOptions = {}
-  public labels: Label[] = []
-  public cData: SingleDataSet = []
-  public colors: Color[] = []
+  chartHeight = '400'
+  options: ChartOptions = {}
+  labels: Label[] = []
+  cData: SingleDataSet = []
+  colors: Color[] = []
 
   createChart(): void {
     this.cData = this.data.map((datum) => datum.value)

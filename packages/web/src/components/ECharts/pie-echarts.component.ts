@@ -3,6 +3,13 @@ import { Router } from '@angular/router'
 import { EChartOption } from 'echarts'
 import { EmailXferedDatum } from '../../store/types'
 
+// https://www.npmjs.com/package/ngx-echarts
+
+interface EChartsDatum {
+  value: number
+  name: string
+  itemStyle: unknown
+}
 @Component({
   selector: 'pie-echarts',
   templateUrl: './pie-echarts.component.html',
@@ -16,19 +23,68 @@ export class PieEChartsComponent {
   // eslint-disable-next-line prettier/prettier
   constructor(private _router: Router) { }
 
-  chartOption: EChartOption = {
-    xAxis: {
-      type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    },
-    yAxis: {
-      type: 'value',
-    },
-    series: [
-      {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line',
+  options: EChartOption = {}
+
+  createChart(): void {
+    if (!this.data) return
+
+    const chartData: Array<EChartsDatum> = []
+    this.data.forEach((datum) => {
+      chartData.push({
+        name: datum.name,
+        value: datum.value,
+        itemStyle: {
+          normal: {
+            color: datum.color,
+            lineStyle: {
+              color: datum.color,
+            },
+            areaStyle: {
+              color: datum.color,
+            },
+          },
+        },
+      })
+    })
+
+    this.options = {
+      title: {
+        text: this.title,
+        top: 20,
+        left: 'center',
+        textStyle: {
+          color: 'white',
+        },
       },
-    ],
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c} ({d}%)',
+      },
+      series: [
+        {
+          type: 'pie',
+          radius: '55%',
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+          data: chartData,
+          animationType: 'scale',
+          animationEasing: 'elasticOut',
+          animationDelay: () => Math.random() * 200,
+        },
+      ],
+    }
+  }
+
+  ngOnChanges(): void {
+    this.createChart()
+  }
+
+  ngOnInit(): void {
+    this.createChart()
   }
 }
