@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { ChartsModule } from 'ng2-charts'
+import { NgxEchartsModule } from 'ngx-echarts'
 import { AppComponent } from './app.component'
 import { AppToolbarComponent } from './components/app/app-toolbar.component'
 import { PieChartJSComponent } from './components/ChartJS/pie-chartjs.component'
@@ -19,7 +20,7 @@ import { PieEChartsComponent } from './components/ECharts/pie-echarts.component'
 import { PieHighchartsComponent } from './components/Highcharts/pie-highcharts.component'
 import { HomeCardComponent } from './components/home-card.component'
 import { AppRoutingModule } from './router/app-routing.module'
-import { custodiansReducer } from './store/slices/custodiansSlice'
+import { reducers } from './store'
 import { AppSettingsViewComponent } from './views/app-settings-view.component'
 import { BarViewComponent } from './views/bar-view.component'
 import { ChordViewComponent } from './views/chord-view.component'
@@ -35,7 +36,6 @@ import { SearchViewComponent } from './views/search-view.component'
 import { TreeMapViewComponent } from './views/tree-map-view.component'
 import { VolumeTimelineViewComponent } from './views/volume-timeline-view.component'
 import { WordCloudViewComponent } from './views/word-cloud-view.component'
-import { NgxEchartsModule } from 'ngx-echarts'
 
 @NgModule({
   declarations: [
@@ -76,7 +76,7 @@ import { NgxEchartsModule } from 'ngx-echarts'
     MatToolbarModule,
     NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
     StoreDevtoolsModule.instrument(),
-    StoreModule.forRoot({ custodians: custodiansReducer }),
+    StoreModule.forRoot(reducers),
   ],
   providers: [],
   bootstrap: [AppComponent],

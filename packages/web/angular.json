@@ -5,7 +5,11 @@
   "projects": {
     "x2-angular": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -19,7 +23,11 @@
               "highcharts",
               "highcharts/modules/boost",
               "highcharts/modules/no-data-to-display",
-              "highcharts/highcharts-more"
+              "highcharts/highcharts-more",
+              "echarts",
+              "chart.js",
+              "zrender/lib/svg/svg",
+              "zrender/lib/vml/vml"
             ],
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -31,7 +39,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -95,7 +103,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }

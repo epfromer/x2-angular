@@ -1,0 +1,41 @@
+/* @import '@angular/material/prebuilt-themes/purple-green.css'; */
+/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+/* @import '@angular/material/prebuilt-themes/pink-bluegrey.css'; */
+@import "~@angular/material/theming";
+// @import "./assets/red.css";
+@include mat-core();
+/* @import './assets/yellow.css'; */
+
+$angular-primary: mat-palette($mat-teal, 500, 100, 900);
+$angular-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$angular-default-theme: mat-light-theme(
+  (
+    color: (
+      primary: $angular-primary,
+      accent: $angular-accent,
+    ),
+  )
+);
+@include angular-material-theme($angular-default-theme);
+$angular-dark-theme: mat-dark-theme(
+  (
+    color: (
+      primary: $angular-primary,
+      accent: $angular-accent,
+    ),
+  )
+);
+// @include angular-material-color($angular-dark-theme);
+.darkMode {
+  @include angular-material-color($angular-dark-theme);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

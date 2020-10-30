@@ -1,19 +1,24 @@
-import { Component, OnInit } from '@angular/core'
-import { Store } from '@ngrx/store'
+import { Component, OnInit, HostBinding } from '@angular/core'
 import { getCustodiansAsync } from './store/custodians'
-import { CustodiansState } from './store/slices/custodiansSlice'
+import { selectDarkMode } from './store/slices/appSettingsSlice'
+import { select, Store } from '@ngrx/store'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  title = 'x2 Angular'
-
   // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store<CustodiansState>) { }
+  constructor(private store: Store) { }
+
+  @HostBinding('class') className = ''
 
   ngOnInit(): void {
     getCustodiansAsync(this.store)
+    // this.className = 'darkMode'
+    // console.log(this.store)
+    // this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    //   console.log(darkMode)
+    // })
   }
 }

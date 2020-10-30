@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component,  } from '@angular/core'
 import { Router } from '@angular/router'
 
 @Component({
@@ -8,6 +8,7 @@ import { Router } from '@angular/router'
 export class AppToolbarComponent {
   // eslint-disable-next-line prettier/prettier
   constructor(private _router: Router) { }
+
 
   onDrawer(): void {
     console.log('drawer')
