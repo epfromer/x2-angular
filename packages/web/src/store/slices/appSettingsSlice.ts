@@ -64,16 +64,16 @@ export function appSettingsReducer(
 
 // Selectors
 export const selectDarkMode = createSelector(
-  createFeatureSelector<AppSettingsState>('darkMode'),
+  createFeatureSelector<AppSettingsState>('appSettings'),
   (state) => state.darkMode
 )
 
 export const selectImportLog = createSelector(
-  createFeatureSelector<AppSettingsState>('importLog'),
+  createFeatureSelector<AppSettingsState>('appSettings'),
   (state) => state.importLog
 )
 
 export const selectThemeName = createSelector(
-  createFeatureSelector<AppSettingsState>('themeName'),
+  createFeatureSelector<AppSettingsState>('appSettings'),
   (state) => state.themeName
 )

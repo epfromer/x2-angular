@@ -20,7 +20,8 @@
   <span>x2 Angular</span>
   <span class="spacer"></span>
   <button mat-icon-button aria-label="Toggle light/dark theme" (click)="onDark()">
-    <mat-icon>brightness_high</mat-icon>
+    <mat-icon *ngIf="!darkMode">brightness_high</mat-icon>
+    <mat-icon *ngIf="darkMode">brightness_low</mat-icon>
   </button>
   <button mat-icon-button aria-label="Settings" (click)="onSettings()">
     <mat-icon>build</mat-icon>

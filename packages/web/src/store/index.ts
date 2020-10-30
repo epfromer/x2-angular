@@ -3,12 +3,12 @@ import { appSettingsReducer, AppSettingsState } from './slices/appSettingsSlice'
 import { custodiansReducer, CustodiansState } from './slices/custodiansSlice'
 
 interface AppState {
-  appSettingsState: AppSettingsState
-  custodiansState: CustodiansState
+  appSettings: AppSettingsState
+  custodians: CustodiansState
 }
 export const reducers: ActionReducerMap<AppState> = {
-  appSettingsState: appSettingsReducer,
-  custodiansState: custodiansReducer,
+  appSettings: appSettingsReducer,
+  custodians: custodiansReducer,
 }
 
 export * from './slices/appSettingsSlice'
