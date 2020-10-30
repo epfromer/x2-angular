@@ -4,7 +4,8 @@ import * as Highcharts from 'highcharts'
 import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
 import noData from 'highcharts/modules/no-data-to-display'
-import { EmailXferedDatum } from '../../store/types'
+import { EmailXferedDatum, selectDarkMode } from '../../store'
+import { select, Store } from '@ngrx/store'
 
 // https://www.highcharts.com/demo/pie-basic
 
@@ -24,7 +25,9 @@ export class PieHighchartsComponent {
   @Input() handleClick: (search: string, name: string) => void
 
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router) { }
+  constructor(private _router: Router, private store: Store) { }
+
+  darkMode = false
 
   createChart(): void {
     if (!this.data) return
@@ -50,16 +53,12 @@ export class PieHighchartsComponent {
     const options: unknown = {
       chart: {
         type: 'pie',
-        // eslint-disable-next-line angular/document-service
-        backgroundColor: getComputedStyle(document.body).getPropertyValue(
-          'background-color'
-        ),
+        backgroundColor: this.darkMode ? '#303030' : '#FAFAFA',
       },
       title: {
         text: this.title,
         style: {
-          // eslint-disable-next-line angular/document-service
-          color: getComputedStyle(document.body).getPropertyValue('color'),
+          color: this.darkMode ? 'white' : 'black',
         },
       },
       tooltip: {
@@ -96,5 +95,9 @@ export class PieHighchartsComponent {
 
   ngOnInit(): void {
     this.createChart()
+    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+      this.darkMode = darkMode
+      this.createChart()
+    })
   }
 }

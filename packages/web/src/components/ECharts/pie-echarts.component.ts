@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core'
 import { Router } from '@angular/router'
+import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
-import { EmailXferedDatum } from '../../store/types'
+import { EmailXferedDatum, selectDarkMode } from '../../store'
 
 // https://www.npmjs.com/package/ngx-echarts
 
@@ -21,8 +22,9 @@ export class PieEChartsComponent {
   @Input() handleClick: (search: string, name: string) => void
 
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router) { }
+  constructor(private _router: Router, private store: Store) { }
 
+  darkMode = false
   options: EChartOption = {}
 
   createChart(): void {
@@ -53,8 +55,7 @@ export class PieEChartsComponent {
         top: 20,
         left: 'center',
         textStyle: {
-          // eslint-disable-next-line angular/document-service
-          color: getComputedStyle(document.body).getPropertyValue('color'),
+          color: this.darkMode ? 'white' : 'black',
         },
       },
       tooltip: {
@@ -87,5 +88,9 @@ export class PieEChartsComponent {
 
   ngOnInit(): void {
     this.createChart()
+    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+      this.darkMode = darkMode
+      this.createChart()
+    })
   }
 }

@@ -13,3 +13,4 @@ export const reducers: ActionReducerMap<AppState> = {
 
 export * from './slices/appSettingsSlice'
 export * from './slices/custodiansSlice'
+export * from './types'

@@ -8,7 +8,8 @@ import {
   monkeyPatchChartJsTooltip,
   SingleDataSet,
 } from 'ng2-charts'
-import { EmailXferedDatum } from '../../store/types'
+import { EmailXferedDatum, selectDarkMode } from '../../store'
+import { select, Store } from '@ngrx/store'
 
 // https://www.npmjs.com/package/ng2-charts
 
@@ -22,11 +23,12 @@ export class PieChartJSComponent {
   @Input() data: Array<EmailXferedDatum>
   @Input() handleClick: (search: string, name: string) => void
 
-  constructor(private _router: Router) {
+  constructor(private _router: Router, private store: Store) {
     monkeyPatchChartJsTooltip()
     monkeyPatchChartJsLegend()
   }
 
+  darkMode = false
   chartHeight = '400'
   options: ChartOptions = {}
   labels: Label[] = []
@@ -44,7 +46,7 @@ export class PieChartJSComponent {
       title: {
         display: true,
         // eslint-disable-next-line angular/document-service
-        fontColor: getComputedStyle(document.body).getPropertyValue('color'),
+        fontColor: this.darkMode ? 'white' : 'black',
         fontSize: 16,
         padding: 10,
         text: this.title,
@@ -65,5 +67,9 @@ export class PieChartJSComponent {
 
   ngOnInit(): void {
     this.createChart()
+    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+      this.darkMode = darkMode
+      this.createChart()
+    })
   }
 }
