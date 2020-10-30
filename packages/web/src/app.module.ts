@@ -15,8 +15,11 @@ import { ChartsModule } from 'ng2-charts'
 import { NgxEchartsModule } from 'ngx-echarts'
 import { AppComponent } from './app.component'
 import { AppToolbarComponent } from './components/app/app-toolbar.component'
+import { BarChartJSComponent } from './components/ChartJS/bar-chartjs.component'
 import { PieChartJSComponent } from './components/ChartJS/pie-chartjs.component'
+import { BarEChartsComponent } from './components/ECharts/bar-echarts.component'
 import { PieEChartsComponent } from './components/ECharts/pie-echarts.component'
+import { BarHighchartsComponent } from './components/Highcharts/bar-highcharts.component'
 import { PieHighchartsComponent } from './components/Highcharts/pie-highcharts.component'
 import { HomeCardComponent } from './components/home-card.component'
 import { AppRoutingModule } from './router/app-routing.module'
@@ -42,6 +45,9 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     AppComponent,
     AppSettingsViewComponent,
     AppToolbarComponent,
+    BarChartJSComponent,
+    BarEChartsComponent,
+    BarHighchartsComponent,
     BarViewComponent,
     ChordViewComponent,
     EmailDetailViewComponent,
