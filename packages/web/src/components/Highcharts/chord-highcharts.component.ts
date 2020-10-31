@@ -7,13 +7,7 @@ import Boost from 'highcharts/modules/boost'
 import HighchartsWheel from 'highcharts/modules/dependency-wheel'
 import noData from 'highcharts/modules/no-data-to-display'
 import HighchartSankey from 'highcharts/modules/sankey'
-import {
-  EmailXferedDatum,
-  selectDarkMode,
-  selectEmailSentByCustodian,
-  EmailSentByCustodian,
-  IDColorKey,
-} from '../../store'
+import { IDColorKey, selectDarkMode } from '../../store'
 
 // https://www.highcharts.com/demo/pie-basic
 
