@@ -12,6 +12,7 @@ import { EmailXferedDatum, selectDarkMode } from '../../store'
 import { select, Store } from '@ngrx/store'
 
 // https://www.npmjs.com/package/ng2-charts
+// https://www.chartjs.org/docs/latest/configuration/
 
 @Component({
   selector: 'pie-chartjs',

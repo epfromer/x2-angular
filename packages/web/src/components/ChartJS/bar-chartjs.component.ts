@@ -12,6 +12,7 @@ import {
 import { EmailXferedDatum, selectDarkMode } from '../../store'
 
 // https://www.npmjs.com/package/ng2-charts
+// https://www.chartjs.org/docs/latest/configuration/
 
 @Component({
   selector: 'bar-chartjs',
