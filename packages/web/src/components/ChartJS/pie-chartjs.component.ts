@@ -36,6 +36,8 @@ export class PieChartJSComponent {
   colors: Color[] = []
 
   createChart(): void {
+    if (!this.data) return
+
     this.cData = this.data.map((datum) => datum.value)
     this.labels = this.data.map((datum) => datum.name)
     this.colors = [{ backgroundColor: this.data.map((datum) => datum.color) }]
