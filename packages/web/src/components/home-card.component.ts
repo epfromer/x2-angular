@@ -15,7 +15,6 @@ export class HomeCardComponent {
   constructor(private _router: Router) { }
 
   navTo(url: string): void {
-    console.log(url)
     this._router.navigateByUrl('/' + url)
   }
 }

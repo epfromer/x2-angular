@@ -97,34 +97,39 @@ export function getEmailReceivers(
   return data
 }
 
-// interface IDColorKey {
-//   id: string
-//   color: string
-// }
-// export function selectEmailSentByCustodian(state: any) {
-//   const custodianNameFromId = (id: string) =>
-//     state.custodians.custodians.find((c: Custodian) => c.id === id).name
+export interface IDColorKey {
+  id: string
+  color: string
+}
+export interface EmailSentByCustodian {
+  data: Array<unknown>
+  nodes: Array<IDColorKey>
+}
+export function getEmailSentByCustodian(
+  custodians: Array<Custodian>
+): EmailSentByCustodian {
+  const custodianNameFromId = (id: string) =>
+    custodians.find((c: Custodian) => c.id === id).name
 
-//   const custodians = state.custodians.custodians
-//   const data: Array<any> = []
-//   const nodes: Array<IDColorKey> = []
+  const data: Array<unknown> = []
+  const nodes: Array<IDColorKey> = []
 
-//   if (custodians) {
-//     //  create array of [from, to, number sent]
-//     custodians.forEach((fromCustodian: Custodian) => {
-//       fromCustodian.toCustodians.forEach((toCustodian) => {
-//         data.push([
-//           fromCustodian.name,
-//           custodianNameFromId(toCustodian.custodianId),
-//           toCustodian.total,
-//         ])
-//       })
-//     })
-//     // and array of color keys
-//     custodians.forEach((custodian: Custodian) => {
-//       nodes.push({ id: custodian.name, color: custodian.color })
-//     })
-//   }
+  if (custodians) {
+    //  create array of [from, to, number sent]
+    custodians.forEach((fromCustodian: Custodian) => {
+      fromCustodian.toCustodians.forEach((toCustodian) => {
+        data.push([
+          fromCustodian.name,
+          custodianNameFromId(toCustodian.custodianId),
+          toCustodian.total,
+        ])
+      })
+    })
+    // and array of color keys
+    custodians.forEach((custodian: Custodian) => {
+      nodes.push({ id: custodian.name, color: custodian.color })
+    })
+  }
 
-//   return { data, nodes }
-// }
+  return { data, nodes }
+}

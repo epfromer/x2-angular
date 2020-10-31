@@ -1,11 +1,19 @@
 import { Component, Input } from '@angular/core'
 import { Router } from '@angular/router'
+import { select, Store } from '@ngrx/store'
 import * as Highcharts from 'highcharts'
 import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
+import HighchartsWheel from 'highcharts/modules/dependency-wheel'
 import noData from 'highcharts/modules/no-data-to-display'
-import { EmailXferedDatum, selectDarkMode } from '../../store'
-import { select, Store } from '@ngrx/store'
+import HighchartSankey from 'highcharts/modules/sankey'
+import {
+  EmailXferedDatum,
+  selectDarkMode,
+  selectEmailSentByCustodian,
+  EmailSentByCustodian,
+  IDColorKey,
+} from '../../store'
 
 // https://www.highcharts.com/demo/pie-basic
 
@@ -13,15 +21,21 @@ Boost(Highcharts)
 noData(Highcharts)
 More(Highcharts)
 noData(Highcharts)
+HighchartSankey(Highcharts)
+HighchartsWheel(Highcharts)
+
+// https://www.highcharts.com/docs/chart-and-series-types/dependency-wheel
+
+const chartHeight = '95%'
 
 @Component({
-  selector: 'pie-highcharts',
-  templateUrl: './pie-highcharts.component.html',
+  selector: 'chord-highcharts',
+  templateUrl: './chord-highcharts.component.html',
 })
-export class PieHighchartsComponent {
+export class ChordHighchartsComponent {
   @Input() title: string
-  @Input() search: string
-  @Input() data: Array<EmailXferedDatum>
+  @Input() data: Array<unknown>
+  @Input() nodes: Array<IDColorKey>
   @Input() handleClick: (search: string, name: string) => void
 
   // eslint-disable-next-line prettier/prettier
@@ -32,27 +46,9 @@ export class PieHighchartsComponent {
   createChart(): void {
     if (!this.data) return
 
-    interface HighchartsDatum {
-      name: string
-      y: number
-      color: string
-      events: unknown
-    }
-    const custodians: Array<HighchartsDatum> = []
-    this.data.forEach((datum) => {
-      custodians.push({
-        name: datum.name,
-        y: datum.value,
-        color: datum.color,
-        events: {
-          click: () => this.handleClick(this.search, datum.name),
-        },
-      })
-    })
-
     const options: unknown = {
       chart: {
-        type: 'pie',
+        height: chartHeight,
         backgroundColor: this.darkMode ? '#303030' : '#FAFAFA',
       },
       title: {
@@ -61,32 +57,28 @@ export class PieHighchartsComponent {
           color: this.darkMode ? 'white' : 'black',
         },
       },
-      tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
-      },
-      accessibility: {
-        point: {
-          valueSuffix: '%',
-        },
-      },
       plotOptions: {
-        pie: {
-          allowPointSelect: true,
+        dependencywheel: {
+          keys: ['from', 'to', 'weight'],
+        },
+        series: {
           cursor: 'pointer',
-          dataLabels: {
-            enabled: true,
-            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+          events: {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            click: (e: any) => this.handleClick(e.point.from, e.point.to),
           },
         },
       },
       series: [
         {
-          data: custodians,
+          type: 'dependencywheel',
+          data: this.data,
+          nodes: this.nodes,
         },
       ],
     }
 
-    Highcharts.chart('highcharts-pie-' + this.title, options)
+    Highcharts.chart('highcharts-chord', options)
   }
 
   ngOnChanges(): void {
