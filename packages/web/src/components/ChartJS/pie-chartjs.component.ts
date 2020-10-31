@@ -44,10 +44,12 @@ export class PieChartJSComponent {
     this.options = {
       legend: {
         position: 'bottom',
+        labels: {
+          fontColor: this.darkMode ? 'white' : 'black',
+        },
       },
       title: {
         display: true,
-        // eslint-disable-next-line angular/document-service
         fontColor: this.darkMode ? 'white' : 'black',
         fontSize: 16,
         padding: 10,

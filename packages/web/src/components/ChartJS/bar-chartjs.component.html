@@ -1,1 +1,5 @@
-<div>bar chartjs</div>
+<div *ngIf="cData.length > 0">
+  <canvas baseChart chartType="horizontalBar" [data]="cData" [labels]="labels" [options]="options" [colors]="colors"
+    [height]="chartHeight" [width]="chartWidth" [legend]="legend">
+  </canvas>
+</div>

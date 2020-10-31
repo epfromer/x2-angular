@@ -11,6 +11,8 @@ import {
 } from 'ng2-charts'
 import { EmailXferedDatum, selectDarkMode } from '../../store'
 
+// https://www.npmjs.com/package/ng2-charts
+
 @Component({
   selector: 'bar-chartjs',
   templateUrl: './bar-chartjs.component.html',
@@ -21,14 +23,15 @@ export class BarChartJSComponent {
   @Input() data: Array<EmailXferedDatum>
   @Input() handleClick: (search: string, name: string) => void
 
-  // eslint-disable-next-line prettier/prettier
   constructor(private _router: Router, private store: Store) {
     monkeyPatchChartJsTooltip()
     monkeyPatchChartJsLegend()
   }
 
   darkMode = false
-  chartHeight = '400'
+  legend = false
+  chartHeight = '300'
+  chartWidth = '600'
   options: ChartOptions = {}
   labels: Label[] = []
   cData: SingleDataSet = []
@@ -41,16 +44,29 @@ export class BarChartJSComponent {
     this.labels = this.data.map((datum) => datum.name)
     this.colors = [{ backgroundColor: this.data.map((datum) => datum.color) }]
     this.options = {
-      legend: {
-        position: 'bottom',
-      },
       title: {
         display: true,
-        // eslint-disable-next-line angular/document-service
         fontColor: this.darkMode ? 'white' : 'black',
         fontSize: 16,
         padding: 10,
         text: this.title,
+      },
+      scales: {
+        xAxes: [
+          {
+            ticks: {
+              fontColor: this.darkMode ? 'white' : 'black',
+            },
+          },
+        ],
+        yAxes: [
+          {
+            ticks: {
+              min: 0,
+              fontColor: this.darkMode ? 'white' : 'black',
+            },
+          },
+        ],
       },
       // TODO https://www.npmjs.com/package/ng2-charts#events
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
