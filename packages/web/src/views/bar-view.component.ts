@@ -10,8 +10,7 @@ import { Custodian, EmailXferedDatum } from '../store/types'
 
 @Component({
   templateUrl: './bar-view.component.html',
-})update
-
+})
 export class BarViewComponent {
   emailSenders: EmailXferedDatum[]
   emailReceivers: EmailXferedDatum[]
