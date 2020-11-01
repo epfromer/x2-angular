@@ -5,12 +5,16 @@ import * as Highcharts from 'highcharts'
 import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
 import noData from 'highcharts/modules/no-data-to-display'
-import { EmailXferedDatum, selectDarkMode } from '../../store'
+import HighchartWordCloud from 'highcharts/modules/wordcloud'
+import { selectDarkMode, WordCloudTag } from '../../store'
 
 Boost(Highcharts)
 noData(Highcharts)
 More(Highcharts)
 noData(Highcharts)
+HighchartWordCloud(Highcharts)
+
+const chartHeight = '500px'
 
 @Component({
   selector: 'word-cloud-highcharts',
@@ -18,9 +22,8 @@ noData(Highcharts)
 })
 export class WordCloudHighchartsComponent {
   @Input() title: string
-  @Input() search: string
-  @Input() data: Array<EmailXferedDatum>
-  @Input() handleClick: (search: string, name: string) => void
+  @Input() data: Array<WordCloudTag>
+  @Input() handleClick: (word: string) => void
 
   // eslint-disable-next-line prettier/prettier
   constructor(private _router: Router, private store: Store) { }
@@ -32,61 +35,39 @@ export class WordCloudHighchartsComponent {
     if (!this.data) return
     if (this.chart) this.chart.destroy()
 
-    // interface HighchartsDatum {
-    //   name: string
-    //   y: number
-    //   color: string
-    //   events: unknown
-    // }
-    // const custodians: Array<HighchartsDatum> = []
-    // this.data.forEach((datum) => {
-    //   custodians.push({
-    //     name: datum.name,
-    //     y: datum.value,
-    //     color: datum.color,
-    //     events: {
-    //       click: () => this.handleClick(this.search, datum.name),
-    //     },
-    //   })
-    // })
+    const options: unknown = {
+      chart: {
+        height: chartHeight,
+        backgroundColor: this.darkMode ? '#303030' : '#FAFAFA',
+      },
+      title: {
+        text: this.title,
+        style: {
+          color: this.darkMode ? 'white' : 'black',
+        },
+      },
+      plotOptions: {
+        series: {
+          cursor: 'pointer',
+          events: {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            click: (e: any) => this.handleClick(e.point.name),
+          },
+        },
+      },
+      series: [
+        {
+          type: 'wordcloud',
+          name: 'Occurrences',
+          data: this.data.map((word) => ({
+            name: word.tag,
+            weight: word.weight,
+          })),
+        },
+      ],
+    }
 
-    // const options: unknown = {
-    //   chart: {
-    //     type: 'pie',
-    //     backgroundColor: this.darkMode ? '#303030' : '#FAFAFA',
-    //   },
-    //   title: {
-    //     text: this.title,
-    //     style: {
-    //       color: this.darkMode ? 'white' : 'black',
-    //     },
-    //   },
-    //   tooltip: {
-    //     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
-    //   },
-    //   accessibility: {
-    //     point: {
-    //       valueSuffix: '%',
-    //     },
-    //   },
-    //   plotOptions: {
-    //     pie: {
-    //       allowPointSelect: true,
-    //       cursor: 'pointer',
-    //       dataLabels: {
-    //         enabled: true,
-    //         format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-    //       },
-    //     },
-    //   },
-    //   series: [
-    //     {
-    //       data: custodians,
-    //     },
-    //   ],
-    // }
-
-    // this.chart = Highcharts.chart('highcharts-word-cloud', options)
+    this.chart = Highcharts.chart('highcharts-word-cloud', options)
   }
 
   ngOnChanges(): void {

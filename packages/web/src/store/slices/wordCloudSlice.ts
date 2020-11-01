@@ -43,7 +43,7 @@ export function wordCloudReducer(
     }),
     on(setWordCloud, (state, val) => {
       const s = cloneDeep(state)
-      s.custodians = val.wordCloud
+      s.wordCloud = val.wordCloud
       return s
     })
   )
