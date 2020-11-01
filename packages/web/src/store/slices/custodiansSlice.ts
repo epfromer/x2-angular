@@ -101,13 +101,13 @@ export interface IDColorKey {
   id: string
   color: string
 }
-export interface EmailSentDatum {
+export interface EmailSent {
   source: string
   target: string
   value: number
 }
 export interface EmailSentByCustodian {
-  data: Array<EmailSentDatum>
+  data: Array<EmailSent>
   nodes: Array<IDColorKey>
 }
 export function getEmailSentByCustodian(
@@ -116,7 +116,7 @@ export function getEmailSentByCustodian(
   const custodianNameFromId = (id: string) =>
     custodians.find((c: Custodian) => c.id === id).name
 
-  const data: Array<EmailSentDatum> = []
+  const data: Array<EmailSent> = []
   const nodes: Array<IDColorKey> = []
 
   if (custodians) {

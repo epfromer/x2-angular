@@ -7,7 +7,7 @@ import Boost from 'highcharts/modules/boost'
 import HighchartsWheel from 'highcharts/modules/dependency-wheel'
 import noData from 'highcharts/modules/no-data-to-display'
 import HighchartSankey from 'highcharts/modules/sankey'
-import { IDColorKey, EmailSentDatum, selectDarkMode } from '../../store'
+import { EmailSent, IDColorKey, selectDarkMode } from '../../store'
 
 // https://www.highcharts.com/demo/pie-basic
 
@@ -28,7 +28,7 @@ const chartHeight = '95%'
 })
 export class ChordHighchartsComponent {
   @Input() title: string
-  @Input() data: Array<EmailSentDatum>
+  @Input() data: Array<EmailSent>
   @Input() nodes: Array<IDColorKey>
   @Input() handleClick: (search: string, name: string) => void
 
@@ -36,9 +36,11 @@ export class ChordHighchartsComponent {
   constructor(private _router: Router, private store: Store) { }
 
   darkMode = false
+  chart = undefined
 
   createChart(): void {
     if (!this.data) return
+    if (this.chart) this.chart.destroy()
 
     const chartData = this.data.map((datum) => [
       datum.source,
@@ -78,7 +80,7 @@ export class ChordHighchartsComponent {
       ],
     }
 
-    Highcharts.chart('highcharts-chord', options)
+    this.chart = Highcharts.chart('highcharts-chord', options)
   }
 
   ngOnChanges(): void {
@@ -91,5 +93,9 @@ export class ChordHighchartsComponent {
       this.darkMode = darkMode
       this.createChart()
     })
+  }
+
+  ngOnDestroy(): void {
+    if (this.chart) this.chart.destroy()
   }
 }

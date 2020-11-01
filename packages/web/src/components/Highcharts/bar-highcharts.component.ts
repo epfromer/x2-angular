@@ -20,9 +20,11 @@ export class BarHighchartsComponent {
 
   darkMode = false
   options: EChartOption = {}
+  chart = undefined
 
   createChart(): void {
     if (!this.data) return
+    if (this.chart) this.chart.destroy()
 
     const options: unknown = {
       chart: {
@@ -78,7 +80,7 @@ export class BarHighchartsComponent {
       ],
     }
 
-    Highcharts.chart('container-' + this.title, options)
+    this.chart = Highcharts.chart('container-' + this.title, options)
   }
 
   ngOnChanges(): void {
@@ -91,5 +93,9 @@ export class BarHighchartsComponent {
       this.darkMode = darkMode
       this.createChart()
     })
+  }
+
+  ngOnDestroy(): void {
+    if (this.chart) this.chart.destroy()
   }
 }

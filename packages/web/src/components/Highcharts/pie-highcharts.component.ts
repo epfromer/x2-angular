@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core'
 import { Router } from '@angular/router'
+import { select, Store } from '@ngrx/store'
 import * as Highcharts from 'highcharts'
 import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
 import noData from 'highcharts/modules/no-data-to-display'
 import { EmailXferedDatum, selectDarkMode } from '../../store'
-import { select, Store } from '@ngrx/store'
 
 // https://www.highcharts.com/demo/pie-basic
 
@@ -28,9 +28,11 @@ export class PieHighchartsComponent {
   constructor(private _router: Router, private store: Store) { }
 
   darkMode = false
+  chart = undefined
 
   createChart(): void {
     if (!this.data) return
+    if (this.chart) this.chart.destroy()
 
     interface HighchartsDatum {
       name: string
@@ -86,7 +88,7 @@ export class PieHighchartsComponent {
       ],
     }
 
-    Highcharts.chart('highcharts-pie-' + this.title, options)
+    this.chart = Highcharts.chart('highcharts-pie-' + this.title, options)
   }
 
   ngOnChanges(): void {
@@ -99,5 +101,9 @@ export class PieHighchartsComponent {
       this.darkMode = darkMode
       this.createChart()
     })
+  }
+
+  ngOnDestroy(): void {
+    if (this.chart) this.chart.destroy()
   }
 }
