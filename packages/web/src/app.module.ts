@@ -18,6 +18,7 @@ import { AppToolbarComponent } from './components/app/app-toolbar.component'
 import { BarChartJSComponent } from './components/ChartJS/bar-chartjs.component'
 import { PieChartJSComponent } from './components/ChartJS/pie-chartjs.component'
 import { BarEChartsComponent } from './components/ECharts/bar-echarts.component'
+import { ChordEChartsComponent } from './components/ECharts/chord-echarts.component'
 import { PieEChartsComponent } from './components/ECharts/pie-echarts.component'
 import { BarHighchartsComponent } from './components/Highcharts/bar-highcharts.component'
 import { ChordHighchartsComponent } from './components/Highcharts/chord-highcharts.component'
@@ -50,6 +51,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     BarEChartsComponent,
     BarHighchartsComponent,
     BarViewComponent,
+    ChordEChartsComponent,
     ChordHighchartsComponent,
     ChordViewComponent,
     EmailDetailViewComponent,

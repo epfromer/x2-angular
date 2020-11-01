@@ -101,8 +101,13 @@ export interface IDColorKey {
   id: string
   color: string
 }
+export interface EmailSentDatum {
+  source: string
+  target: string
+  value: number
+}
 export interface EmailSentByCustodian {
-  data: Array<unknown>
+  data: Array<EmailSentDatum>
   nodes: Array<IDColorKey>
 }
 export function getEmailSentByCustodian(
@@ -111,18 +116,18 @@ export function getEmailSentByCustodian(
   const custodianNameFromId = (id: string) =>
     custodians.find((c: Custodian) => c.id === id).name
 
-  const data: Array<unknown> = []
+  const data: Array<EmailSentDatum> = []
   const nodes: Array<IDColorKey> = []
 
   if (custodians) {
     //  create array of [from, to, number sent]
     custodians.forEach((fromCustodian: Custodian) => {
       fromCustodian.toCustodians.forEach((toCustodian) => {
-        data.push([
-          fromCustodian.name,
-          custodianNameFromId(toCustodian.custodianId),
-          toCustodian.total,
-        ])
+        data.push({
+          source: fromCustodian.name,
+          target: custodianNameFromId(toCustodian.custodianId),
+          value: toCustodian.total,
+        })
       })
     })
     // and array of color keys
