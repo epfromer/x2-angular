@@ -8,7 +8,26 @@ import {
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+    <app-toolbar></app-toolbar>
+
+    <div class="container mat-app-background" role="main">
+      <router-outlet></router-outlet>
+    </div>
+  `,
+  styles: [
+    `
+      .container {
+        display: flex;
+        width: 100%;
+        display: block;
+        box-sizing: border-box;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    `,
+  ],
 })
 export class AppComponent implements OnInit {
   // eslint-disable-next-line prettier/prettier

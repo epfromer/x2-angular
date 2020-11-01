@@ -13,7 +13,19 @@ interface EChartsDatum {
 }
 @Component({
   selector: 'pie-echarts',
-  templateUrl: './pie-echarts.component.html',
+  template: `
+    <div class="container">
+      <div echarts [options]="options"></div>
+    </div>
+  `,
+  styles: [
+    `
+      .container {
+        height: 400px;
+        width: 500px;
+      }
+    `,
+  ],
 })
 export class PieEChartsComponent {
   @Input() title: string

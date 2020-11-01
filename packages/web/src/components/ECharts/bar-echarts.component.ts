@@ -13,7 +13,18 @@ interface EChartsDatum {
 }
 @Component({
   selector: 'bar-echarts',
-  templateUrl: './bar-echarts.component.html',
+  template: `
+    <div class="container">
+      <div echarts [options]="options"></div>
+    </div>
+  `,
+  styles: [
+    `
+      .container {
+        width: 500px;
+      }
+    `,
+  ],
 })
 export class BarEChartsComponent {
   @Input() title: string

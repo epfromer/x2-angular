@@ -18,7 +18,7 @@ const chartHeight = '500px'
 
 @Component({
   selector: 'word-cloud-highcharts',
-  templateUrl: './word-cloud-highcharts.component.html',
+  template: '',
 })
 export class WordCloudHighchartsComponent {
   @Input() title: string

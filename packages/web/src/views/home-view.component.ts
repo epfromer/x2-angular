@@ -10,7 +10,20 @@ export interface Card {
 }
 
 @Component({
-  templateUrl: './home-view.component.html',
+  template: `
+    <div fxLayout="row wrap" fxLayout.xs="column" fxFlexFill>
+      <div fxFlex.sm="50" fxFlex="25" *ngFor="let card of cards">
+        <home-card
+          [image]="card.image"
+          [title]="card.title"
+          [description]="card.description"
+          [link]="card.link"
+        >
+        </home-card>
+      </div>
+    </div>
+  `,
+  styles: [``],
 })
 export class HomeViewComponent {
   @Input() homeCard: HomeCardComponent

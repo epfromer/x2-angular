@@ -7,7 +7,7 @@ import { EmailXferedDatum, selectDarkMode } from '../../store'
 
 @Component({
   selector: 'bar-highcharts',
-  templateUrl: './bar-highcharts.component.html',
+  template: '',
 })
 export class BarHighchartsComponent {
   @Input() title: string

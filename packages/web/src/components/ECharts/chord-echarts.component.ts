@@ -8,7 +8,18 @@ import { EmailSent, IDColorKey, selectDarkMode } from '../../store'
 
 @Component({
   selector: 'chord-echarts',
-  templateUrl: './chord-echarts.component.html',
+  template: `
+    <div class="container">
+      <div echarts [options]="options"></div>
+    </div>
+  `,
+  styles: [
+    `
+      .container {
+        width: 700px;
+      }
+    `,
+  ],
 })
 export class ChordEChartsComponent {
   @Input() title: string

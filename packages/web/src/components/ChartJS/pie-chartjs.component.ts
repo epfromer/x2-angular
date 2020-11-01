@@ -16,7 +16,22 @@ import { select, Store } from '@ngrx/store'
 
 @Component({
   selector: 'pie-chartjs',
-  templateUrl: './pie-chartjs.component.html',
+  template: `
+    <div *ngIf="cData.length > 0">
+      <canvas
+        baseChart
+        chartType="pie"
+        legend="true"
+        [data]="cData"
+        [labels]="labels"
+        [options]="options"
+        [colors]="colors"
+        [height]="chartHeight"
+      >
+      </canvas>
+    </div>
+  `,
+  styles: [``],
 })
 export class PieChartJSComponent {
   @Input() title: string

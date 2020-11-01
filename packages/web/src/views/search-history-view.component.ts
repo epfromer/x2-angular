@@ -2,7 +2,8 @@ import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 
 @Component({
-  templateUrl: './search-history-view.component.html',
+  template: ` <p>search-history-view works!</p> `,
+  styles: [``],
 })
 export class SearchHistoryViewComponent {
   // eslint-disable-next-line prettier/prettier

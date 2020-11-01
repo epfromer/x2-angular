@@ -24,7 +24,7 @@ const chartHeight = '95%'
 
 @Component({
   selector: 'chord-highcharts',
-  templateUrl: './chord-highcharts.component.html',
+  template: '',
 })
 export class ChordHighchartsComponent {
   @Input() title: string

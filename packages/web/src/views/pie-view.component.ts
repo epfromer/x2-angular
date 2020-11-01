@@ -9,7 +9,42 @@ import {
 import { Custodian, EmailXferedDatum } from '../store'
 
 @Component({
-  templateUrl: './pie-view.component.html',
+  template: `
+    <div class="mat-headline">Highcharts</div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+      <pie-highcharts
+        id="highcharts-pie-Senders"
+        title="Senders"
+        [data]="emailSenders"
+      ></pie-highcharts>
+      <pie-highcharts
+        id="highcharts-pie-Receivers"
+        title="Receivers"
+        [data]="emailReceivers"
+      ></pie-highcharts>
+    </div>
+    <div class="mat-headline">ChartJS</div>
+    <div
+      fxLayout="row wrap"
+      fxLayoutAlign="space-around center"
+      fxLayout.xs="column"
+      fxLayout.sm="column"
+    >
+      <pie-chartjs title="Senders" [data]="emailSenders"></pie-chartjs>
+      <pie-chartjs title="Receivers" [data]="emailReceivers"></pie-chartjs>
+    </div>
+    <div class="mat-headline">ECharts</div>
+    <div
+      fxLayout="row wrap"
+      fxLayoutAlign="space-around center"
+      fxLayout.xs="column"
+      fxLayout.sm="column"
+    >
+      <pie-echarts title="Senders" [data]="emailSenders"></pie-echarts>
+      <pie-echarts title="Receivers" [data]="emailReceivers"></pie-echarts>
+    </div>
+  `,
+  styles: [``],
 })
 export class PieViewComponent {
   emailSenders: EmailXferedDatum[]

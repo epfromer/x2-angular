@@ -16,7 +16,23 @@ import { EmailXferedDatum, selectDarkMode } from '../../store'
 
 @Component({
   selector: 'bar-chartjs',
-  templateUrl: './bar-chartjs.component.html',
+  template: `
+    <div *ngIf="cData.length > 0">
+      <canvas
+        baseChart
+        chartType="horizontalBar"
+        [data]="cData"
+        [labels]="labels"
+        [options]="options"
+        [colors]="colors"
+        [height]="chartHeight"
+        [width]="chartWidth"
+        [legend]="legend"
+      >
+      </canvas>
+    </div>
+  `,
+  styles: [``],
 })
 export class BarChartJSComponent {
   @Input() title: string

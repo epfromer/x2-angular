@@ -4,7 +4,18 @@ import { select, Store } from '@ngrx/store'
 import { selectWordCloud, WordCloudState, WordCloudTag } from 'src/store'
 
 @Component({
-  templateUrl: './word-cloud-view.component.html',
+  template: `
+    <div class="mat-headline">Highcharts</div>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <word-cloud-highcharts
+        id="highcharts-word-cloud"
+        title="Enron Project Names"
+        [data]="wordCloud"
+      >
+      </word-cloud-highcharts>
+    </div>
+  `,
+  styles: [``],
 })
 export class WordCloudViewComponent {
   wordCloud: WordCloudTag[]

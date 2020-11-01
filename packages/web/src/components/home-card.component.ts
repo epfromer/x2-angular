@@ -3,7 +3,23 @@ import { Router } from '@angular/router'
 
 @Component({
   selector: 'home-card',
-  templateUrl: './home-card.component.html',
+  template: `
+    <mat-card class="card" (click)="navTo(link)">
+      <img mat-card-image class="image" src="{{ image }}" />
+      <mat-card-title>{{ title }}</mat-card-title>
+      <mat-card-content>{{ description }}</mat-card-content>
+    </mat-card>
+  `,
+  styles: [
+    `
+      .card {
+        margin: 10px;
+      }
+      .image {
+        height: 250px;
+      }
+    `,
+  ],
 })
 export class HomeCardComponent {
   @Input() image: string

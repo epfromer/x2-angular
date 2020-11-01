@@ -4,7 +4,28 @@ import { select, Store } from '@ngrx/store'
 import { Custodian, getEmailSentByCustodian, selectCustodians } from '../store'
 
 @Component({
-  templateUrl: './chord-view.component.html',
+  template: `
+    <div class="mat-headline">Highcharts</div>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <chord-highcharts
+        id="highcharts-chord"
+        title="Custodian Interaction"
+        [data]="data"
+        [nodes]="nodes"
+      >
+      </chord-highcharts>
+    </div>
+    <div class="mat-headline">ECharts</div>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <chord-echarts
+        title="Custodian Interaction"
+        [data]="data"
+        [nodes]="nodes"
+      >
+      </chord-echarts>
+    </div>
+  `,
+  styles: [``],
 })
 export class ChordViewComponent {
   // eslint-disable-next-line prettier/prettier

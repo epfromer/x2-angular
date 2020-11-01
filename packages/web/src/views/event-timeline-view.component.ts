@@ -2,7 +2,8 @@ import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 
 @Component({
-  templateUrl: './event-timeline-view.component.html',
+  template: ` <p>event-timeline-view works!</p> `,
+  styles: [``],
 })
 export class EventTimelineViewComponent {
   // eslint-disable-next-line prettier/prettier

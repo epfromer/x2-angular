@@ -2,7 +2,8 @@ import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 
 @Component({
-  templateUrl: './network-graph-view.component.html',
+  template: ` <p>network-graph-view works!</p> `,
+  styles: [``],
 })
 export class NetworkGraphViewComponent {
   // eslint-disable-next-line prettier/prettier

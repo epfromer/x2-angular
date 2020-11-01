@@ -16,7 +16,7 @@ noData(Highcharts)
 
 @Component({
   selector: 'pie-highcharts',
-  templateUrl: './pie-highcharts.component.html',
+  template: '',
 })
 export class PieHighchartsComponent {
   @Input() title: string

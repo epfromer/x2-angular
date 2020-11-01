@@ -2,7 +2,8 @@ import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 
 @Component({
-  templateUrl: './volume-timeline-view.component.html',
+  template: ` <p>volume-timeline-view works!</p> `,
+  styles: [``],
 })
 export class VolumeTimelineViewComponent {
   // eslint-disable-next-line prettier/prettier

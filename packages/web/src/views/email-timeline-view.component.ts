@@ -2,7 +2,8 @@ import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 
 @Component({
-  templateUrl: './email-timeline-view.component.html',
+  template: ` <p>email-timeline-view works!</p> `,
+  styles: [``],
 })
 export class EmailTimelineViewComponent {
   // eslint-disable-next-line prettier/prettier

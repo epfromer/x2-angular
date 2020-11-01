@@ -10,7 +10,18 @@ import { WordCloudTag, selectDarkMode } from '../../store'
 
 @Component({
   selector: 'word-cloud-echarts',
-  templateUrl: './word-cloud-echarts.component.html',
+  template: `
+    <div class="container">
+      <div echarts [options]="options"></div>
+    </div>
+  `,
+  styles: [
+    `
+      .container {
+        width: 500px;
+      }
+    `,
+  ],
 })
 export class WordCloudEChartsComponent {
   @Input() title: string
