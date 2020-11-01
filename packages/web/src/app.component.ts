@@ -1,7 +1,10 @@
-import { Component, OnInit, HostBinding } from '@angular/core'
-import { getCustodiansAsync } from './store/custodians'
-import { selectDarkMode } from './store'
+import { Component, HostBinding, OnInit } from '@angular/core'
 import { select, Store } from '@ngrx/store'
+import {
+  getCustodiansAsync,
+  getInitialDataAsync,
+  selectDarkMode,
+} from './store'
 
 @Component({
   selector: 'app-root',
@@ -14,6 +17,7 @@ export class AppComponent implements OnInit {
   @HostBinding('class') className = ''
 
   ngOnInit(): void {
+    getInitialDataAsync(this.store)
     getCustodiansAsync(this.store)
     this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
       this.className = darkMode ? 'darkMode' : ''

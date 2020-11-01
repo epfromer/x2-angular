@@ -23,6 +23,7 @@ import { PieEChartsComponent } from './components/ECharts/pie-echarts.component'
 import { BarHighchartsComponent } from './components/Highcharts/bar-highcharts.component'
 import { ChordHighchartsComponent } from './components/Highcharts/chord-highcharts.component'
 import { PieHighchartsComponent } from './components/Highcharts/pie-highcharts.component'
+import { WordCloudHighchartsComponent } from './components/Highcharts/word-cloud-highcharts.component'
 import { HomeCardComponent } from './components/home-card.component'
 import { AppRoutingModule } from './router/app-routing.module'
 import { reducers } from './store'
@@ -69,6 +70,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     SearchViewComponent,
     TreeMapViewComponent,
     VolumeTimelineViewComponent,
+    WordCloudHighchartsComponent,
     WordCloudViewComponent,
   ],
   imports: [

@@ -5,8 +5,8 @@ import {
   getEmailReceivers,
   getEmailSenders,
   selectCustodians,
-} from '../store/slices/custodiansSlice'
-import { Custodian, EmailXferedDatum } from '../store/types'
+} from '../store'
+import { Custodian, EmailXferedDatum } from '../store'
 
 @Component({
   templateUrl: './pie-view.component.html',

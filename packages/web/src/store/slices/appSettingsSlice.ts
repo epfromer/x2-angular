@@ -6,7 +6,7 @@ import {
   createSelector,
   on,
 } from '@ngrx/store'
-import { defaultThemeName } from '../../../constants'
+import { defaultThemeName } from '../constants'
 import { ImportLogEntry } from '../types'
 import cloneDeep from 'lodash.clonedeep'
 
