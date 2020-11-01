@@ -20,6 +20,7 @@ import { PieChartJSComponent } from './components/ChartJS/pie-chartjs.component'
 import { BarEChartsComponent } from './components/ECharts/bar-echarts.component'
 import { ChordEChartsComponent } from './components/ECharts/chord-echarts.component'
 import { PieEChartsComponent } from './components/ECharts/pie-echarts.component'
+import { WordCloudEChartsComponent } from './components/ECharts/word-cloud-echarts.component'
 import { BarHighchartsComponent } from './components/Highcharts/bar-highcharts.component'
 import { ChordHighchartsComponent } from './components/Highcharts/chord-highcharts.component'
 import { PieHighchartsComponent } from './components/Highcharts/pie-highcharts.component'
@@ -70,6 +71,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     SearchViewComponent,
     TreeMapViewComponent,
     VolumeTimelineViewComponent,
+    WordCloudEChartsComponent,
     WordCloudHighchartsComponent,
     WordCloudViewComponent,
   ],
