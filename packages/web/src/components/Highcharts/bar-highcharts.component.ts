@@ -5,6 +5,8 @@ import { EChartOption } from 'echarts'
 import * as Highcharts from 'highcharts'
 import { EmailXferedDatum, selectDarkMode } from '../../store'
 
+// https://www.highcharts.com/demo/bar-basic
+
 @Component({
   selector: 'bar-highcharts',
   template: '',

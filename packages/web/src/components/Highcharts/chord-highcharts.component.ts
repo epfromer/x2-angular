@@ -9,7 +9,7 @@ import noData from 'highcharts/modules/no-data-to-display'
 import HighchartSankey from 'highcharts/modules/sankey'
 import { EmailSent, IDColorKey, selectDarkMode } from '../../store'
 
-// https://www.highcharts.com/demo/pie-basic
+// https://www.highcharts.com/docs/chart-and-series-types/dependency-wheel
 
 Boost(Highcharts)
 noData(Highcharts)
@@ -17,8 +17,6 @@ More(Highcharts)
 noData(Highcharts)
 HighchartSankey(Highcharts)
 HighchartsWheel(Highcharts)
-
-// https://www.highcharts.com/docs/chart-and-series-types/dependency-wheel
 
 const chartHeight = '95%'
 

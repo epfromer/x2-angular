@@ -10,7 +10,6 @@ import {
   selector: 'app-root',
   template: `
     <app-toolbar></app-toolbar>
-
     <div class="container mat-app-background" role="main">
       <router-outlet></router-outlet>
     </div>
