@@ -7,12 +7,12 @@ import { EmailSentByDay, selectEmailSentByDay } from 'src/store'
   template: `
     <div class="mat-headline">Highcharts</div>
     <div fxLayout="row" fxLayoutAlign="center">
-      <chord-highcharts
+      <volume-timeline-highcharts
         id="highcharts-volume-timeline"
-        title="Senders / Receivers"
+        title="Email Volume per Day"
         [data]="data"
       >
-      </chord-highcharts>
+      </volume-timeline-highcharts>
     </div>
   `,
   styles: [``],

@@ -5,7 +5,7 @@ import * as Highcharts from 'highcharts'
 import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
 import noData from 'highcharts/modules/no-data-to-display'
-import { EmailSent, IDColorKey, selectDarkMode } from '../../store'
+import { EmailSentByDay, selectDarkMode } from '../../store'
 
 // https://www.highcharts.com/demo/line-time-series
 
@@ -14,15 +14,13 @@ noData(Highcharts)
 More(Highcharts)
 noData(Highcharts)
 
-const chartHeight = '95%'
-
 @Component({
   selector: 'volume-timeline-highcharts',
   template: '',
 })
 export class VolumeTimelineHighchartsComponent {
   @Input() title: string
-  @Input() data: Array<EmailSent>
+  @Input() data: Array<EmailSentByDay>
   @Input() handleClick: (search: string, name: string) => void
 
   // eslint-disable-next-line prettier/prettier
@@ -35,7 +33,64 @@ export class VolumeTimelineHighchartsComponent {
     if (!this.data) return
     if (this.chart) this.chart.destroy()
 
-    const options: unknown = {}
+    console.log('create timeline')
+
+    const options: unknown = {
+      chart: {
+        zoomType: 'x',
+        backgroundColor: this.darkMode ? '#303030' : '#FAFAFA',
+      },
+      title: {
+        text: this.title,
+        style: {
+          color: this.darkMode ? 'white' : 'black',
+        },
+      },
+      xAxis: {
+        labels: {
+          overflow: 'justify',
+          style: {
+            color: this.darkMode ? 'white' : 'black',
+          },
+        },
+        type: 'datetime',
+      },
+      yAxis: {
+        labels: {
+          overflow: 'justify',
+          style: {
+            color: this.darkMode ? 'white' : 'black',
+          },
+        },
+        title: {
+          text: '# emails sent',
+        },
+      },
+      legend: {
+        enabled: false,
+      },
+      plotOptions: {
+        series: {
+          cursor: 'pointer',
+          events: {
+            // click: (e: any) =>
+            //   this.handleClick(
+            //     new Date(e.point.category).toISOString().slice(0, 10)
+            //   ),
+          },
+        },
+      },
+      series: [
+        {
+          type: 'area',
+          name: '# emails sent',
+          data: this.data.map((stat) => [
+            new Date(stat.sent).getTime(),
+            stat.total,
+          ]),
+        },
+      ],
+    }
 
     this.chart = Highcharts.chart('highcharts-volume-timeline', options)
   }

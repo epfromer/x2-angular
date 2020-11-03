@@ -2,14 +2,22 @@ import { Store } from '@ngrx/store'
 import { gql, request } from 'graphql-request'
 import { environment } from '../environments/environment'
 import {
+  setEmailSentByDay,
+  setEmailSentByDayLoading,
+} from '../store/slices/emailSentByDaySlice'
+import {
   setWordCloud,
   setWordCloudLoading,
 } from '../store/slices/wordCloudSlice'
+import {
+  setCustodians,
+  setCustodiansLoading,
+} from '../store/slices/custodiansSlice'
 
 export function getInitialDataAsync(store: Store): void {
   store.dispatch(setWordCloudLoading(true))
-  // store.dispatch(setEmailSentByDayLoading(true))
-  // store.dispatch(setCustodiansLoading(true))
+  store.dispatch(setEmailSentByDayLoading(true))
+  store.dispatch(setCustodiansLoading(true))
   const server = environment.x2Server
   const query = gql`
     {
@@ -38,11 +46,11 @@ export function getInitialDataAsync(store: Store): void {
   request(`${server}/graphql/`, query)
     .then((data) => {
       store.dispatch(setWordCloud(data.getWordCloud))
-      // store.dispatch(setEmailSentByDay(data.getEmailSentByDay))
-      // store.dispatch(setCustodians(data.getCustodians))
+      store.dispatch(setEmailSentByDay(data.getEmailSentByDay))
+      store.dispatch(setCustodians(data.getCustodians))
       store.dispatch(setWordCloudLoading(false))
-      // store.dispatch(setEmailSentByDayLoading(false))
-      // store.dispatch(setCustodiansLoading(false))
+      store.dispatch(setEmailSentByDayLoading(false))
+      store.dispatch(setCustodiansLoading(false))
     })
     .catch((err) => console.error('getInitialDataAsync: ', err))
 }

@@ -16,6 +16,16 @@ HighchartWordCloud(Highcharts)
 
 const chartHeight = '500px'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+Highcharts.seriesTypes.wordcloud.prototype.deriveFontSize = function (
+  relativeWeight: number
+) {
+  const minFontSize = 5
+  const maxFontSize = 25
+  return Math.floor(minFontSize + (maxFontSize - minFontSize) * relativeWeight)
+}
+
 @Component({
   selector: 'word-cloud-highcharts',
   template: '',

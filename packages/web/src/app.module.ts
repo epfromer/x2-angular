@@ -24,6 +24,7 @@ import { WordCloudEChartsComponent } from './components/ECharts/word-cloud-echar
 import { BarHighchartsComponent } from './components/Highcharts/bar-highcharts.component'
 import { ChordHighchartsComponent } from './components/Highcharts/chord-highcharts.component'
 import { PieHighchartsComponent } from './components/Highcharts/pie-highcharts.component'
+import { VolumeTimelineHighchartsComponent } from './components/Highcharts/volume-timeline-highcharts.component'
 import { WordCloudHighchartsComponent } from './components/Highcharts/word-cloud-highcharts.component'
 import { HomeCardComponent } from './components/home-card.component'
 import { AppRoutingModule } from './router/app-routing.module'
@@ -70,6 +71,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     SearchHistoryViewComponent,
     SearchViewComponent,
     TreeMapViewComponent,
+    VolumeTimelineHighchartsComponent,
     VolumeTimelineViewComponent,
     WordCloudEChartsComponent,
     WordCloudHighchartsComponent,
