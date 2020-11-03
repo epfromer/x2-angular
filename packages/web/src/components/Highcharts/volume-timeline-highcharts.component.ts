@@ -33,8 +33,6 @@ export class VolumeTimelineHighchartsComponent {
     if (!this.data) return
     if (this.chart) this.chart.destroy()
 
-    console.log('create timeline')
-
     const options: unknown = {
       chart: {
         zoomType: 'x',

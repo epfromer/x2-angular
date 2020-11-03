@@ -17,6 +17,7 @@ import { AppComponent } from './app.component'
 import { AppToolbarComponent } from './components/app/app-toolbar.component'
 import { BarChartJSComponent } from './components/ChartJS/bar-chartjs.component'
 import { PieChartJSComponent } from './components/ChartJS/pie-chartjs.component'
+import { VolumeTimelineChartJSComponent } from './components/ChartJS/volume-timeline-chartjs.component'
 import { BarEChartsComponent } from './components/ECharts/bar-echarts.component'
 import { ChordEChartsComponent } from './components/ECharts/chord-echarts.component'
 import { PieEChartsComponent } from './components/ECharts/pie-echarts.component'
@@ -45,6 +46,8 @@ import { TreeMapViewComponent } from './views/tree-map-view.component'
 import { VolumeTimelineViewComponent } from './views/volume-timeline-view.component'
 import { WordCloudViewComponent } from './views/word-cloud-view.component'
 
+// separate into modules for each chart tech: Highcharts, ChartJS, ECharts
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +74,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     SearchHistoryViewComponent,
     SearchViewComponent,
     TreeMapViewComponent,
+    VolumeTimelineChartJSComponent,
     VolumeTimelineHighchartsComponent,
     VolumeTimelineViewComponent,
     WordCloudEChartsComponent,
