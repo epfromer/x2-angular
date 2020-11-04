@@ -9,7 +9,7 @@ import { EmailSentByDay, selectEmailSentByDay } from 'src/store'
     <div fxLayout="row" fxLayoutAlign="center">
       <volume-timeline-highcharts
         class="highcharts"
-        id="highcharts-volume-timeline"
+        id="volume-timeline-highcharts"
         title="Email Volume per Day"
         [data]="data"
       >

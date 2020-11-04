@@ -4,9 +4,8 @@ import { select, Store } from '@ngrx/store'
 import * as Highcharts from 'highcharts'
 import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
-import HighchartsWheel from 'highcharts/modules/dependency-wheel'
+import HighchartNetworkGraph from 'highcharts/modules/networkgraph'
 import noData from 'highcharts/modules/no-data-to-display'
-import HighchartSankey from 'highcharts/modules/sankey'
 import { EmailSent, IDColorKey, selectDarkMode } from '../../store'
 
 // https://www.highcharts.com/docs/chart-and-series-types/dependency-wheel
@@ -15,16 +14,13 @@ Boost(Highcharts)
 noData(Highcharts)
 More(Highcharts)
 noData(Highcharts)
-HighchartSankey(Highcharts)
-HighchartsWheel(Highcharts)
-
-const chartHeight = '95%'
+HighchartNetworkGraph(Highcharts)
 
 @Component({
-  selector: 'chord-highcharts',
+  selector: 'network-graph-highcharts',
   template: '',
 })
-export class ChordHighchartsComponent {
+export class NetworkGraphHighchartsComponent {
   @Input() title: string
   @Input() data: Array<EmailSent>
   @Input() nodes: Array<IDColorKey>
@@ -48,7 +44,6 @@ export class ChordHighchartsComponent {
 
     const options: unknown = {
       chart: {
-        height: chartHeight,
         backgroundColor: this.darkMode ? '#303030' : '#FAFAFA',
       },
       title: {
@@ -58,27 +53,36 @@ export class ChordHighchartsComponent {
         },
       },
       plotOptions: {
-        dependencywheel: {
+        networkgraph: {
           keys: ['from', 'to', 'weight'],
         },
         series: {
           cursor: 'pointer',
-          events: {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            click: (e: any) => this.handleClick(e.point.from, e.point.to),
+          dataLabels: {
+            enabled: true,
+            linkFormat: '{point.fromNode.name} \u2192 {point.toNode.name}',
+          },
+          // events: {
+          //   click: (e: any) => {
+          //     // TODO - fix to have link click
+          //     handleClick(e.point.from, e.point.to)
+          //   },
+          // },
+          marker: {
+            radius: 20,
           },
         },
       },
       series: [
         {
-          type: 'dependencywheel',
+          type: 'networkgraph',
           data: chartData,
           nodes: this.nodes,
         },
       ],
     }
 
-    this.chart = Highcharts.chart('chord-highcharts', options)
+    this.chart = Highcharts.chart('network-graph-highcharts', options)
   }
 
   ngOnChanges(): void {

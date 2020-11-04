@@ -8,7 +8,7 @@ import { Custodian, getEmailSentByCustodian, selectCustodians } from '../store'
     <div class="mat-headline">Highcharts</div>
     <div fxLayout="row" fxLayoutAlign="center">
       <chord-highcharts
-        id="highcharts-chord"
+        id="chord-highcharts"
         title="Custodian Interaction"
         [data]="data"
         [nodes]="nodes"

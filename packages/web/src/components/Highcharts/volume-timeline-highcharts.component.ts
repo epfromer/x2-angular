@@ -90,7 +90,7 @@ export class VolumeTimelineHighchartsComponent {
       ],
     }
 
-    this.chart = Highcharts.chart('highcharts-volume-timeline', options)
+    this.chart = Highcharts.chart('volume-timeline-highcharts', options)
   }
 
   ngOnChanges(): void {

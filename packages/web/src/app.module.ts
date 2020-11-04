@@ -24,6 +24,7 @@ import { PieEChartsComponent } from './components/ECharts/pie-echarts.component'
 import { VolumeTimelineEChartsComponent } from './components/ECharts/volume-timeline-echarts.component'
 import { WordCloudEChartsComponent } from './components/ECharts/word-cloud-echarts.component'
 import { BarHighchartsComponent } from './components/Highcharts/bar-highcharts.component'
+import { NetworkGraphHighchartsComponent } from './components/Highcharts/network-graph-highcharts.component'
 import { ChordHighchartsComponent } from './components/Highcharts/chord-highcharts.component'
 import { PieHighchartsComponent } from './components/Highcharts/pie-highcharts.component'
 import { VolumeTimelineHighchartsComponent } from './components/Highcharts/volume-timeline-highcharts.component'
@@ -51,7 +52,6 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
 
 @NgModule({
   declarations: [
-    VolumeTimelineEChartsComponent,
     AppComponent,
     AppSettingsViewComponent,
     AppToolbarComponent,
@@ -67,6 +67,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     EventTimelineViewComponent,
     HomeCardComponent,
     HomeViewComponent,
+    NetworkGraphHighchartsComponent,
     NetworkGraphViewComponent,
     PieChartJSComponent,
     PieEChartsComponent,
@@ -77,6 +78,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     SearchViewComponent,
     TreeMapViewComponent,
     VolumeTimelineChartJSComponent,
+    VolumeTimelineEChartsComponent,
     VolumeTimelineHighchartsComponent,
     VolumeTimelineViewComponent,
     WordCloudEChartsComponent,
