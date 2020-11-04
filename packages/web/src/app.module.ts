@@ -20,14 +20,16 @@ import { PieChartJSComponent } from './components/ChartJS/pie-chartjs.component'
 import { VolumeTimelineChartJSComponent } from './components/ChartJS/volume-timeline-chartjs.component'
 import { BarEChartsComponent } from './components/ECharts/bar-echarts.component'
 import { ChordEChartsComponent } from './components/ECharts/chord-echarts.component'
-import { PieEChartsComponent } from './components/ECharts/pie-echarts.component'
 import { NetworkGraphEChartsComponent } from './components/ECharts/network-graph-echarts.component'
+import { PieEChartsComponent } from './components/ECharts/pie-echarts.component'
+import { TreeMapEChartsComponent } from './components/ECharts/tree-map-echarts.component'
 import { VolumeTimelineEChartsComponent } from './components/ECharts/volume-timeline-echarts.component'
 import { WordCloudEChartsComponent } from './components/ECharts/word-cloud-echarts.component'
 import { BarHighchartsComponent } from './components/Highcharts/bar-highcharts.component'
-import { NetworkGraphHighchartsComponent } from './components/Highcharts/network-graph-highcharts.component'
 import { ChordHighchartsComponent } from './components/Highcharts/chord-highcharts.component'
+import { NetworkGraphHighchartsComponent } from './components/Highcharts/network-graph-highcharts.component'
 import { PieHighchartsComponent } from './components/Highcharts/pie-highcharts.component'
+import { TreeMapHighchartsComponent } from './components/Highcharts/tree-map-highcharts.component'
 import { VolumeTimelineHighchartsComponent } from './components/Highcharts/volume-timeline-highcharts.component'
 import { WordCloudHighchartsComponent } from './components/Highcharts/word-cloud-highcharts.component'
 import { HomeCardComponent } from './components/home-card.component'
@@ -53,6 +55,8 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
 
 @NgModule({
   declarations: [
+    TreeMapHighchartsComponent,
+    TreeMapEChartsComponent,
     AppComponent,
     AppSettingsViewComponent,
     AppToolbarComponent,
