@@ -75,31 +75,10 @@ export class TreeMapEChartsComponent {
           color: this.darkMode ? 'white' : 'black',
         },
       },
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow',
-        },
-      },
-      xAxis: {
-        axisLabel: {
-          color: this.darkMode ? 'white' : 'black',
-        },
-      },
-      yAxis: {
-        data: chartData.map((datum) => datum.name),
-        axisLabel: {
-          color: this.darkMode ? 'white' : 'black',
-          width: 100,
-        },
-      },
       series: [
         {
-          type: 'bar',
+          type: 'treemap',
           data: chartData,
-          // animationType: 'scale',
-          // animationEasing: 'elasticOut',
-          // animationDelay: () => Math.random() * 200,
         },
       ],
     }
