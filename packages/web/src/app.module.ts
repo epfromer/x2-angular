@@ -21,6 +21,7 @@ import { VolumeTimelineChartJSComponent } from './components/ChartJS/volume-time
 import { BarEChartsComponent } from './components/ECharts/bar-echarts.component'
 import { ChordEChartsComponent } from './components/ECharts/chord-echarts.component'
 import { PieEChartsComponent } from './components/ECharts/pie-echarts.component'
+import { NetworkGraphEChartsComponent } from './components/ECharts/network-graph-echarts.component'
 import { VolumeTimelineEChartsComponent } from './components/ECharts/volume-timeline-echarts.component'
 import { WordCloudEChartsComponent } from './components/ECharts/word-cloud-echarts.component'
 import { BarHighchartsComponent } from './components/Highcharts/bar-highcharts.component'
@@ -67,6 +68,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     EventTimelineViewComponent,
     HomeCardComponent,
     HomeViewComponent,
+    NetworkGraphEChartsComponent,
     NetworkGraphHighchartsComponent,
     NetworkGraphViewComponent,
     PieChartJSComponent,

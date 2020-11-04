@@ -6,8 +6,10 @@
 @include mat-core();
 /* @import './assets/yellow.css'; */
 
-$angular-primary: mat-palette($mat-teal, 500, 100, 900);
-$angular-accent: mat-palette($mat-pink, A200, A100, A400);
+// TODO theming
+
+$angular-primary: mat-palette($mat-red, 900);
+$angular-accent: mat-palette($mat-red, 800);
 
 $angular-default-theme: mat-light-theme(
   (

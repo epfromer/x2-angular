@@ -16,6 +16,15 @@ import { Custodian, getEmailSentByCustodian, selectCustodians } from '../store'
       >
       </network-graph-highcharts>
     </div>
+    <div class="mat-headline">ECharts</div>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <network-graph-echarts
+        title="Custodian Interaction"
+        [data]="data"
+        [nodes]="nodes"
+      >
+      </network-graph-echarts>
+    </div>
   `,
   styles: [
     `
