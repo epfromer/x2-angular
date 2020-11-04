@@ -8,6 +8,7 @@ import { EmailSentByDay, selectEmailSentByDay } from 'src/store'
     <div class="mat-headline">Highcharts</div>
     <div fxLayout="row" fxLayoutAlign="center">
       <volume-timeline-highcharts
+        class="highcharts"
         id="highcharts-volume-timeline"
         title="Email Volume per Day"
         [data]="data"
@@ -15,14 +16,19 @@ import { EmailSentByDay, selectEmailSentByDay } from 'src/store'
       </volume-timeline-highcharts>
     </div>
     <div class="mat-headline">ChartJS</div>
-    <volume-timeline-chartjs
-      title="Email Volume per Day"
-      [data]="data"
-    >
+    <volume-timeline-chartjs title="Email Volume per Day" [data]="data">
     </volume-timeline-chartjs>
     <div class="mat-headline">ECharts</div>
+    <volume-timeline-echarts title="Email Volume per Day" [data]="data">
+    </volume-timeline-echarts>
   `,
-  styles: [``],
+  styles: [
+    `
+      .highcharts {
+        width: 100%;
+      }
+    `,
+  ],
 })
 export class VolumeTimelineViewComponent {
   // eslint-disable-next-line prettier/prettier
