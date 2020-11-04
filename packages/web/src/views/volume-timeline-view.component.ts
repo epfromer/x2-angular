@@ -15,6 +15,11 @@ import { EmailSentByDay, selectEmailSentByDay } from 'src/store'
       </volume-timeline-highcharts>
     </div>
     <div class="mat-headline">ChartJS</div>
+    <volume-timeline-chartjs
+      title="Email Volume per Day"
+      [data]="data"
+    >
+    </volume-timeline-chartjs>
     <div class="mat-headline">ECharts</div>
   `,
   styles: [``],

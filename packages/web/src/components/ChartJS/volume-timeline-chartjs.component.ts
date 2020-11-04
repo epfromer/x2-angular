@@ -1,32 +1,31 @@
 import { Component, Input } from '@angular/core'
 import { Router } from '@angular/router'
+import { select, Store } from '@ngrx/store'
 import { ChartOptions } from 'chart.js'
 import {
-  Color,
   Label,
   monkeyPatchChartJsLegend,
   monkeyPatchChartJsTooltip,
   SingleDataSet,
 } from 'ng2-charts'
-import { EmailXferedDatum, selectDarkMode } from '../../store'
-import { select, Store } from '@ngrx/store'
+import { EmailSentByDay, selectDarkMode } from '../../store'
 
 // https://www.npmjs.com/package/ng2-charts
 // https://www.chartjs.org/docs/latest/configuration/
 
 @Component({
-  selector: 'volume-timeline',
+  selector: 'volume-timeline-chartjs',
   template: `
     <div *ngIf="cData.length > 0">
       <canvas
         baseChart
-        chartType="pie"
+        chartType="bar"
         legend="true"
         [data]="cData"
         [labels]="labels"
         [options]="options"
-        [colors]="colors"
         [height]="chartHeight"
+        [width]="chartWidth"
       >
       </canvas>
     </div>
@@ -36,7 +35,7 @@ import { select, Store } from '@ngrx/store'
 export class VolumeTimelineChartJSComponent {
   @Input() title: string
   @Input() search: string
-  @Input() data: Array<EmailXferedDatum>
+  @Input() data: Array<EmailSentByDay>
   @Input() handleClick: (search: string, name: string) => void
 
   constructor(private _router: Router, private store: Store) {
@@ -45,25 +44,21 @@ export class VolumeTimelineChartJSComponent {
   }
 
   darkMode = false
-  chartHeight = '400'
+  chartHeight = '300'
+  chartWidth = '600'
   options: ChartOptions = {}
   labels: Label[] = []
   cData: SingleDataSet = []
-  colors: Color[] = []
 
   createChart(): void {
-    return
     if (!this.data) return
 
-    this.cData = this.data.map((datum) => datum.value)
-    this.labels = this.data.map((datum) => datum.name)
-    this.colors = [{ backgroundColor: this.data.map((datum) => datum.color) }]
+    this.cData = this.data.map((datum) => datum.total)
+    this.labels = this.data.map((datum) => String(datum.sent))
     this.options = {
+      maintainAspectRatio: false,
       legend: {
-        position: 'bottom',
-        labels: {
-          fontColor: this.darkMode ? 'white' : 'black',
-        },
+        display: false,
       },
       title: {
         display: true,
@@ -72,6 +67,28 @@ export class VolumeTimelineChartJSComponent {
         padding: 10,
         text: this.title,
       },
+      scales: {
+        xAxes: [
+          {
+            type: 'time',
+            time: {
+              unit: 'month',
+            },
+            ticks: {
+              fontColor: this.darkMode ? 'white' : 'black',
+            },
+          },
+        ],
+        yAxes: [
+          {
+            ticks: {
+              min: 0,
+              fontColor: this.darkMode ? 'white' : 'black',
+            },
+          },
+        ],
+      },
+
       // TODO https://www.npmjs.com/package/ng2-charts#events
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       // onClick: (e: unknown, item: any) => {
