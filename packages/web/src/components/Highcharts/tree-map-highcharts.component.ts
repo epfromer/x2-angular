@@ -5,6 +5,9 @@ import { EChartOption } from 'echarts'
 import * as Highcharts from 'highcharts'
 import { EmailXferedDatum, selectDarkMode } from '../../store'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('highcharts/modules/treemap')(Highcharts)
+
 // https://www.highcharts.com/demo/bar-basic
 
 @Component({
@@ -30,7 +33,7 @@ export class TreeMapHighchartsComponent {
 
     const options: unknown = {
       chart: {
-        type: 'bar',
+        height: '70%',
         backgroundColor: this.darkMode ? '#303030' : '#FAFAFA',
       },
       title: {
@@ -39,45 +42,35 @@ export class TreeMapHighchartsComponent {
           color: this.darkMode ? 'white' : 'black',
         },
       },
-      xAxis: {
-        categories: this.data.map((datum) => datum.name),
-        title: {
-          text: null,
-        },
-        labels: {
-          style: {
-            color: this.darkMode ? 'white' : 'black',
-          },
-        },
-      },
-      yAxis: {
-        labels: {
-          overflow: 'justify',
-          style: {
-            color: this.darkMode ? 'white' : 'black',
-          },
-        },
-        title: {
-          text: null,
-        },
-      },
-      tooltip: {
-        valueSuffix: ' email',
-      },
       plotOptions: {
-        bar: {
-          events: {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            click: (e: any) => this.handleClick(this.search, e.point.category),
-          },
+        series: {
+          cursor: 'pointer',
+          // events: {
+          //   click: (e: any) => handleClick(search, e.point.name),
+          // },
         },
       },
       series: [
         {
-          showInLegend: false,
-          colorByPoint: true,
-          colors: this.data.map((datum) => datum.color),
-          data: this.data.map((datum) => datum.value),
+          type: 'treemap',
+          layoutAlgorithm: 'squarified',
+          alternateStartingDirection: true,
+          levels: [
+            {
+              level: 1,
+              layoutAlgorithm: 'sliceAndDice',
+              dataLabels: {
+                enabled: true,
+                align: 'left',
+                verticalAlign: 'top',
+                style: {
+                  fontSize: '15px',
+                  fontWeight: 'bold',
+                },
+              },
+            },
+          ],
+          data: this.data,
         },
       ],
     }
