@@ -19,7 +19,6 @@ import { HighchartsModule } from './components/Highcharts/highcharts.module'
 import { HomeCardComponent } from './components/home-card.component'
 import { AppRoutingModule } from './router/app-routing.module'
 import { reducers } from './store'
-import { HomeViewComponent } from './views/home-view.component'
 import { ViewsModule } from './views/views.module'
 
 @NgModule({
@@ -42,12 +41,7 @@ import { ViewsModule } from './views/views.module'
     StoreModule.forRoot(reducers),
     ViewsModule,
   ],
-  declarations: [
-    AppComponent,
-    AppToolbarComponent,
-    HomeCardComponent,
-    HomeViewComponent,
-  ],
+  declarations: [AppComponent, AppToolbarComponent, HomeCardComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

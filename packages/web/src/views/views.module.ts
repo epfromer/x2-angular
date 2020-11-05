@@ -7,6 +7,7 @@ import { BarViewComponent } from './bar-view.component'
 import { ChordViewComponent } from './chord-view.component'
 import { EmailDetailViewComponent } from './email-detail-view.component'
 import { EventTimelineViewComponent } from './event-timeline-view.component'
+import { HomeViewComponent } from './home-view.component'
 import { NetworkGraphViewComponent } from './network-graph-view.component'
 import { PieViewComponent } from './pie-view.component'
 import { PolarViewComponent } from './polar-view.component'
@@ -24,6 +25,7 @@ import { WordCloudViewComponent } from './word-cloud-view.component'
     ChordViewComponent,
     EmailDetailViewComponent,
     EventTimelineViewComponent,
+    HomeViewComponent,
     NetworkGraphViewComponent,
     PieViewComponent,
     PolarViewComponent,
