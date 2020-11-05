@@ -13,12 +13,12 @@ import { Custodian, EmailXferedDatum } from '../store'
     <div class="mat-headline">Highcharts</div>
     <div fxLayout="row wrap" fxLayoutAlign="space-around center">
       <polar-highcharts
-        id="highcharts-pie-Senders"
+        id="highcharts-polar-Senders"
         title="Senders"
         [data]="emailSenders"
       ></polar-highcharts>
       <polar-highcharts
-        id="highcharts-pie-Receivers"
+        id="highcharts-polar-Receivers"
         title="Receivers"
         [data]="emailReceivers"
       ></polar-highcharts>

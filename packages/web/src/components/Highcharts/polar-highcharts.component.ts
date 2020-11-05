@@ -84,7 +84,7 @@ export class PolarHighchartsComponent {
       series: this.chartData,
     }
 
-    this.chart = Highcharts.chart('highcharts-pie-' + this.title, options)
+    this.chart = Highcharts.chart('highcharts-polar-' + this.title, options)
   }
 
   ngOnChanges(): void {
