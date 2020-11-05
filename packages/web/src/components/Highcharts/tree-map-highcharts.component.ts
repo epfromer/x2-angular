@@ -5,8 +5,8 @@ import { EChartOption } from 'echarts'
 import * as Highcharts from 'highcharts'
 import { EmailXferedDatum, selectDarkMode } from '../../store'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-require('highcharts/modules/treemap')(Highcharts)
+import treemap from 'highcharts/modules/treemap'
+treemap(Highcharts)
 
 // https://www.highcharts.com/demo/bar-basic
 
