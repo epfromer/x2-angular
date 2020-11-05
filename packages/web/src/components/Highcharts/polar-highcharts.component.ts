@@ -29,32 +29,27 @@ export class PolarHighchartsComponent {
 
   darkMode = false
   chart = undefined
+  chartData = []
 
   createChart(): void {
     if (!this.data) return
     if (this.chart) this.chart.destroy()
 
-    interface HighchartsDatum {
-      name: string
-      y: number
-      color: string
-      events: unknown
-    }
-    const custodians: Array<HighchartsDatum> = []
-    this.data.forEach((datum) => {
-      custodians.push({
-        name: datum.name,
-        y: datum.value,
-        color: datum.color,
-        events: {
-          click: () => this.handleClick(this.search, datum.name),
-        },
-      })
-    })
+    this.chartData = this.data.map((datum) => ({
+      type: 'column',
+      name: datum.name,
+      data: [datum.value],
+      color: datum.color,
+      pointPlacement: 'between',
+      // events: {
+      //   click: () => handleClick(search, datum.name),
+      // },
+    }))
 
     const options: unknown = {
       chart: {
-        type: 'pie',
+        polar: true,
+        height: '100%',
         backgroundColor: this.darkMode ? '#303030' : '#FAFAFA',
       },
       title: {
@@ -66,26 +61,27 @@ export class PolarHighchartsComponent {
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
       },
-      accessibility: {
-        point: {
-          valueSuffix: '%',
+      xAxis: {
+        labels: {
+          format: '{value}',
+        },
+      },
+      legend: {
+        itemStyle: {
+          color: this.darkMode ? 'white' : 'black',
         },
       },
       plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: {
-            enabled: true,
-            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-          },
+        series: {
+          pointStart: 0,
+          pointInterval: 45,
+        },
+        column: {
+          pointPadding: 0,
+          groupPadding: 0,
         },
       },
-      series: [
-        {
-          data: custodians,
-        },
-      ],
+      series: this.chartData,
     }
 
     this.chart = Highcharts.chart('highcharts-pie-' + this.title, options)
