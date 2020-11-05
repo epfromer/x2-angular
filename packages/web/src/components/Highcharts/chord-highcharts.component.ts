@@ -18,7 +18,7 @@ noData(Highcharts)
 HighchartSankey(Highcharts)
 HighchartsWheel(Highcharts)
 
-const chartHeight = '95%'
+const chartHeight = '500px'
 
 @Component({
   selector: 'chord-highcharts',
@@ -48,7 +48,6 @@ export class ChordHighchartsComponent {
 
     const options: unknown = {
       chart: {
-        height: chartHeight,
         backgroundColor: this.darkMode ? '#303030' : '#FAFAFA',
       },
       title: {

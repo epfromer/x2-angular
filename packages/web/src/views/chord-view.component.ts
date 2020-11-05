@@ -25,7 +25,7 @@ import { Custodian, getEmailSentByCustodian, selectCustodians } from '../store'
       </chord-echarts>
     </div>
   `,
-  styles: [``],
+  styles: [],
 })
 export class ChordViewComponent {
   // eslint-disable-next-line prettier/prettier
