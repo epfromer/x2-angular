@@ -19,7 +19,20 @@ import { HighchartsModule } from './components/Highcharts/highcharts.module'
 import { HomeCardComponent } from './components/home-card.component'
 import { AppRoutingModule } from './router/app-routing.module'
 import { reducers } from './store'
-import { ViewsModule } from './views/views.module'
+import { AppSettingsViewComponent } from './views/app-settings-view.component'
+import { BarViewComponent } from './views/bar-view.component'
+import { ChordViewComponent } from './views/chord-view.component'
+import { EmailDetailViewComponent } from './views/email-detail-view.component'
+import { EventTimelineViewComponent } from './views/event-timeline-view.component'
+import { HomeViewComponent } from './views/home-view.component'
+import { NetworkGraphViewComponent } from './views/network-graph-view.component'
+import { PieViewComponent } from './views/pie-view.component'
+import { PolarViewComponent } from './views/polar-view.component'
+import { SearchHistoryViewComponent } from './views/search-history-view.component'
+import { SearchViewComponent } from './views/search-view.component'
+import { TreeMapViewComponent } from './views/tree-map-view.component'
+import { VolumeTimelineViewComponent } from './views/volume-timeline-view.component'
+import { WordCloudViewComponent } from './views/word-cloud-view.component'
 
 @NgModule({
   imports: [
@@ -39,9 +52,26 @@ import { ViewsModule } from './views/views.module'
     MatToolbarModule,
     StoreDevtoolsModule.instrument(),
     StoreModule.forRoot(reducers),
-    ViewsModule,
   ],
-  declarations: [AppComponent, AppToolbarComponent, HomeCardComponent],
+  declarations: [
+    AppComponent,
+    AppSettingsViewComponent,
+    AppToolbarComponent,
+    BarViewComponent,
+    ChordViewComponent,
+    EmailDetailViewComponent,
+    EventTimelineViewComponent,
+    HomeCardComponent,
+    HomeViewComponent,
+    NetworkGraphViewComponent,
+    PieViewComponent,
+    PolarViewComponent,
+    SearchHistoryViewComponent,
+    SearchViewComponent,
+    TreeMapViewComponent,
+    VolumeTimelineViewComponent,
+    WordCloudViewComponent,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

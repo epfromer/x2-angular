@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
+import { FlexLayoutModule } from '@angular/flex-layout'
 import { ChartJSModule } from '../components/ChartJS/chartjs.module'
 import { EChartsModule } from '../components/ECharts/echarts.module'
 import { HighchartsModule } from '../components/Highcharts/highcharts.module'
@@ -16,9 +18,18 @@ import { SearchViewComponent } from './search-view.component'
 import { TreeMapViewComponent } from './tree-map-view.component'
 import { VolumeTimelineViewComponent } from './volume-timeline-view.component'
 import { WordCloudViewComponent } from './word-cloud-view.component'
+import { MatCardModule } from '@angular/material/card'
+import { HomeCardComponent } from '../components/home-card.component'
 
 @NgModule({
-  imports: [ChartJSModule, EChartsModule, HighchartsModule],
+  imports: [
+    ChartJSModule,
+    CommonModule,
+    EChartsModule,
+    FlexLayoutModule,
+    HighchartsModule,
+    MatCardModule,
+  ],
   declarations: [
     AppSettingsViewComponent,
     BarViewComponent,
@@ -34,6 +45,7 @@ import { WordCloudViewComponent } from './word-cloud-view.component'
     TreeMapViewComponent,
     VolumeTimelineViewComponent,
     WordCloudViewComponent,
+    HomeCardComponent,
   ],
   providers: [],
 })

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { BarHighchartsComponent } from './bar-highcharts.component'
 import { ChordHighchartsComponent } from './chord-highcharts.component'
@@ -9,7 +10,7 @@ import { VolumeTimelineHighchartsComponent } from './volume-timeline-highcharts.
 import { WordCloudHighchartsComponent } from './word-cloud-highcharts.component'
 
 @NgModule({
-  imports: [],
+  imports: [CommonModule],
   declarations: [
     BarHighchartsComponent,
     ChordHighchartsComponent,
