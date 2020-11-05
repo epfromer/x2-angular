@@ -11,27 +11,11 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
-import { ChartsModule } from 'ng2-charts'
-import { NgxEchartsModule } from 'ngx-echarts'
 import { AppComponent } from './app.component'
 import { AppToolbarComponent } from './components/app/app-toolbar.component'
-import { BarChartJSComponent } from './components/ChartJS/bar-chartjs.component'
-import { PieChartJSComponent } from './components/ChartJS/pie-chartjs.component'
-import { VolumeTimelineChartJSComponent } from './components/ChartJS/volume-timeline-chartjs.component'
-import { BarEChartsComponent } from './components/ECharts/bar-echarts.component'
-import { ChordEChartsComponent } from './components/ECharts/chord-echarts.component'
-import { NetworkGraphEChartsComponent } from './components/ECharts/network-graph-echarts.component'
-import { PieEChartsComponent } from './components/ECharts/pie-echarts.component'
-import { TreeMapEChartsComponent } from './components/ECharts/tree-map-echarts.component'
-import { VolumeTimelineEChartsComponent } from './components/ECharts/volume-timeline-echarts.component'
-import { WordCloudEChartsComponent } from './components/ECharts/word-cloud-echarts.component'
-import { BarHighchartsComponent } from './components/Highcharts/bar-highcharts.component'
-import { ChordHighchartsComponent } from './components/Highcharts/chord-highcharts.component'
-import { NetworkGraphHighchartsComponent } from './components/Highcharts/network-graph-highcharts.component'
-import { PieHighchartsComponent } from './components/Highcharts/pie-highcharts.component'
-import { TreeMapHighchartsComponent } from './components/Highcharts/tree-map-highcharts.component'
-import { VolumeTimelineHighchartsComponent } from './components/Highcharts/volume-timeline-highcharts.component'
-import { WordCloudHighchartsComponent } from './components/Highcharts/word-cloud-highcharts.component'
+import { ChartJSModule } from './components/ChartJS/chartjs.module'
+import { EChartsModule } from './components/ECharts/echarts.module'
+import { HighchartsModule } from './components/Highcharts/highcharts.module'
 import { HomeCardComponent } from './components/home-card.component'
 import { AppRoutingModule } from './router/app-routing.module'
 import { reducers } from './store'
@@ -50,61 +34,43 @@ import { TreeMapViewComponent } from './views/tree-map-view.component'
 import { VolumeTimelineViewComponent } from './views/volume-timeline-view.component'
 import { WordCloudViewComponent } from './views/word-cloud-view.component'
 
-// separate into modules for each chart tech: Highcharts, ChartJS, ECharts
-
 @NgModule({
-  declarations: [
-    TreeMapHighchartsComponent,
-    TreeMapEChartsComponent,
-    AppComponent,
-    AppSettingsViewComponent,
-    AppToolbarComponent,
-    BarChartJSComponent,
-    BarEChartsComponent,
-    BarHighchartsComponent,
-    BarViewComponent,
-    ChordEChartsComponent,
-    ChordHighchartsComponent,
-    ChordViewComponent,
-    EmailDetailViewComponent,
-    EventTimelineViewComponent,
-    HomeCardComponent,
-    HomeViewComponent,
-    NetworkGraphEChartsComponent,
-    NetworkGraphHighchartsComponent,
-    NetworkGraphViewComponent,
-    PieChartJSComponent,
-    PieEChartsComponent,
-    PieHighchartsComponent,
-    PieViewComponent,
-    PolarViewComponent,
-    SearchHistoryViewComponent,
-    SearchViewComponent,
-    TreeMapViewComponent,
-    VolumeTimelineChartJSComponent,
-    VolumeTimelineEChartsComponent,
-    VolumeTimelineHighchartsComponent,
-    VolumeTimelineViewComponent,
-    WordCloudEChartsComponent,
-    WordCloudHighchartsComponent,
-    WordCloudViewComponent,
-  ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    ChartsModule,
+    ChartJSModule,
     CommonModule,
+    EChartsModule,
     FlexLayoutModule,
+    HighchartsModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
     MatSliderModule,
     MatTableModule,
     MatToolbarModule,
-    NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
     StoreDevtoolsModule.instrument(),
     StoreModule.forRoot(reducers),
+  ],
+  declarations: [
+    AppComponent,
+    AppToolbarComponent,
+    HomeCardComponent,
+    AppSettingsViewComponent,
+    BarViewComponent,
+    ChordViewComponent,
+    EmailDetailViewComponent,
+    EventTimelineViewComponent,
+    HomeViewComponent,
+    NetworkGraphViewComponent,
+    PieViewComponent,
+    PolarViewComponent,
+    SearchHistoryViewComponent,
+    SearchViewComponent,
+    TreeMapViewComponent,
+    VolumeTimelineViewComponent,
+    WordCloudViewComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
