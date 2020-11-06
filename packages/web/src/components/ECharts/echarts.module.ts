@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core'
+import { NgxEchartsModule } from 'ngx-echarts'
 import { BarEChartsComponent } from './bar-echarts.component'
 import { ChordEChartsComponent } from './chord-echarts.component'
 import { NetworkGraphEChartsComponent } from './network-graph-echarts.component'
 import { PieEChartsComponent } from './pie-echarts.component'
+import { PolarEChartsComponent } from './polar-echarts.component'
 import { TreeMapEChartsComponent } from './tree-map-echarts.component'
 import { VolumeTimelineEChartsComponent } from './volume-timeline-echarts.component'
 import { WordCloudEChartsComponent } from './word-cloud-echarts.component'
-import { NgxEchartsModule } from 'ngx-echarts'
 
 @NgModule({
   imports: [NgxEchartsModule.forRoot({ echarts: () => import('echarts') })],
@@ -15,6 +16,7 @@ import { NgxEchartsModule } from 'ngx-echarts'
     ChordEChartsComponent,
     NetworkGraphEChartsComponent,
     PieEChartsComponent,
+    PolarEChartsComponent,
     TreeMapEChartsComponent,
     VolumeTimelineEChartsComponent,
     WordCloudEChartsComponent,
@@ -25,6 +27,7 @@ import { NgxEchartsModule } from 'ngx-echarts'
     ChordEChartsComponent,
     NetworkGraphEChartsComponent,
     PieEChartsComponent,
+    PolarEChartsComponent,
     TreeMapEChartsComponent,
     VolumeTimelineEChartsComponent,
     WordCloudEChartsComponent,
