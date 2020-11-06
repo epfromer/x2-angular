@@ -17,6 +17,7 @@ import { ChartJSModule } from './components/ChartJS/chartjs.module'
 import { EChartsModule } from './components/ECharts/echarts.module'
 import { HighchartsModule } from './components/Highcharts/highcharts.module'
 import { HomeCardComponent } from './components/home-card.component'
+import { ThemePickerComponent } from './components/theme-picker.component'
 import { AppRoutingModule } from './router/app-routing.module'
 import { reducers } from './store'
 import { AppSettingsViewComponent } from './views/app-settings-view.component'
@@ -68,6 +69,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     PolarViewComponent,
     SearchHistoryViewComponent,
     SearchViewComponent,
+    ThemePickerComponent,
     TreeMapViewComponent,
     VolumeTimelineViewComponent,
     WordCloudViewComponent,

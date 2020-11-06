@@ -2,13 +2,11 @@ import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 
 @Component({
-  template: ` <div>
-    <p>foo</p>
-    <theme-picker></theme-picker>
-  </div>`,
-  styles: [``],
+  selector: 'theme-picker',
+  template: ` <div><p>theme picker</p></div> `,
+  styles: [],
 })
-export class AppSettingsViewComponent {
+export class ThemePickerComponent {
   // eslint-disable-next-line prettier/prettier
   constructor(private _router: Router) { }
 }
