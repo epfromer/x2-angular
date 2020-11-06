@@ -23,6 +23,16 @@ import { Custodian, EmailXferedDatum } from '../store'
         [data]="emailReceivers"
       ></polar-highcharts>
     </div>
+    <div class="mat-headline">ChartJS</div>
+    <div
+      fxLayout="row wrap"
+      fxLayoutAlign="space-around center"
+      fxLayout.xs="column"
+      fxLayout.sm="column"
+    >
+      <polar-chartjs title="Senders" [data]="emailSenders"></polar-chartjs>
+      <polar-chartjs title="Receivers" [data]="emailReceivers"></polar-chartjs>
+    </div>
     <div class="mat-headline">ECharts</div>
     <div
       fxLayout="row wrap"
