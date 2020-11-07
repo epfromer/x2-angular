@@ -4,7 +4,7 @@ import { Router } from '@angular/router'
 @Component({
   selector: 'home-card',
   template: `
-    <mat-card class="card" (click)="navTo(link)">
+    <mat-card class="card mat-elevation-z8" (click)="navTo(link)">
       <img mat-card-image class="image" src="{{ image }}" />
       <mat-card-title>{{ title }}</mat-card-title>
       <mat-card-content>{{ description }}</mat-card-content>
