@@ -3,8 +3,8 @@ import { Router } from '@angular/router'
 
 @Component({
   template: ` <div>
-    <p>foo</p>
     <theme-picker></theme-picker>
+    <custodian-settings></custodian-settings>
   </div>`,
   styles: [``],
 })

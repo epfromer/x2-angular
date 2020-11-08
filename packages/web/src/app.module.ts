@@ -15,6 +15,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { AppComponent } from './app.component'
 import { AppToolbarComponent } from './components/app/app-toolbar.component'
 import { ChartJSModule } from './components/ChartJS/chartjs.module'
+import { CustodianSettingsComponent } from './components/custodian-settings.component'
 import { EChartsModule } from './components/ECharts/echarts.module'
 import { HighchartsModule } from './components/Highcharts/highcharts.module'
 import { HomeCardComponent } from './components/home-card.component'
@@ -62,6 +63,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     AppToolbarComponent,
     BarViewComponent,
     ChordViewComponent,
+    CustodianSettingsComponent,
     EmailDetailViewComponent,
     EventTimelineViewComponent,
     HomeCardComponent,
