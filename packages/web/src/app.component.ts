@@ -1,7 +1,14 @@
 import { Component, HostBinding, OnInit } from '@angular/core'
 import { select, Store } from '@ngrx/store'
-import { getInitialDataAsync, selectDarkMode, selectThemeName } from './store'
-import { defaultThemeName } from './store'
+import {
+  defaultThemeName,
+  getInitialDataAsync,
+  selectDarkMode,
+  selectThemeName,
+  setDarkModeAsync,
+  setThemeNameAsync,
+  loadAppSettingsAsync,
+} from './store'
 
 @Component({
   selector: 'app-root',
@@ -39,12 +46,15 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    loadAppSettingsAsync(this.store)
     getInitialDataAsync(this.store)
     this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+      setDarkModeAsync(this.store, darkMode)
       this.darkMode = darkMode
       this.setThemeClass()
     })
     this.store.pipe(select(selectThemeName)).subscribe((themeName: string) => {
+      setThemeNameAsync(this.store, themeName)
       this.themeName = themeName
       this.setThemeClass()
     })
