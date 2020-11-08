@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
-import { Router } from '@angular/router'
+import { Store } from '@ngrx/store'
+import { setThemeName } from '../store'
 import { appThemes } from '../utils/appThemes'
 
 // https://material.angular.io/components/table/overview
@@ -17,7 +18,13 @@ import { appThemes } from '../utils/appThemes'
       <ng-container matColumnDef="primary">
         <th mat-header-cell *matHeaderCellDef>Color</th>
         <td mat-cell *matCellDef="let theme">
-          <button mat-raised-button color="{{ theme.name }}">&nbsp;</button>
+          <button
+            mat-raised-button
+            color="{{ theme.name }}"
+            (click)="setThemeName(theme.name)"
+          >
+            &nbsp;
+          </button>
         </td>
       </ng-container>
 
@@ -27,9 +34,6 @@ import { appThemes } from '../utils/appThemes'
   `,
   styles: [
     `
-      table {
-        width: 20%;
-      }
       button {
         width: 50px;
       }
@@ -84,8 +88,12 @@ import { appThemes } from '../utils/appThemes'
 })
 export class ThemePickerComponent {
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router) { }
+  constructor(private store: Store) { }
 
   displayedColumns: string[] = ['name', 'primary']
   dataSource = appThemes
+
+  setThemeName(name: string): void {
+    this.store.dispatch(setThemeName(name))
+  }
 }

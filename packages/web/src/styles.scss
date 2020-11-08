@@ -1,33 +1,21 @@
 @import "~@angular/material/theming";
 @include mat-core();
 
-// red theme
+// red theme, which is default
 $theme-red-primary: mat-palette($mat-red, 900);
 $theme-red-secondary: mat-palette($mat-red, 800);
-@include angular-material-theme( // red is default theme
-    mat-light-theme(
-      (
-        color: (
-          primary: $theme-red-primary,
-          accent: $theme-red-secondary,
-        ),
-      )
+@include angular-material-theme(
+  mat-light-theme(
+    (
+      color: (
+        primary: $theme-red-primary,
+        accent: $theme-red-secondary,
+      ),
     )
-  );
-.themeRedLight {
-  @include angular-material-theme(
-    mat-light-theme(
-      (
-        color: (
-          primary: $theme-red-primary,
-          accent: $theme-red-secondary,
-        ),
-      )
-    )
-  );
-}
+  )
+);
 .themeRedDark {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-dark-theme(
       (
         color: (
@@ -43,7 +31,7 @@ $theme-red-secondary: mat-palette($mat-red, 800);
 $theme-orange-primary: mat-palette($mat-orange, 900);
 $theme-orange-secondary: mat-palette($mat-orange, 800);
 .themeOrangeLight {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-light-theme(
       (
         color: (
@@ -55,7 +43,7 @@ $theme-orange-secondary: mat-palette($mat-orange, 800);
   );
 }
 .themeOrangeDark {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-dark-theme(
       (
         color: (
@@ -71,7 +59,7 @@ $theme-orange-secondary: mat-palette($mat-orange, 800);
 $theme-yellow-primary: mat-palette($mat-yellow, 600);
 $theme-yellow-secondary: mat-palette($mat-yellow, 500);
 .themeYellowLight {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-light-theme(
       (
         color: (
@@ -83,7 +71,7 @@ $theme-yellow-secondary: mat-palette($mat-yellow, 500);
   );
 }
 .themeYellowDark {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-dark-theme(
       (
         color: (
@@ -99,7 +87,7 @@ $theme-yellow-secondary: mat-palette($mat-yellow, 500);
 $theme-green-primary: mat-palette($mat-green, 800);
 $theme-green-secondary: mat-palette($mat-green, 700);
 .themeGreenLight {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-light-theme(
       (
         color: (
@@ -111,7 +99,7 @@ $theme-green-secondary: mat-palette($mat-green, 700);
   );
 }
 .themeGreenDark {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-dark-theme(
       (
         color: (
@@ -127,7 +115,7 @@ $theme-green-secondary: mat-palette($mat-green, 700);
 $theme-blue-primary: mat-palette($mat-blue, 800);
 $theme-blue-secondary: mat-palette($mat-blue, 700);
 .themeBlueLight {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-light-theme(
       (
         color: (
@@ -139,7 +127,7 @@ $theme-blue-secondary: mat-palette($mat-blue, 700);
   );
 }
 .themeBlueDark {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-dark-theme(
       (
         color: (
@@ -155,7 +143,7 @@ $theme-blue-secondary: mat-palette($mat-blue, 700);
 $theme-purple-primary: mat-palette($mat-purple, 800);
 $theme-purple-secondary: mat-palette($mat-purple, 700);
 .themePurpleLight {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-light-theme(
       (
         color: (
@@ -167,7 +155,7 @@ $theme-purple-secondary: mat-palette($mat-purple, 700);
   );
 }
 .themePurpleDark {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-dark-theme(
       (
         color: (
@@ -183,7 +171,7 @@ $theme-purple-secondary: mat-palette($mat-purple, 700);
 $theme-brown-primary: mat-palette($mat-brown, 800);
 $theme-brown-secondary: mat-palette($mat-brown, 700);
 .themeBrownLight {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-light-theme(
       (
         color: (
@@ -195,7 +183,7 @@ $theme-brown-secondary: mat-palette($mat-brown, 700);
   );
 }
 .themeBrownDark {
-  @include angular-material-theme(
+  @include angular-material-color(
     mat-dark-theme(
       (
         color: (

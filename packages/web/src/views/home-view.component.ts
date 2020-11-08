@@ -35,25 +35,25 @@ export class HomeViewComponent {
     {
       image: 'assets/pie.png',
       title: 'Pie',
-      description: 'Pie chart of email volume of Enron key custodians.',
+      description: 'Pie chart of email volume of Enron custodians.',
       link: 'PieView',
     },
     {
       image: 'assets/barchart.png',
       title: 'Bar',
-      description: 'Bar chart of email volume of Enron key custodians.',
+      description: 'Bar chart of email volume of Enron custodians.',
       link: 'BarView',
     },
     {
       image: 'assets/chord.png',
       title: 'Chord',
-      description: 'Chord diagram of Enron key custodian communication.',
+      description: 'Chord diagram of Enron custodian communication.',
       link: 'ChordView',
     },
     {
       image: 'assets/wordcloud.png',
       title: 'Word Cloud',
-      description: 'Word cloud of fraudulent project names.',
+      description: 'Word cloud of mentions of fraudulent project names.',
       link: 'WordCloudView',
     },
     {
@@ -65,13 +65,13 @@ export class HomeViewComponent {
     {
       image: 'assets/networkgraph.png',
       title: 'Network Graph',
-      description: 'Network graph of Enron key custodian communication.',
+      description: 'Network graph of Enron custodian communication.',
       link: 'NetworkGraphView',
     },
     {
       image: 'assets/treemap.png',
       title: 'Tree Map',
-      description: 'Tree map of email volume of Enron key custodians.',
+      description: 'Tree map of email volume of Enron custodians.',
       link: 'TreeMapView',
     },
     {
@@ -83,7 +83,7 @@ export class HomeViewComponent {
     {
       image: 'assets/polar.png',
       title: 'Polar',
-      description: 'Polar chart of email volume of Enron key custodians.',
+      description: 'Polar chart of email volume of Enron custodians.',
       link: 'PolarView',
     },
     {
