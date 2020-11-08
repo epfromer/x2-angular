@@ -17,9 +17,7 @@ import { appThemes } from '../utils/appThemes'
       <ng-container matColumnDef="primary">
         <th mat-header-cell *matHeaderCellDef>Color</th>
         <td mat-cell *matCellDef="let theme">
-          <button mat-raised-button color="{{ theme.name }}">
-            {{ theme.primary }}
-          </button>
+          <button mat-raised-button color="{{ theme.name }}">&nbsp;</button>
         </td>
       </ng-container>
 
@@ -31,6 +29,9 @@ import { appThemes } from '../utils/appThemes'
     `
       table {
         width: 20%;
+      }
+      button {
+        width: 50px;
       }
       th.mat-header-cell {
         font-size: 15px;
