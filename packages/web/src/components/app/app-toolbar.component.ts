@@ -7,7 +7,12 @@ import { selectDarkMode, setDarkMode } from '../../store'
   selector: 'app-toolbar',
   template: `
     <mat-toolbar color="primary" role="toolbar" class="toolbar">
-      <button mat-icon-button aria-label="Open drawer" (click)="onDrawer()">
+      <button
+        mat-icon-button
+        aria-label="Open drawer"
+        matTooltip="Open drawer"
+        (click)="onDrawer()"
+      >
         <mat-icon>menu</mat-icon>
       </button>
       <span>x2 Angular</span>
@@ -15,18 +20,34 @@ import { selectDarkMode, setDarkMode } from '../../store'
       <button
         mat-icon-button
         aria-label="Toggle light/dark theme"
+        aria-label="Toggle light/dark theme"
         (click)="onDark()"
       >
         <mat-icon *ngIf="!darkMode">brightness_high</mat-icon>
         <mat-icon *ngIf="darkMode">brightness_low</mat-icon>
       </button>
-      <button mat-icon-button aria-label="Settings" (click)="onSettings()">
+      <button
+        mat-icon-button
+        aria-label="Settings"
+        matTooltip="Settings"
+        (click)="onSettings()"
+      >
         <mat-icon>build</mat-icon>
       </button>
-      <button mat-icon-button aria-label="Search" (click)="onSearch()">
+      <button
+        mat-icon-button
+        aria-label="Search"
+        matTooltip="Search"
+        (click)="onSearch()"
+      >
         <mat-icon>search</mat-icon>
       </button>
-      <button mat-icon-button aria-label="x2 Home" (click)="onHome()">
+      <button
+        mat-icon-button
+        aria-label="x2 Home"
+        matTooltip="x2 Home"
+        (click)="onHome()"
+      >
         <mat-icon>home</mat-icon>
       </button>
     </mat-toolbar>

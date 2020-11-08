@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatSliderModule } from '@angular/material/slider'
 import { MatTableModule } from '@angular/material/table'
 import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatTooltipModule } from '@angular/material/tooltip'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { StoreModule } from '@ngrx/store'
@@ -51,6 +52,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     MatSliderModule,
     MatTableModule,
     MatToolbarModule,
+    MatTooltipModule,
     StoreDevtoolsModule.instrument(),
     StoreModule.forRoot(reducers),
   ],
