@@ -70,22 +70,142 @@ $theme-orange-secondary: mat-palette($mat-orange, 800);
 // yellow theme
 $theme-yellow-primary: mat-palette($mat-yellow, 600);
 $theme-yellow-secondary: mat-palette($mat-yellow, 500);
+.themeYellowLight {
+  @include angular-material-theme(
+    mat-light-theme(
+      (
+        color: (
+          primary: $theme-yellow-primary,
+          accent: $theme-yellow-secondary,
+        ),
+      )
+    )
+  );
+}
+.themeYellowDark {
+  @include angular-material-theme(
+    mat-dark-theme(
+      (
+        color: (
+          primary: $theme-yellow-primary,
+          accent: $theme-yellow-secondary,
+        ),
+      )
+    )
+  );
+}
 
 // green theme
 $theme-green-primary: mat-palette($mat-green, 800);
 $theme-green-secondary: mat-palette($mat-green, 700);
+.themeGreenLight {
+  @include angular-material-theme(
+    mat-light-theme(
+      (
+        color: (
+          primary: $theme-green-primary,
+          accent: $theme-green-secondary,
+        ),
+      )
+    )
+  );
+}
+.themeGreenDark {
+  @include angular-material-theme(
+    mat-dark-theme(
+      (
+        color: (
+          primary: $theme-green-primary,
+          accent: $theme-green-secondary,
+        ),
+      )
+    )
+  );
+}
 
 // blue theme
 $theme-blue-primary: mat-palette($mat-blue, 800);
 $theme-blue-secondary: mat-palette($mat-blue, 700);
+.themeBlueLight {
+  @include angular-material-theme(
+    mat-light-theme(
+      (
+        color: (
+          primary: $theme-blue-primary,
+          accent: $theme-blue-secondary,
+        ),
+      )
+    )
+  );
+}
+.themeBlueDark {
+  @include angular-material-theme(
+    mat-dark-theme(
+      (
+        color: (
+          primary: $theme-blue-primary,
+          accent: $theme-blue-secondary,
+        ),
+      )
+    )
+  );
+}
 
 // purple theme
 $theme-purple-primary: mat-palette($mat-purple, 800);
 $theme-purple-secondary: mat-palette($mat-purple, 700);
+.themePurpleLight {
+  @include angular-material-theme(
+    mat-light-theme(
+      (
+        color: (
+          primary: $theme-purple-primary,
+          accent: $theme-purple-secondary,
+        ),
+      )
+    )
+  );
+}
+.themePurpleDark {
+  @include angular-material-theme(
+    mat-dark-theme(
+      (
+        color: (
+          primary: $theme-purple-primary,
+          accent: $theme-purple-secondary,
+        ),
+      )
+    )
+  );
+}
 
 // brown theme
 $theme-brown-primary: mat-palette($mat-brown, 800);
 $theme-brown-secondary: mat-palette($mat-brown, 700);
+.themeBrownLight {
+  @include angular-material-theme(
+    mat-light-theme(
+      (
+        color: (
+          primary: $theme-brown-primary,
+          accent: $theme-brown-secondary,
+        ),
+      )
+    )
+  );
+}
+.themeBrownDark {
+  @include angular-material-theme(
+    mat-dark-theme(
+      (
+        color: (
+          primary: $theme-brown-primary,
+          accent: $theme-brown-secondary,
+        ),
+      )
+    )
+  );
+}
 
 html,
 body {
