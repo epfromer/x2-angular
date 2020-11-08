@@ -1,37 +1,91 @@
-/* @import '@angular/material/prebuilt-themes/purple-green.css'; */
-/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */
-/* @import '@angular/material/prebuilt-themes/pink-bluegrey.css'; */
 @import "~@angular/material/theming";
-// @import "./assets/red.css";
 @include mat-core();
-/* @import './assets/yellow.css'; */
 
-// TODO theming
-
-$angular-primary: mat-palette($mat-red, 900);
-$angular-accent: mat-palette($mat-red, 800);
-
-$angular-default-theme: mat-light-theme(
-  (
-    color: (
-      primary: $angular-primary,
-      accent: $angular-accent,
-    ),
-  )
-);
-@include angular-material-theme($angular-default-theme);
-$angular-dark-theme: mat-dark-theme(
-  (
-    color: (
-      primary: $angular-primary,
-      accent: $angular-accent,
-    ),
-  )
-);
-// @include angular-material-color($angular-dark-theme);
-.darkMode {
-  @include angular-material-color($angular-dark-theme);
+// red theme
+$theme-red-primary: mat-palette($mat-red, 900);
+$theme-red-secondary: mat-palette($mat-red, 800);
+@include angular-material-theme( // red is default theme
+    mat-light-theme(
+      (
+        color: (
+          primary: $theme-red-primary,
+          accent: $theme-red-secondary,
+        ),
+      )
+    )
+  );
+.themeRedLight {
+  @include angular-material-theme(
+    mat-light-theme(
+      (
+        color: (
+          primary: $theme-red-primary,
+          accent: $theme-red-secondary,
+        ),
+      )
+    )
+  );
 }
+.themeRedDark {
+  @include angular-material-theme(
+    mat-dark-theme(
+      (
+        color: (
+          primary: $theme-red-primary,
+          accent: $theme-red-secondary,
+        ),
+      )
+    )
+  );
+}
+
+// orange theme
+$theme-orange-primary: mat-palette($mat-orange, 900);
+$theme-orange-secondary: mat-palette($mat-orange, 800);
+.themeOrangeLight {
+  @include angular-material-theme(
+    mat-light-theme(
+      (
+        color: (
+          primary: $theme-orange-primary,
+          accent: $theme-orange-secondary,
+        ),
+      )
+    )
+  );
+}
+.themeOrangeDark {
+  @include angular-material-theme(
+    mat-dark-theme(
+      (
+        color: (
+          primary: $theme-orange-primary,
+          accent: $theme-orange-secondary,
+        ),
+      )
+    )
+  );
+}
+
+// yellow theme
+$theme-yellow-primary: mat-palette($mat-yellow, 600);
+$theme-yellow-secondary: mat-palette($mat-yellow, 500);
+
+// green theme
+$theme-green-primary: mat-palette($mat-green, 800);
+$theme-green-secondary: mat-palette($mat-green, 700);
+
+// blue theme
+$theme-blue-primary: mat-palette($mat-blue, 800);
+$theme-blue-secondary: mat-palette($mat-blue, 700);
+
+// purple theme
+$theme-purple-primary: mat-palette($mat-purple, 800);
+$theme-purple-secondary: mat-palette($mat-purple, 700);
+
+// brown theme
+$theme-brown-primary: mat-palette($mat-brown, 800);
+$theme-brown-secondary: mat-palette($mat-brown, 700);
 
 html,
 body {

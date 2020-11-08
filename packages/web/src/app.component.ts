@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     getInitialDataAsync(this.store)
     this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
-      this.className = darkMode ? 'darkMode' : ''
+      this.className = darkMode ? 'themeOrangeDark' : ''
     })
   }
 }
