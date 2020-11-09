@@ -9,7 +9,7 @@ import { Router } from '@angular/router'
         <theme-picker></theme-picker>
       </div>
       <div fxFlex>
-        <h2 class="mat-h2">Custodian Colors</h2>
+        <h2 class="mat-h2">Custodians</h2>
         <custodian-settings></custodian-settings>
       </div>
     </div>

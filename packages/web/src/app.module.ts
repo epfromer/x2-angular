@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
+import { MatDialogModule } from '@angular/material/dialog'
 import { MatIconModule } from '@angular/material/icon'
 import { MatSliderModule } from '@angular/material/slider'
 import { MatTableModule } from '@angular/material/table'
@@ -15,6 +16,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { AppComponent } from './app.component'
 import { AppToolbarComponent } from './components/app/app-toolbar.component'
 import { ChartJSModule } from './components/ChartJS/chartjs.module'
+import { ColorPickerDlgComponent } from './components/color-picker-dlg.component'
 import { CustodianSettingsComponent } from './components/custodian-settings.component'
 import { EChartsModule } from './components/ECharts/echarts.module'
 import { HighchartsModule } from './components/Highcharts/highcharts.module'
@@ -49,6 +51,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     HighchartsModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
     MatIconModule,
     MatSliderModule,
     MatTableModule,
@@ -63,6 +66,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     AppToolbarComponent,
     BarViewComponent,
     ChordViewComponent,
+    ColorPickerDlgComponent,
     CustodianSettingsComponent,
     EmailDetailViewComponent,
     EventTimelineViewComponent,

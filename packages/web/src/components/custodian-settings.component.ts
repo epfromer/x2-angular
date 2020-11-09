@@ -1,6 +1,8 @@
 import { Component } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
 import { select, Store } from '@ngrx/store'
 import { Custodian, selectCustodians } from 'src/store'
+import { ColorPickerDlgComponent } from './color-picker-dlg.component'
 
 @Component({
   selector: 'custodian-settings',
@@ -24,7 +26,7 @@ import { Custodian, selectCustodians } from 'src/store'
           <button
             mat-raised-button
             [ngStyle]="{ 'background-color': custodian.color }"
-            (click)="setCustodianColor(custodian.name)"
+            (click)="setCustodianColor(custodian.name, custodian.color)"
           >
             &nbsp;
           </button>
@@ -51,10 +53,12 @@ import { Custodian, selectCustodians } from 'src/store'
 })
 export class CustodianSettingsComponent {
   // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store) { }
+  constructor(private store: Store, public dialog: MatDialog) { }
 
   displayedColumns: string[] = ['name', 'title', 'color']
   custodians: Custodian[] = []
+  colorPickerDlgOpen = false
+  defaultColor = ''
 
   ngOnInit(): void {
     this.store
@@ -65,7 +69,23 @@ export class CustodianSettingsComponent {
   }
 
   setCustodianColor(name: string, color: string): void {
+    this.defaultColor = color
+    this.colorPickerDlgOpen = true
     console.log(name, color)
+
+    const dialogRef = this.dialog.open(ColorPickerDlgComponent, {
+      width: '250px',
+      data: { defaultColor: color },
+    })
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.defaultColor = result
+    })
+
     // this.store.dispatch(setThemeName(name))
+  }
+
+  handleColorChosen(color: string): void {
+    console.log(color)
   }
 }
