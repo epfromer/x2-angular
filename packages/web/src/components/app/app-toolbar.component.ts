@@ -20,7 +20,7 @@ import { selectDarkMode, setDarkMode } from '../../store'
       <button
         mat-icon-button
         aria-label="Toggle light/dark theme"
-        aria-label="Toggle light/dark theme"
+        matTooltip="Toggle light/dark theme"
         (click)="onDark()"
       >
         <mat-icon *ngIf="!darkMode">brightness_high</mat-icon>

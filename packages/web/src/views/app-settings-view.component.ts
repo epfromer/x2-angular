@@ -2,10 +2,12 @@ import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 
 @Component({
-  template: ` <div>
-    <theme-picker></theme-picker>
-    <custodian-settings></custodian-settings>
-  </div>`,
+  template: `
+    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+      <theme-picker></theme-picker>
+      <custodian-settings></custodian-settings>
+    </div>
+  `,
   styles: [``],
 })
 export class AppSettingsViewComponent {
