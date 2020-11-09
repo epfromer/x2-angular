@@ -7,7 +7,30 @@ export interface ColorPickerDlgData {
 
 @Component({
   selector: 'color-picker-dlg',
-  template: ` <div>{{ data.defaultColor }}</div> `,
+  template: `
+    <div mat-dialog-content>
+      <span
+        [(colorPicker)]="data.defaultColor"
+        [style.background]="data.defaultColor"
+        [cpDialogDisplay]="'inline'"
+        [cpToggle]="true"
+        [cpDisableInput]="true"
+        [cpOutputFormat]="'hex'"
+      >
+      </span>
+    </div>
+    <div mat-dialog-actions>
+      <button
+        mat-raised-button
+        color="accent"
+        [mat-dialog-close]="data.defaultColor"
+        cdkFocusInitial
+        style="width: 100%;"
+      >
+        Ok
+      </button>
+    </div>
+  `,
   styles: [``],
 })
 export class ColorPickerDlgComponent {

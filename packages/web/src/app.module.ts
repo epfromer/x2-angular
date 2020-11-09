@@ -13,6 +13,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { ColorPickerModule } from 'ngx-color-picker'
 import { AppComponent } from './app.component'
 import { AppToolbarComponent } from './components/app/app-toolbar.component'
 import { ChartJSModule } from './components/ChartJS/chartjs.module'
@@ -45,6 +46,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     BrowserAnimationsModule,
     BrowserModule,
     ChartJSModule,
+    ColorPickerModule,
     CommonModule,
     EChartsModule,
     FlexLayoutModule,

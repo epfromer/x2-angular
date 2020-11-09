@@ -33,6 +33,7 @@
     "lodash.clonedeep": "^4.5.0",
     "material": "^0.4.3",
     "ng2-charts": "^2.4.2",
+    "ngx-color-picker": "^10.1.0",
     "ngx-echarts": "^5.1.2",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.3",

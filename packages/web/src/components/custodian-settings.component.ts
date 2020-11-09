@@ -74,11 +74,12 @@ export class CustodianSettingsComponent {
     console.log(name, color)
 
     const dialogRef = this.dialog.open(ColorPickerDlgComponent, {
-      width: '250px',
+      width: '280px',
       data: { defaultColor: color },
     })
 
     dialogRef.afterClosed().subscribe((result) => {
+      console.log(result)
       this.defaultColor = result
     })
 

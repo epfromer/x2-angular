@@ -8354,6 +8354,13 @@ ng2-charts@^2.4.2:
     lodash-es "^4.17.15"
     tslib "^2.0.0"
 
+ngx-color-picker@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-color-picker/-/ngx-color-picker-10.1.0.tgz#19a6993a74bb3553024623b20ca6ebffd2c50f9c"
+  integrity sha512-Q3BILkQP+l+dcX0joe7+xuHDKydhGnG09sUG1FmlLZFYIEX4+AQqHULh+hUAci8kZlLZuOG+mB2Uq54QYadItw==
+  dependencies:
+    tslib "^2.0.0"
+
 ngx-echarts@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/ngx-echarts/-/ngx-echarts-5.1.2.tgz#ec5d0c7b78389e60eb7aa0ee1f6d784a982966d8"

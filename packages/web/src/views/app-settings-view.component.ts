@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Component } from '@angular/core'
-import { Router } from '@angular/router'
 
 @Component({
   template: `
@@ -13,16 +13,13 @@ import { Router } from '@angular/router'
         <custodian-settings></custodian-settings>
       </div>
     </div>
+    <div fxLayout="row">
+      <button mat-raised-button color="accent">Ok</button>
+    </div>
   `,
-  styles: [
-    `
-      .header {
-        font-size: 20;
-      }
-    `,
-  ],
+  styles: [``],
 })
 export class AppSettingsViewComponent {
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router) { }
+  constructor() { }
 }
