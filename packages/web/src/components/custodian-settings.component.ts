@@ -1,7 +1,9 @@
 import { Component } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { select, Store } from '@ngrx/store'
-import { Custodian, selectCustodians } from 'src/store'
+import { gql, request } from 'graphql-request'
+import { Custodian, selectCustodians, setCustodians } from 'src/store'
+import { environment } from '../environments/environment'
 import { ColorPickerDlgComponent } from './color-picker-dlg.component'
 
 @Component({
@@ -26,7 +28,7 @@ import { ColorPickerDlgComponent } from './color-picker-dlg.component'
           <button
             mat-raised-button
             [ngStyle]="{ 'background-color': custodian.color }"
-            (click)="setCustodianColor(custodian.name, custodian.color)"
+            (click)="setCustodianColor(custodian.id, custodian.color)"
           >
             &nbsp;
           </button>
@@ -63,15 +65,12 @@ export class CustodianSettingsComponent {
   ngOnInit(): void {
     this.store
       .pipe(select(selectCustodians))
-      .subscribe((custodians: Custodian[]) => {
-        this.custodians = custodians
-      })
+      .subscribe((custodians: Custodian[]) => (this.custodians = custodians))
   }
 
-  setCustodianColor(name: string, color: string): void {
+  setCustodianColor(id: string, color: string): void {
     this.defaultColor = color
     this.colorPickerDlgOpen = true
-    console.log(name, color)
 
     const dialogRef = this.dialog.open(ColorPickerDlgComponent, {
       width: '280px',
@@ -79,14 +78,31 @@ export class CustodianSettingsComponent {
     })
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result)
-      this.defaultColor = result
+      if (result) {
+        this.defaultColor = result
+        const server = environment.x2Server
+        const mutation = gql`
+          mutation setCustodianColor($id: ID, $color: String) {
+            setCustodianColor(id: $id, color: $color) {
+              id
+              name
+              title
+              color
+              senderTotal
+              receiverTotal
+              toCustodians {
+                custodianId
+                total
+              }
+            }
+          }
+        `
+        request(`${server}/graphql/`, mutation, { id, color: result })
+          .then((data) =>
+            this.store.dispatch(setCustodians(data.setCustodianColor))
+          )
+          .catch((error) => console.error('CustodianSettings', error))
+      }
     })
-
-    // this.store.dispatch(setThemeName(name))
-  }
-
-  handleColorChosen(color: string): void {
-    console.log(color)
   }
 }
