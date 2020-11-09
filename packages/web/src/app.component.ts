@@ -13,9 +13,11 @@ import {
 @Component({
   selector: 'app-root',
   template: `
-    <app-toolbar></app-toolbar>
     <div class="container mat-app-background" role="main">
-      <router-outlet></router-outlet>
+      <app-toolbar></app-toolbar>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   `,
   styles: [
@@ -26,9 +28,11 @@ import {
         height: 100%;
         display: block;
         box-sizing: border-box;
-        padding: 20px;
         margin-left: auto;
         margin-right: auto;
+      }
+      .content {
+        padding: 20px;
       }
     `,
   ],

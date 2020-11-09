@@ -11,7 +11,7 @@ import { appThemes } from '../utils/appThemes'
   template: `
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="primary">
-        <th mat-header-cell *matHeaderCellDef>Theme</th>
+        <th mat-header-cell *matHeaderCellDef>Color</th>
         <td mat-cell *matCellDef="let theme">
           <button
             mat-raised-button
@@ -29,6 +29,8 @@ import { appThemes } from '../utils/appThemes'
   `,
   styles: [
     `
+      table {
+      }
       button {
         width: 50px;
       }

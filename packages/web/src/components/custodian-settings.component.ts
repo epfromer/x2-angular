@@ -37,6 +37,9 @@ import { Custodian, selectCustodians } from 'src/store'
   `,
   styles: [
     `
+      table {
+        width: 100%;
+      }
       th.mat-header-cell {
         font-size: 15px;
       }
