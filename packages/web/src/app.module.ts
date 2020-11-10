@@ -39,6 +39,7 @@ import { SearchViewComponent } from './views/search-view.component'
 import { TreeMapViewComponent } from './views/tree-map-view.component'
 import { VolumeTimelineViewComponent } from './views/volume-timeline-view.component'
 import { WordCloudViewComponent } from './views/word-cloud-view.component'
+import { ImportLogComponent } from './views/__tests__/import-log.component'
 
 @NgModule({
   imports: [
@@ -74,6 +75,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     EventTimelineViewComponent,
     HomeCardComponent,
     HomeViewComponent,
+    ImportLogComponent,
     NetworkGraphViewComponent,
     PieViewComponent,
     PolarViewComponent,
