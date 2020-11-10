@@ -3,42 +3,28 @@ import { Component } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { gql, request } from 'graphql-request'
 import { interval } from 'rxjs'
-import { importLoc, ImportLogEntry } from 'src/store'
+import { importLoc } from 'src/store'
 import { environment } from '../environments/environment'
+
+interface LogEntry {
+  id: string
+  entry: string
+}
 
 @Component({
   selector: 'import-log',
   template: `
     <div>
-      <button mat-raised-button color="accent">Import Email</button>
+      <button mat-raised-button color="accent" (click)="startImport()">
+        Import Email
+      </button>
     </div>
-    <div class="table-container">
-      <table
-        id="mat-table"
-        mat-table
-        [dataSource]="importLog"
-        class="mat-elevation-z8"
-      >
-        <ng-container matColumnDef="timestamp">
-          <th mat-header-cell *matHeaderCellDef>Timestamp</th>
-          <td mat-cell *matCellDef="let logEntry">
-            {{ logEntry.timestamp }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="entry">
-          <th mat-header-cell *matHeaderCellDef>Entry</th>
-          <td mat-cell *matCellDef="let logEntry">{{ logEntry.entry }}</td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: displayedColumns; let even = even"
-          [ngClass]="{ red: even }"
-        ></tr>
-      </table>
-    </div>
+    <mat-table [dataSource]="importLog" class="mat-elevation-z8 container">
+      <ng-container matColumnDef="entry">
+        <mat-cell *matCellDef="let r">{{ r.last }} {{ r.entry }} </mat-cell>
+      </ng-container>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
   `,
   styles: [
     `
@@ -51,13 +37,9 @@ import { environment } from '../environments/environment'
       .last-row {
         margin: 100px;
       }
-      .table-container {
-        position: relative;
-        max-height: 400px;
+      .container {
         overflow: auto;
-      }
-      th.mat-header-cell {
-        font-size: 15px;
+        max-height: 400px;
       }
       .mat-cell {
         padding-right: 10px;
@@ -69,8 +51,8 @@ export class ImportLogComponent {
   // eslint-disable-next-line prettier/prettier
   constructor(private store: Store) { }
 
-  displayedColumns: string[] = ['timestamp', 'entry']
-  importLog: Array<ImportLogEntry> = []
+  displayedColumns: string[] = ['entry']
+  importLog: Array<LogEntry> = []
   resultsLength = 0
   sub = undefined
 
@@ -89,8 +71,12 @@ export class ImportLogComponent {
       request(`${server}/graphql/`, query)
         .then((data) => {
           this.importLog = data.getImportStatus
+            .map((e) => ({
+              id: e.id,
+              entry: e.timestamp + ' ' + e.entry,
+            }))
+            .reverse()
           this.resultsLength = this.importLog.length
-          document.querySelector('#mat-table').scrollBy(0, 10000)
         })
         .catch((err) => console.error('ImportLogComponent: ', err))
     })
