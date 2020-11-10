@@ -39,7 +39,8 @@ import { SearchViewComponent } from './views/search-view.component'
 import { TreeMapViewComponent } from './views/tree-map-view.component'
 import { VolumeTimelineViewComponent } from './views/volume-timeline-view.component'
 import { WordCloudViewComponent } from './views/word-cloud-view.component'
-import { ImportLogComponent } from './views/__tests__/import-log.component'
+import { ImportLogComponent } from './components/import-log.component'
+import { MatPaginatorModule } from '@angular/material/paginator'
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import { ImportLogComponent } from './views/__tests__/import-log.component'
     MatCardModule,
     MatDialogModule,
     MatIconModule,
+    MatPaginatorModule,
     MatSliderModule,
     MatTableModule,
     MatToolbarModule,

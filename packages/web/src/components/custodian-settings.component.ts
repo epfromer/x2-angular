@@ -12,7 +12,7 @@ import { ColorPickerDlgComponent } from './color-picker-dlg.component'
     <table mat-table [dataSource]="custodians" class="mat-elevation-z8">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Custodian</th>
-        <td mat-cell *matCellDef="let custodian" class="custodian">
+        <td mat-cell *matCellDef="let custodian">
           {{ custodian.name }}
         </td>
       </ng-container>
