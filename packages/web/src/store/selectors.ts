@@ -143,31 +143,46 @@ export const selectEmailListPage = createSelector(
 )
 export const selectFrom = createSelector(
   createFeatureSelector<QueryState>('query'),
-  (state) => state.emailListPage
+  (state) => state.from
 )
 export const selectOrder = createSelector(
   createFeatureSelector<QueryState>('query'),
-  (state) => state.emailListPage
+  (state) => state.order
 )
 export const selectSort = createSelector(
   createFeatureSelector<QueryState>('query'),
-  (state) => state.emailListPage
+  (state) => state.sort
 )
 export const selectSent = createSelector(
   createFeatureSelector<QueryState>('query'),
-  (state) => state.emailListPage
+  (state) => state.sent
 )
 export const selectSubject = createSelector(
   createFeatureSelector<QueryState>('query'),
-  (state) => state.emailListPage
+  (state) => state.subject
 )
 export const selectTimeSpan = createSelector(
   createFeatureSelector<QueryState>('query'),
-  (state) => state.emailListPage
+  (state) => state.timeSpan
 )
 export const selectTo = createSelector(
   createFeatureSelector<QueryState>('query'),
-  (state) => state.emailListPage
+  (state) => state.to
+)
+export const selectQuery = createSelector(
+  createFeatureSelector<QueryState>('query'),
+  (state) => ({
+    allText: state.allText,
+    body: state.body,
+    emailListPage: state.emailListPage,
+    from: state.from,
+    order: state.order,
+    sent: state.sent,
+    sort: state.sort,
+    subject: state.subject,
+    timeSpan: state.timeSpan,
+    to: state.to,
+  })
 )
 
 // searchHistorySlice

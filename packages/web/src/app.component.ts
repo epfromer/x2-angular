@@ -2,12 +2,13 @@ import { Component, HostBinding, OnInit } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import {
   defaultThemeName,
+  getEmailAsync,
   getInitialDataAsync,
+  loadAppSettingsAsync,
   selectDarkMode,
   selectThemeName,
   setDarkModeAsync,
   setThemeNameAsync,
-  loadAppSettingsAsync,
 } from './store'
 
 @Component({
@@ -53,6 +54,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     loadAppSettingsAsync(this.store)
     getInitialDataAsync(this.store)
+    getEmailAsync(this.store)
     this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
       setDarkModeAsync(this.store, darkMode)
       this.darkMode = darkMode
