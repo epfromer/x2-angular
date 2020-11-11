@@ -15,7 +15,7 @@ import {
   template: `
     <div class="container mat-app-background" role="main">
       <app-toolbar></app-toolbar>
-      <div class="content">
+      <div class="content mat-app-background">
         <router-outlet></router-outlet>
       </div>
     </div>
