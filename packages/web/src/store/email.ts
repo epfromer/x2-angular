@@ -10,28 +10,26 @@ import {
   setEmailLoading,
   setEmailTotal,
 } from './slices/emailSlice'
+import { defaultLimit } from './constants'
 
 async function makeQueryObj(store: Store): Promise<unknown> {
-  const sort = await store.pipe(select(selectQuery), take(1)).toPromise()
-  console.log(sort)
-  // const state = store.getState()
+  const state = await store.pipe(select(selectQuery), take(1)).toPromise()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // const state = await store.pipe(select(''))
-  // const query: any = {
-  //   skip: state.query.emailListPage * defaultLimit,
-  //   limit: defaultLimit,
-  //   sort: state.query.sort,
-  //   order: state.query.order,
-  // }
-  // if (state.query.sent) query.sent = state.query.sent
-  // if (state.query.timeSpan) query.timeSpan = state.query.timeSpan
-  // if (state.query.from) query.from = state.query.from
-  // if (state.query.to) query.to = state.query.to
-  // if (state.query.subject) query.subject = state.query.subject
-  // if (state.query.allText) query.allText = state.query.allText
-  // if (state.query.body) query.body = state.query.body
-  // return query
-  return {}
+  const query: any = {
+    skip: state.emailListPage * defaultLimit,
+    limit: defaultLimit,
+    sort: state.sort,
+    order: state.order,
+  }
+  if (state.sent) query.sent = state.sent
+  if (state.timeSpan) query.timeSpan = state.timeSpan
+  if (state.from) query.from = state.from
+  if (state.to) query.to = state.to
+  if (state.subject) query.subject = state.subject
+  if (state.allText) query.allText = state.allText
+  if (state.body) query.body = state.body
+  console.log(query)
+  return query
 }
 
 export async function getEmailAsync(
@@ -84,7 +82,8 @@ export async function getEmailAsync(
       }
     }
   `
-  request(`${server}/graphql/`, query, makeQueryObj(store))
+  const queryObj = await makeQueryObj(store)
+  request(`${server}/graphql/`, query, queryObj)
     .then((data) => {
       if (append) {
         store.dispatch(appendEmail(data.getEmail.emails))
