@@ -1,13 +1,6 @@
-import {
-  Action,
-  createAction,
-  createFeatureSelector,
-  createReducer,
-  createSelector,
-  on,
-} from '@ngrx/store'
-import { WordCloudTag } from '../types'
+import { Action, createAction, createReducer, on } from '@ngrx/store'
 import cloneDeep from 'lodash.clonedeep'
+import { WordCloudTag } from '../types'
 
 export interface WordCloudState {
   wordCloudLoading: boolean
@@ -23,7 +16,6 @@ export const setWordCloudLoading = createAction(
   'setWordCloudLoading',
   (wordCloudLoading: boolean) => ({ wordCloudLoading })
 )
-
 export const setWordCloud = createAction(
   'setWordCloud',
   (wordCloud: Array<WordCloudTag>) => ({ wordCloud })
@@ -49,14 +41,3 @@ export function wordCloudReducer(
   )
   return reducer(state, action)
 }
-
-// Selectors
-export const selectWordCloudLoading = createSelector(
-  createFeatureSelector<WordCloudState>('wordCloud'),
-  (state) => state.wordCloudLoading
-)
-
-export const selectWordCloud = createSelector(
-  createFeatureSelector<WordCloudState>('wordCloud'),
-  (state) => state.wordCloud
-)

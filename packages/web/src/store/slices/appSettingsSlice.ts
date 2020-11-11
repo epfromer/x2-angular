@@ -1,13 +1,6 @@
-import {
-  Action,
-  createAction,
-  createFeatureSelector,
-  createReducer,
-  createSelector,
-  on,
-} from '@ngrx/store'
-import { defaultThemeName } from '../constants'
+import { Action, createAction, createReducer, on } from '@ngrx/store'
 import cloneDeep from 'lodash.clonedeep'
+import { defaultThemeName } from '../constants'
 
 export interface AppSettingsState {
   darkMode: boolean
@@ -22,7 +15,6 @@ const initialState: AppSettingsState = {
 export const setDarkMode = createAction('setDarkMode', (darkMode: boolean) => ({
   darkMode,
 }))
-
 export const setThemeName = createAction(
   'setThemeName',
   (themeName: string) => ({ themeName })
@@ -48,14 +40,3 @@ export function appSettingsReducer(
   )
   return reducer(state, action)
 }
-
-// Selectors
-export const selectDarkMode = createSelector(
-  createFeatureSelector<AppSettingsState>('appSettings'),
-  (state) => state.darkMode
-)
-
-export const selectThemeName = createSelector(
-  createFeatureSelector<AppSettingsState>('appSettings'),
-  (state) => state.themeName
-)

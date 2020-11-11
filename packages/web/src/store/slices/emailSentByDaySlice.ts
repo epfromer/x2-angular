@@ -1,11 +1,4 @@
-import {
-  Action,
-  createAction,
-  createFeatureSelector,
-  createReducer,
-  createSelector,
-  on,
-} from '@ngrx/store'
+import { Action, createAction, createReducer, on } from '@ngrx/store'
 import cloneDeep from 'lodash.clonedeep'
 import { EmailSentByDay } from '../types'
 
@@ -23,7 +16,6 @@ export const setEmailSentByDayLoading = createAction(
   'setEmailSentByDayLoading',
   (emailSentByDayLoading: boolean) => ({ emailSentByDayLoading })
 )
-
 export const setEmailSentByDay = createAction(
   'setEmailSentByDay',
   (emailSentByDay: Array<EmailSentByDay>) => ({ emailSentByDay })
@@ -49,14 +41,3 @@ export function emailSentByDayReducer(
   )
   return reducer(state, action)
 }
-
-// Selectors
-export const selectEmailSentByDayLoading = createSelector(
-  createFeatureSelector<EmailSentByDayState>('emailSentByDay'),
-  (state) => state.emailSentByDayLoading
-)
-
-export const selectEmailSentByDay = createSelector(
-  createFeatureSelector<EmailSentByDayState>('emailSentByDay'),
-  (state) => state.emailSentByDay
-)
