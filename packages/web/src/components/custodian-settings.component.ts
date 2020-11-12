@@ -46,6 +46,7 @@ import { ColorPickerDlgComponent } from './color-picker-dlg.component'
       }
       th.mat-header-cell {
         font-size: 15px;
+        min-width: 150px;
       }
       .mat-cell {
         padding-right: 10px;

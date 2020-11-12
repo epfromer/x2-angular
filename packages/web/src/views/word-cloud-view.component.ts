@@ -1,7 +1,14 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
-import { selectWordCloud, WordCloudState, WordCloudTag } from 'src/store'
+import {
+  clearSearch,
+  getEmailAsync,
+  selectWordCloud,
+  setAllText,
+  WordCloudState,
+  WordCloudTag,
+} from 'src/store'
 
 @Component({
   template: `
@@ -11,6 +18,7 @@ import { selectWordCloud, WordCloudState, WordCloudTag } from 'src/store'
         id="highcharts-word-cloud"
         title="Enron Project Names"
         [data]="wordCloud"
+        [handleClick]="handleClick"
       >
       </word-cloud-highcharts>
     </div>
@@ -22,6 +30,13 @@ export class WordCloudViewComponent {
 
   // eslint-disable-next-line prettier/prettier
   constructor(private _router: Router, private store: Store<WordCloudState>) { }
+
+  handleClick(word: string): void {
+    this.store.dispatch(clearSearch())
+    this.store.dispatch(setAllText(word))
+    getEmailAsync(this.store)
+    this._router.navigateByUrl('/SearchView')
+  }
 
   ngOnInit(): void {
     this.store

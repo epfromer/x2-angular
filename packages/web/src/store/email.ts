@@ -28,7 +28,6 @@ async function makeQueryObj(store: Store): Promise<unknown> {
   if (state.subject) query.subject = state.subject
   if (state.allText) query.allText = state.allText
   if (state.body) query.body = state.body
-  console.log(query)
   return query
 }
 
