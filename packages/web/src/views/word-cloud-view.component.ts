@@ -26,10 +26,10 @@ import {
   styles: [``],
 })
 export class WordCloudViewComponent {
-  wordCloud: WordCloudTag[]
-
   // eslint-disable-next-line prettier/prettier
   constructor(private _router: Router, private store: Store<WordCloudState>) { }
+
+  wordCloud: WordCloudTag[]
 
   handleClick(word: string): void {
     this.store.dispatch(clearSearch())

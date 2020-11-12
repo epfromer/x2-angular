@@ -47,11 +47,11 @@ import { Custodian, EmailXferedDatum } from '../store'
   styles: [``],
 })
 export class BarViewComponent {
-  emailSenders: EmailXferedDatum[]
-  emailReceivers: EmailXferedDatum[]
-
   // eslint-disable-next-line prettier/prettier
   constructor(private store: Store<CustodiansState>) { }
+
+  emailSenders: EmailXferedDatum[]
+  emailReceivers: EmailXferedDatum[]
 
   ngOnInit(): void {
     this.store
