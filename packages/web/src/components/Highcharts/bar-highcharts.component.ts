@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core'
-import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
 import * as Highcharts from 'highcharts'
@@ -18,10 +17,9 @@ export class BarHighchartsComponent {
   @Input() handleClick: (search: string, name: string) => void
 
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router, private store: Store) { }
+  constructor(private store: Store) { }
 
   darkMode = false
-  options: EChartOption = {}
   chart = undefined
 
   createChart(): void {

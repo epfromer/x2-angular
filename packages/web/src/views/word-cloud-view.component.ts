@@ -6,7 +6,6 @@ import {
   getEmailAsync,
   selectWordCloud,
   setAllText,
-  WordCloudState,
   WordCloudTag,
 } from 'src/store'
 
@@ -18,7 +17,7 @@ import {
         id="highcharts-word-cloud"
         title="Enron Project Names"
         [data]="wordCloud"
-        [handleClick]="handleClick"
+        (handleClick)="handleClick($event)"
       >
       </word-cloud-highcharts>
     </div>
@@ -27,7 +26,7 @@ import {
 })
 export class WordCloudViewComponent {
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router, private store: Store<WordCloudState>) { }
+  constructor(private router: Router, private store: Store) { }
 
   wordCloud: WordCloudTag[]
 
@@ -35,7 +34,7 @@ export class WordCloudViewComponent {
     this.store.dispatch(clearSearch())
     this.store.dispatch(setAllText(word))
     getEmailAsync(this.store)
-    this._router.navigateByUrl('/SearchView')
+    this.router.navigateByUrl('/SearchView')
   }
 
   ngOnInit(): void {

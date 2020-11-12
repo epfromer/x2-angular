@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import * as Highcharts from 'highcharts'
@@ -33,10 +33,10 @@ Highcharts.seriesTypes.wordcloud.prototype.deriveFontSize = function (
 export class WordCloudHighchartsComponent {
   @Input() title: string
   @Input() data: Array<WordCloudTag>
-  @Input() handleClick: (word: string) => void
+  @Output() handleClick = new EventEmitter()
 
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router, private store: Store) { }
+  constructor(private store: Store) { }
 
   darkMode = false
   chart = undefined
@@ -60,8 +60,7 @@ export class WordCloudHighchartsComponent {
         series: {
           cursor: 'pointer',
           events: {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            click: (e: any) => this.handleClick(e.point.name),
+            click: (e) => this.handleClick.emit(e.point.name),
           },
         },
       },

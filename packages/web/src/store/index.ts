@@ -9,7 +9,7 @@ import { emailReducer, EmailState } from './slices/emailSlice'
 import { queryReducer, QueryState } from './slices/querySlice'
 import { wordCloudReducer, WordCloudState } from './slices/wordCloudSlice'
 
-interface AppState {
+export interface AppState {
   appSettings: AppSettingsState
   custodians: CustodiansState
   email: EmailState

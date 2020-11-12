@@ -1,12 +1,17 @@
 import { Component } from '@angular/core'
+import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import {
-  CustodiansState,
+  clearSearch,
+  Custodian,
+  EmailXferedDatum,
+  getEmailAsync,
   getEmailReceivers,
   getEmailSenders,
   selectCustodians,
+  setFrom,
+  setTo,
 } from '../store'
-import { Custodian, EmailXferedDatum } from '../store'
 
 @Component({
   template: `
@@ -51,17 +56,22 @@ export class PieViewComponent {
   emailReceivers: EmailXferedDatum[]
 
   // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store<CustodiansState>) { }
+  constructor(private _router: Router, private store: Store) { }
+
+  handleClick(search: string, value: string): void {
+    console.log(search, value, this._router)
+    this.store.dispatch(clearSearch())
+    const name = value.slice(0, value.search(/,/))
+    this.store.dispatch(search === 'from' ? setFrom(name) : setTo(name))
+    getEmailAsync(this.store)
+    this._router.navigateByUrl('/SearchView')
+  }
 
   ngOnInit(): void {
     this.store
       .pipe(select(selectCustodians))
       .subscribe((custodians: Custodian[]) => {
         this.emailSenders = getEmailSenders(custodians)
-      })
-    this.store
-      .pipe(select(selectCustodians))
-      .subscribe((custodians: Custodian[]) => {
         this.emailReceivers = getEmailReceivers(custodians)
       })
   }
