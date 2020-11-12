@@ -29,7 +29,7 @@ import { Custodian, getEmailSentByCustodian, selectCustodians } from '../store'
 })
 export class ChordViewComponent {
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router, private store: Store) { }
+  constructor(private router: Router, private store: Store) { }
 
   data = []
   nodes = []

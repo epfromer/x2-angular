@@ -39,7 +39,7 @@ export class PieChartJSComponent {
   @Input() data: Array<EmailXferedDatum>
   @Input() handleClick: (search: string, name: string) => void
 
-  constructor(private _router: Router, private store: Store) {
+  constructor(private router: Router, private store: Store) {
     monkeyPatchChartJsTooltip()
     monkeyPatchChartJsLegend()
   }

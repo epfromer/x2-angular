@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
-import { EChartOption } from 'echarts'
 import * as Highcharts from 'highcharts'
 import { EmailXferedDatum, selectDarkMode } from '../../store'
 
@@ -14,7 +13,7 @@ export class BarHighchartsComponent {
   @Input() title: string
   @Input() search: string
   @Input() data: Array<EmailXferedDatum>
-  @Input() handleClick: (search: string, name: string) => void
+  @Output() handleClick = new EventEmitter()
 
   // eslint-disable-next-line prettier/prettier
   constructor(private store: Store) { }
@@ -66,7 +65,11 @@ export class BarHighchartsComponent {
         bar: {
           events: {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            click: (e: any) => this.handleClick(this.search, e.point.category),
+            click: (e: any) =>
+              this.handleClick.emit({
+                search: this.search,
+                value: e.point.category,
+              }),
           },
         },
       },

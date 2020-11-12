@@ -23,14 +23,14 @@ import {
         title="Senders"
         search="from"
         [data]="emailSenders"
-        [handleClick]="handleClick"
+        (handleClick)="handleClick($event)"
       ></bar-highcharts>
       <bar-highcharts
         id="container-Receivers"
         title="Receivers"
         search="to"
         [data]="emailReceivers"
-        [handleClick]="handleClick"
+        (handleClick)="handleClick($event)"
       ></bar-highcharts>
     </div>
     <div class="mat-headline">ChartJS</div>
@@ -58,22 +58,22 @@ import {
 })
 export class BarViewComponent {
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router, private store: Store<CustodiansState>) { }
+  constructor(private router: Router, private store: Store<CustodiansState>) { }
 
   emailSenders: EmailXferedDatum[]
   emailReceivers: EmailXferedDatum[]
 
-  handleClick(search: string, value: string): void {
-    console.log(search, value, this._router)
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  handleClick({ search, value }): void {
     this.store.dispatch(clearSearch())
     const name = value.slice(0, value.search(/,/))
     this.store.dispatch(search === 'from' ? setFrom(name) : setTo(name))
     getEmailAsync(this.store)
-    this._router.navigateByUrl('/SearchView')
+    this.router.navigateByUrl('/SearchView')
   }
 
   ngOnInit(): void {
-    console.log(this._router)
+    console.log(this.router)
     this.store
       .pipe(select(selectCustodians))
       .subscribe((custodians: Custodian[]) => {

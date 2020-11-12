@@ -29,7 +29,7 @@ export class HomeViewComponent {
   @Input() homeCard: HomeCardComponent
 
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router) { }
+  constructor(private router: Router) { }
 
   cards: Card[] = [
     {

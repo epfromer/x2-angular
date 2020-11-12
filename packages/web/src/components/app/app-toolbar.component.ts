@@ -71,7 +71,7 @@ import { selectDarkMode, setDarkMode } from '../../store'
 })
 export class AppToolbarComponent {
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router, private store: Store) { }
+  constructor(private router: Router, private store: Store) { }
 
   darkMode = false
 
@@ -88,12 +88,12 @@ export class AppToolbarComponent {
     this.store.dispatch(setDarkMode(!this.darkMode))
   }
   onSettings(): void {
-    this._router.navigateByUrl('/AppSettingsView')
+    this.router.navigateByUrl('/AppSettingsView')
   }
   onSearch(): void {
-    this._router.navigateByUrl('/SearchView')
+    this.router.navigateByUrl('/SearchView')
   }
   onHome(): void {
-    this._router.navigateByUrl('/HomeView')
+    this.router.navigateByUrl('/HomeView')
   }
 }

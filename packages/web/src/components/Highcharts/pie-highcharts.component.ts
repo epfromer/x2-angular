@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core'
-import { Router } from '@angular/router'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import * as Highcharts from 'highcharts'
 import More from 'highcharts/highcharts-more'
@@ -22,10 +21,10 @@ export class PieHighchartsComponent {
   @Input() title: string
   @Input() search: string
   @Input() data: Array<EmailXferedDatum>
-  @Input() handleClick: (search: string, name: string) => void
+  @Output() handleClick = new EventEmitter()
 
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router, private store: Store) { }
+  constructor(private store: Store) { }
 
   darkMode = false
   chart = undefined
@@ -47,7 +46,8 @@ export class PieHighchartsComponent {
         y: datum.value,
         color: datum.color,
         events: {
-          click: () => this.handleClick(this.search, datum.name),
+          click: () =>
+            this.handleClick.emit({ search: this.search, value: datum.name }),
         },
       })
     })

@@ -63,7 +63,7 @@ import { Email, selectEmail } from 'src/store'
 })
 export class SearchViewComponent {
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router, private store: Store) { }
+  constructor(private router: Router, private store: Store) { }
 
   displayedColumns: string[] = ['sentShort', 'from', 'to', 'subject']
   email: Email[]

@@ -32,7 +32,7 @@ import { EmailSentByDay, selectEmailSentByDay } from 'src/store'
 })
 export class VolumeTimelineViewComponent {
   // eslint-disable-next-line prettier/prettier
-  constructor(private _router: Router, private store: Store) { }
+  constructor(private router: Router, private store: Store) { }
 
   data = []
 
