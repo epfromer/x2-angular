@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
 import * as Highcharts from 'highcharts'
+import treemap from 'highcharts/modules/treemap'
 import { EmailXferedDatum, selectDarkMode } from '../../store'
 
-import treemap from 'highcharts/modules/treemap'
 treemap(Highcharts)
 
 // https://www.highcharts.com/demo/bar-basic
@@ -18,7 +18,7 @@ export class TreeMapHighchartsComponent {
   @Input() title: string
   @Input() search: string
   @Input() data: Array<EmailXferedDatum>
-  @Input() handleClick: (search: string, name: string) => void
+  @Output() handleClick = new EventEmitter()
 
   // eslint-disable-next-line prettier/prettier
   constructor(private router: Router, private store: Store) { }
@@ -45,9 +45,14 @@ export class TreeMapHighchartsComponent {
       plotOptions: {
         series: {
           cursor: 'pointer',
-          // events: {
-          //   click: (e: any) => handleClick(search, e.point.name),
-          // },
+          events: {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            click: (e: any) =>
+              this.handleClick.emit({
+                search: this.search,
+                value: e.point.name,
+              }),
+          },
         },
       },
       series: [

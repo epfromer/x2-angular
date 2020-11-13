@@ -1,7 +1,15 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
-import { clearSearch, Custodian, getEmailAsync, getEmailSentByCustodian, selectCustodians, setFrom, setTo } from '../store'
+import {
+  clearSearch,
+  Custodian,
+  getEmailAsync,
+  getEmailSentByCustodian,
+  selectCustodians,
+  setFrom,
+  setTo,
+} from '../store'
 
 @Component({
   template: `

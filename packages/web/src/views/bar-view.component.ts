@@ -4,7 +4,6 @@ import { select, Store } from '@ngrx/store'
 import {
   clearSearch,
   Custodian,
-  CustodiansState,
   EmailXferedDatum,
   getEmailAsync,
   getEmailReceivers,
@@ -58,7 +57,7 @@ import {
 })
 export class BarViewComponent {
   // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store<CustodiansState>) { }
+  constructor(private router: Router, private store: Store) { }
 
   emailSenders: EmailXferedDatum[]
   emailReceivers: EmailXferedDatum[]
