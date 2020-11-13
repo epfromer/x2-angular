@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import * as Highcharts from 'highcharts'
@@ -21,7 +21,7 @@ noData(Highcharts)
 export class VolumeTimelineHighchartsComponent {
   @Input() title: string
   @Input() data: Array<EmailSentByDay>
-  @Input() handleClick: (search: string, name: string) => void
+  @Output() handleClick = new EventEmitter()
 
   // eslint-disable-next-line prettier/prettier
   constructor(private router: Router, private store: Store) { }
@@ -71,10 +71,11 @@ export class VolumeTimelineHighchartsComponent {
         series: {
           cursor: 'pointer',
           events: {
-            // click: (e: any) =>
-            //   this.handleClick(
-            //     new Date(e.point.category).toISOString().slice(0, 10)
-            //   ),
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            click: (e: any) =>
+              this.handleClick.emit(
+                new Date(e.point.category).toISOString().slice(0, 10)
+              ),
           },
         },
       },

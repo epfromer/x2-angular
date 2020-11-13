@@ -1,7 +1,14 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
-import { Custodian, getEmailSentByCustodian, selectCustodians } from '../store'
+import {
+  clearSearch,
+  Custodian,
+  getEmailAsync,
+  getEmailSentByCustodian,
+  selectCustodians,
+  setTo,
+} from '../store'
 
 @Component({
   template: `
@@ -13,6 +20,7 @@ import { Custodian, getEmailSentByCustodian, selectCustodians } from '../store'
         title="Custodian Interaction"
         [data]="data"
         [nodes]="nodes"
+        (handleClick)="handleClick($event)"
       >
       </network-graph-highcharts>
     </div>
@@ -40,6 +48,14 @@ export class NetworkGraphViewComponent {
 
   data = []
   nodes = []
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  handleClick(name): void {
+    this.store.dispatch(clearSearch())
+    this.store.dispatch(setTo(name.slice(0, name.search(/,/))))
+    getEmailAsync(this.store)
+    this.router.navigateByUrl('/SearchView')
+  }
 
   ngOnInit(): void {
     this.store

@@ -73,7 +73,6 @@ export class BarViewComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.router)
     this.store
       .pipe(select(selectCustodians))
       .subscribe((custodians: Custodian[]) => {

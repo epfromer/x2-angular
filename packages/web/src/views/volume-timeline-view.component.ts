@@ -1,7 +1,13 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
-import { EmailSentByDay, selectEmailSentByDay } from 'src/store'
+import {
+  clearSearch,
+  EmailSentByDay,
+  getEmailAsync,
+  selectEmailSentByDay,
+  setSent,
+} from 'src/store'
 
 @Component({
   template: `
@@ -12,6 +18,7 @@ import { EmailSentByDay, selectEmailSentByDay } from 'src/store'
         id="volume-timeline-highcharts"
         title="Email Volume per Day"
         [data]="data"
+        (handleClick)="handleClick($event)"
       >
       </volume-timeline-highcharts>
     </div>
@@ -35,6 +42,14 @@ export class VolumeTimelineViewComponent {
   constructor(private router: Router, private store: Store) { }
 
   data = []
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  handleClick(date): void {
+    this.store.dispatch(clearSearch())
+    this.store.dispatch(setSent(date))
+    getEmailAsync(this.store)
+    this.router.navigateByUrl('/SearchView')
+  }
 
   ngOnInit(): void {
     this.store

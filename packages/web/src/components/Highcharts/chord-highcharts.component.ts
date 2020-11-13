@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import * as Highcharts from 'highcharts'
@@ -18,8 +18,6 @@ noData(Highcharts)
 HighchartSankey(Highcharts)
 HighchartsWheel(Highcharts)
 
-const chartHeight = '500px'
-
 @Component({
   selector: 'chord-highcharts',
   template: '',
@@ -28,7 +26,7 @@ export class ChordHighchartsComponent {
   @Input() title: string
   @Input() data: Array<EmailSent>
   @Input() nodes: Array<IDColorKey>
-  @Input() handleClick: (search: string, name: string) => void
+  @Output() handleClick = new EventEmitter()
 
   // eslint-disable-next-line prettier/prettier
   constructor(private router: Router, private store: Store) { }
@@ -64,7 +62,8 @@ export class ChordHighchartsComponent {
           cursor: 'pointer',
           events: {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            click: (e: any) => this.handleClick(e.point.from, e.point.to),
+            click: (e: any) =>
+              this.handleClick.emit({ from: e.point.from, to: e.point.to }),
           },
         },
       },
