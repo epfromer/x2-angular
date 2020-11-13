@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import * as Highcharts from 'highcharts'
@@ -22,7 +22,7 @@ export class PolarHighchartsComponent {
   @Input() title: string
   @Input() search: string
   @Input() data: Array<EmailXferedDatum>
-  @Input() handleClick: (search: string, name: string) => void
+  @Output() handleClick = new EventEmitter()
 
   // eslint-disable-next-line prettier/prettier
   constructor(private router: Router, private store: Store) { }
@@ -41,9 +41,10 @@ export class PolarHighchartsComponent {
       data: [datum.value],
       color: datum.color,
       pointPlacement: 'between',
-      // events: {
-      //   click: () => handleClick(search, datum.name),
-      // },
+      events: {
+        click: () =>
+          this.handleClick.emit({ search: this.search, value: datum.name }),
+      },
     }))
 
     const options: unknown = {

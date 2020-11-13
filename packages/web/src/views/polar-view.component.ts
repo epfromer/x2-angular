@@ -1,12 +1,17 @@
 import { Component } from '@angular/core'
+import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import {
-  CustodiansState,
+  clearSearch,
+  Custodian,
+  EmailXferedDatum,
+  getEmailAsync,
   getEmailReceivers,
   getEmailSenders,
   selectCustodians,
+  setFrom,
+  setTo,
 } from '../store'
-import { Custodian, EmailXferedDatum } from '../store'
 
 @Component({
   template: `
@@ -15,12 +20,16 @@ import { Custodian, EmailXferedDatum } from '../store'
       <polar-highcharts
         id="highcharts-polar-Senders"
         title="Senders"
+        search="from"
         [data]="emailSenders"
+        (handleClick)="handleClick($event)"
       ></polar-highcharts>
       <polar-highcharts
         id="highcharts-polar-Receivers"
         title="Receivers"
+        search="to"
         [data]="emailReceivers"
+        (handleClick)="handleClick($event)"
       ></polar-highcharts>
     </div>
     <div class="mat-headline">ChartJS</div>
@@ -47,21 +56,26 @@ import { Custodian, EmailXferedDatum } from '../store'
   styles: [``],
 })
 export class PolarViewComponent {
+  // eslint-disable-next-line prettier/prettier
+  constructor(private router: Router, private store: Store) { }
+
   emailSenders: EmailXferedDatum[]
   emailReceivers: EmailXferedDatum[]
 
-  // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store<CustodiansState>) { }
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  handleClick({ search, value }): void {
+    this.store.dispatch(clearSearch())
+    const name = value.slice(0, value.search(/,/))
+    this.store.dispatch(search === 'from' ? setFrom(name) : setTo(name))
+    getEmailAsync(this.store)
+    this.router.navigateByUrl('/SearchView')
+  }
 
   ngOnInit(): void {
     this.store
       .pipe(select(selectCustodians))
       .subscribe((custodians: Custodian[]) => {
         this.emailSenders = getEmailSenders(custodians)
-      })
-    this.store
-      .pipe(select(selectCustodians))
-      .subscribe((custodians: Custodian[]) => {
         this.emailReceivers = getEmailReceivers(custodians)
       })
   }
