@@ -59,8 +59,18 @@ import {
       fxLayout.xs="column"
       fxLayout.sm="column"
     >
-      <bar-echarts title="Senders" [data]="emailSenders"></bar-echarts>
-      <bar-echarts title="Receivers" [data]="emailReceivers"></bar-echarts>
+      <bar-echarts
+        title="Senders"
+        search="from"
+        [data]="emailSenders"
+        (handleClick)="handleClick($event)"
+      ></bar-echarts>
+      <bar-echarts
+        title="Receivers"
+        search="to"
+        [data]="emailReceivers"
+        (handleClick)="handleClick($event)"
+      ></bar-echarts>
     </div>
   `,
   styles: [``],

@@ -30,6 +30,7 @@ import {
         title="Custodian Interaction"
         [data]="data"
         [nodes]="nodes"
+        (handleClick)="handleClick($event)"
       >
       </chord-echarts>
     </div>

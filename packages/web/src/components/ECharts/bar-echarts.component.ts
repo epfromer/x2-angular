@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
 import { EmailXferedDatum, selectDarkMode } from '../../store'
@@ -14,7 +14,7 @@ interface EChartsDatum {
   selector: 'bar-echarts',
   template: `
     <div class="container">
-      <div echarts [options]="options"></div>
+      <div echarts [options]="options" (chartClick)="onClick($event)"></div>
     </div>
   `,
   styles: [
@@ -29,7 +29,7 @@ export class BarEChartsComponent {
   @Input() title: string
   @Input() search: string
   @Input() data: Array<EmailXferedDatum>
-  @Input() handleClick: (search: string, name: string) => void
+  @Output() handleClick = new EventEmitter()
 
   // eslint-disable-next-line prettier/prettier
   constructor(private store: Store) { }
@@ -101,6 +101,14 @@ export class BarEChartsComponent {
         },
       ],
     }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  onClick(data): void {
+    this.handleClick.emit({
+      search: this.search,
+      value: data.name,
+    })
   }
 
   ngOnChanges(): void {

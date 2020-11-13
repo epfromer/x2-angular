@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
 import { EmailSent, IDColorKey, selectDarkMode } from '../../store'
@@ -9,7 +9,7 @@ import { EmailSent, IDColorKey, selectDarkMode } from '../../store'
   selector: 'network-graph-echarts',
   template: `
     <div class="container">
-      <div echarts [options]="options"></div>
+      <div echarts [options]="options" (chartClick)="onClick($event)"></div>
     </div>
   `,
   styles: [
@@ -24,7 +24,7 @@ export class NetworkGraphEChartsComponent {
   @Input() title: string
   @Input() data: Array<EmailSent>
   @Input() nodes: Array<IDColorKey>
-  @Input() handleClick: (search: string, name: string) => void
+  @Output() handleClick = new EventEmitter()
 
   // eslint-disable-next-line prettier/prettier
   constructor(private store: Store) { }
@@ -97,6 +97,11 @@ export class NetworkGraphEChartsComponent {
         },
       ],
     }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  onClick(data): void {
+    console.log(data)
   }
 
   ngOnChanges(): void {
