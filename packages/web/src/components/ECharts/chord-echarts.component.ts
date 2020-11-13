@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core'
-import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
 import { EmailSent, IDColorKey, selectDarkMode } from '../../store'
@@ -28,7 +27,7 @@ export class ChordEChartsComponent {
   @Input() handleClick: (search: string, name: string) => void
 
   // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store) { }
+  constructor(private store: Store) { }
 
   darkMode = false
   options: EChartOption = {}

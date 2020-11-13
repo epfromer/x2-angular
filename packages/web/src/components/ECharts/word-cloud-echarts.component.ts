@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core'
-import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
-import { WordCloudTag, selectDarkMode } from '../../store'
+import { selectDarkMode, WordCloudTag } from '../../store'
 
 // https://www.npmjs.com/package/ngx-echarts
 
@@ -29,7 +28,7 @@ export class WordCloudEChartsComponent {
   @Input() handleClick: (word: string) => void
 
   // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store) { }
+  constructor(private store: Store) { }
 
   darkMode = false
   options: EChartOption = {}

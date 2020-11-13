@@ -59,8 +59,18 @@ import {
       fxLayout.xs="column"
       fxLayout.sm="column"
     >
-      <pie-echarts title="Senders" [data]="emailSenders"></pie-echarts>
-      <pie-echarts title="Receivers" [data]="emailReceivers"></pie-echarts>
+      <pie-echarts
+        title="Senders"
+        search="from"
+        [data]="emailSenders"
+        (handleClick)="handleClick($event)"
+      ></pie-echarts>
+      <pie-echarts
+        title="Receivers"
+        search="to"
+        [data]="emailReceivers"
+        (handleClick)="handleClick($event)"
+      ></pie-echarts>
     </div>
   `,
   styles: [``],

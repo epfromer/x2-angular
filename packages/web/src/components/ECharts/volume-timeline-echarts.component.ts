@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core'
-import { Router } from '@angular/router'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
 import { EmailSentByDay, selectDarkMode } from '../../store'
@@ -10,7 +9,7 @@ import { EmailSentByDay, selectDarkMode } from '../../store'
   selector: 'volume-timeline-echarts',
   template: `
     <div class="container">
-      <div echarts [options]="options"></div>
+      <div echarts [options]="options" (chartClick)="onClick($event)"></div>
     </div>
   `,
   styles: [
@@ -25,10 +24,10 @@ import { EmailSentByDay, selectDarkMode } from '../../store'
 export class VolumeTimelineEChartsComponent {
   @Input() title: string
   @Input() data: Array<EmailSentByDay>
-  @Input() handleClick: (search: string, name: string) => void
+  @Output() handleClick = new EventEmitter()
 
   // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store) { }
+  constructor(private store: Store) { }
 
   darkMode = false
   options: EChartOption = {}
@@ -88,6 +87,11 @@ export class VolumeTimelineEChartsComponent {
         },
       ],
     }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  onClick(data): void {
+    this.handleClick.emit(data.name)
   }
 
   ngOnChanges(): void {

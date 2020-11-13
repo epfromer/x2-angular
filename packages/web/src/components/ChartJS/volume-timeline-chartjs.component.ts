@@ -87,16 +87,12 @@ export class VolumeTimelineChartJSComponent {
           },
         ],
       },
-      // TODO onClick
-      // onClick: (e: any, item: any) => {
-      //   console.log(item)
-      //   if (item && item.length) {
-      //     this.handleClick.emit({
-      //       search: this.search,
-      //       value: this.labels[item[0]._index],
-      //     })
-      //   }
-      // },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onClick: (e: any, item: any) => {
+        if (item && item.length) {
+          this.handleClick.emit(this.labels[item[0]._index])
+        }
+      },
     }
   }
 
