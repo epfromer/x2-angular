@@ -5,39 +5,42 @@ import { Email, selectEmail } from 'src/store'
 
 @Component({
   template: `
-    <table mat-table [dataSource]="email" class="mat-elevation-z8">
+    <mat-table [dataSource]="email" class="mat-elevation-z8">
       <ng-container matColumnDef="sentShort">
-        <th mat-header-cell *matHeaderCellDef>Sent</th>
-        <td mat-cell *matCellDef="let email">
+        <mat-header-cell *matHeaderCellDef>Sent</mat-header-cell>
+        <mat-cell *matCellDef="let email">
           {{ email.sentShort }}
-        </td>
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="from">
-        <th mat-header-cell *matHeaderCellDef>From</th>
-        <td mat-cell *matCellDef="let email">{{ email.from }}</td>
+        <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
+        <mat-cell *matCellDef="let email">{{ email.from }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="to">
-        <th mat-header-cell *matHeaderCellDef>To</th>
-        <td mat-cell *matCellDef="let email">{{ email.to }}</td>
+        <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
+        <mat-cell *matCellDef="let email">{{ email.to }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="subject">
-        <th mat-header-cell *matHeaderCellDef>Subject</th>
-        <td mat-cell *matCellDef="let email">{{ email.subject }}</td>
+        <mat-header-cell *matHeaderCellDef>Subject</mat-header-cell>
+        <mat-cell *matCellDef="let email">{{ email.subject }}</mat-cell>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="foo(row)"
+      ></mat-row>
+    </mat-table>
   `,
   styles: [
     `
       table {
-        width: 100%;
+        widmat-header-cell: 100%;
       }
-      th.mat-header-cell {
+      mat-header-cell.mat-header-cell {
         font-size: 15px;
         padding-right: 10px;
       }
@@ -48,8 +51,8 @@ import { Email, selectEmail } from 'src/store'
         word-wrap: break-word !important;
         white-space: unset !important;
         flex: 0 0 80px !important;
-        min-width: 80px !important;
-        width: 80px !important;
+        min-widmat-header-cell: 80px !important;
+        widmat-header-cell: 80px !important;
         overflow-wrap: break-word;
         word-wrap: break-word;
         word-break: break-word;
@@ -67,6 +70,10 @@ export class SearchViewComponent {
 
   displayedColumns: string[] = ['sentShort', 'from', 'to', 'subject']
   email: Email[]
+
+  foo(r) {
+    console.log(r)
+  }
 
   ngOnInit(): void {
     this.store.pipe(select(selectEmail)).subscribe((email: Email[]) => {
