@@ -22,7 +22,7 @@ export class BarHighchartsComponent {
   chart = undefined
 
   createChart(): void {
-    if (!this.data) return
+    if (!this.data || !this.data.length) return
     if (this.chart) this.chart.destroy()
 
     const options: unknown = {

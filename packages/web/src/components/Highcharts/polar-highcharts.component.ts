@@ -32,7 +32,7 @@ export class PolarHighchartsComponent {
   chartData = []
 
   createChart(): void {
-    if (!this.data) return
+    if (!this.data || !this.data.length) return
     if (this.chart) this.chart.destroy()
 
     this.chartData = this.data.map((datum) => ({

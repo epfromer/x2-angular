@@ -51,8 +51,7 @@ export class VolumeTimelineChartJSComponent {
   cData: SingleDataSet = []
 
   createChart(): void {
-    if (!this.data) return
-
+    if (!this.data || !this.data.length) return
     this.cData = this.data.map((datum) => datum.total)
     this.labels = this.data.map((datum) => String(datum.sent))
     this.options = {

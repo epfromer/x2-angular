@@ -39,8 +39,7 @@ export class TreeMapEChartsComponent {
   options: EChartOption = {}
 
   createChart(): void {
-    if (!this.data) return
-
+    if (!this.data || !this.data.length) return
     const chartData: Array<EChartsDatum> = []
     this.data.reverse().forEach((datum) => {
       chartData.push({

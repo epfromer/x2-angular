@@ -39,8 +39,18 @@ import {
       fxLayout.xs="column"
       fxLayout.sm="column"
     >
-      <bar-chartjs title="Senders" [data]="emailSenders"></bar-chartjs>
-      <bar-chartjs title="Receivers" [data]="emailReceivers"></bar-chartjs>
+      <bar-chartjs
+        title="Senders"
+        search="from"
+        [data]="emailSenders"
+        (handleClick)="handleClick($event)"
+      ></bar-chartjs>
+      <bar-chartjs
+        title="Receivers"
+        search="to"
+        [data]="emailReceivers"
+        (handleClick)="handleClick($event)"
+      ></bar-chartjs>
     </div>
     <div class="mat-headline">ECharts</div>
     <div

@@ -33,7 +33,7 @@ export class NetworkGraphHighchartsComponent {
   chart = undefined
 
   createChart(): void {
-    if (!this.data) return
+    if (!this.data || !this.data.length) return
     if (this.chart) this.chart.destroy()
 
     const chartData = this.data.map((datum) => [

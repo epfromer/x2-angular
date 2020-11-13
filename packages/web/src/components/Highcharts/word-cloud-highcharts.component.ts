@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import * as Highcharts from 'highcharts'
 import More from 'highcharts/highcharts-more'
@@ -42,7 +41,7 @@ export class WordCloudHighchartsComponent {
   chart = undefined
 
   createChart(): void {
-    if (!this.data) return
+    if (!this.data || !this.data.length) return
     if (this.chart) this.chart.destroy()
 
     const options: unknown = {

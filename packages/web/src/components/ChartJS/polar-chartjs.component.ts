@@ -52,8 +52,7 @@ export class PolarChartJSComponent {
   colors: Color[] = []
 
   createChart(): void {
-    if (!this.data) return
-
+    if (!this.data || !this.data.length) return
     this.cData = this.data.map((datum) => datum.value)
     this.labels = this.data.map((datum) => datum.name)
     this.colors = [{ backgroundColor: this.data.map((datum) => datum.color) }]

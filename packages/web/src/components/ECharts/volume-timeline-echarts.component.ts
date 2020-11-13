@@ -39,8 +39,7 @@ export class VolumeTimelineEChartsComponent {
   options: EChartOption = {}
 
   createChart(): void {
-    if (!this.data) return
-
+    if (!this.data || !this.data.length) return
     this.options = {
       title: {
         text: this.title,

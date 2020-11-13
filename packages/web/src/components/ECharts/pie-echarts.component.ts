@@ -40,8 +40,7 @@ export class PieEChartsComponent {
   options: EChartOption = {}
 
   createChart(): void {
-    if (!this.data) return
-
+    if (!this.data || !this.data.length) return
     const chartData: Array<EChartsDatum> = []
     this.data.forEach((datum) => {
       chartData.push({

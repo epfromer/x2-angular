@@ -30,7 +30,7 @@ export class PieHighchartsComponent {
   chart = undefined
 
   createChart(): void {
-    if (!this.data) return
+    if (!this.data || !this.data.length) return
     if (this.chart) this.chart.destroy()
 
     interface HighchartsDatum {

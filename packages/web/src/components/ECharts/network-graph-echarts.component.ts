@@ -34,8 +34,7 @@ export class NetworkGraphEChartsComponent {
   options: EChartOption = {}
 
   createChart(): void {
-    if (!this.data) return
-
+    if (!this.data || !this.data.length) return
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const chartNodes: Array<any> = this.nodes.map((node) => ({
       id: node.id,

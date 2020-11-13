@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import { ChartOptions } from 'chart.js'
@@ -38,7 +38,7 @@ export class BarChartJSComponent {
   @Input() title: string
   @Input() search: string
   @Input() data: Array<EmailXferedDatum>
-  @Input() handleClick: (search: string, name: string) => void
+  @Output() handleClick = new EventEmitter()
 
   constructor(private router: Router, private store: Store) {
     monkeyPatchChartJsTooltip()
@@ -53,10 +53,11 @@ export class BarChartJSComponent {
   labels: Label[] = []
   cData: SingleDataSet = []
   colors: Color[] = []
+  reversedData: string[] = []
 
   createChart(): void {
-    if (!this.data) return
-
+    if (!this.data || !this.data.length) return
+    this.reversedData = this.data.map((d) => d.name)
     this.cData = this.data.map((datum) => datum.value)
     this.labels = this.data.map((datum) => datum.name)
     this.colors = [{ backgroundColor: this.data.map((datum) => datum.color) }]
@@ -85,13 +86,15 @@ export class BarChartJSComponent {
           },
         ],
       },
-      // TODO https://www.npmjs.com/package/ng2-charts#events
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      // onClick: (e: unknown, item: any) => {
-      //   if (item && item.length > 0) {
-      //     this.handleClick(this.search, this.data[item[0]._index].name)
-      //   }
-      // },
+      onClick: (e: any, item: any) => {
+        if (item && item.length) {
+          this.handleClick.emit({
+            search: this.search,
+            value: this.reversedData[item[0]._index],
+          })
+        }
+      },
     }
   }
 

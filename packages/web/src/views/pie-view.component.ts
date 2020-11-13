@@ -39,8 +39,18 @@ import {
       fxLayout.xs="column"
       fxLayout.sm="column"
     >
-      <pie-chartjs title="Senders" [data]="emailSenders"></pie-chartjs>
-      <pie-chartjs title="Receivers" [data]="emailReceivers"></pie-chartjs>
+      <pie-chartjs
+        title="Senders"
+        search="from"
+        [data]="emailSenders"
+        (handleClick)="handleClick($event)"
+      ></pie-chartjs>
+      <pie-chartjs
+        title="Receivers"
+        search="to"
+        [data]="emailReceivers"
+        (handleClick)="handleClick($event)"
+      ></pie-chartjs>
     </div>
     <div class="mat-headline">ECharts</div>
     <div
