@@ -59,8 +59,18 @@ import {
       fxLayout.xs="column"
       fxLayout.sm="column"
     >
-      <polar-echarts title="Senders" [data]="emailSenders"></polar-echarts>
-      <polar-echarts title="Receivers" [data]="emailReceivers"></polar-echarts>
+      <polar-echarts
+        title="Senders"
+        search="from"
+        [data]="emailSenders"
+        (handleClick)="handleClick($event)"
+      ></polar-echarts>
+      <polar-echarts
+        title="Receivers"
+        search="to"
+        [data]="emailReceivers"
+        (handleClick)="handleClick($event)"
+      ></polar-echarts>
     </div>
   `,
   styles: [``],

@@ -64,7 +64,7 @@ export class NetworkGraphHighchartsComponent {
           },
           events: {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            click: (e: any) => this.handleClick.emit(e.point.id),
+            click: (e: any) => this.handleClick.emit({ to: e.point.id }),
           },
           marker: {
             radius: 20,

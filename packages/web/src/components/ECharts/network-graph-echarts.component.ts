@@ -101,7 +101,10 @@ export class NetworkGraphEChartsComponent {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   onClick(data): void {
-    console.log(data)
+    const names = data.name.split('>')
+    if (names && names.length > 1) {
+      this.handleClick.emit({ from: names[0].trim(), to: names[1].trim() })
+    }
   }
 
   ngOnChanges(): void {

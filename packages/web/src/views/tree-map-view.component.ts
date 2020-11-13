@@ -41,11 +41,15 @@ import {
     >
       <tree-map-echarts
         title="Senders"
+        search="from"
         [data]="emailSenders"
+        (handleClick)="handleClick($event)"
       ></tree-map-echarts>
       <tree-map-echarts
         title="Receivers"
+        search="to"
         [data]="emailReceivers"
+        (handleClick)="handleClick($event)"
       ></tree-map-echarts>
     </div>
   `,

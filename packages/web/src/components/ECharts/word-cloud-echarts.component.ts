@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
 import { selectDarkMode, WordCloudTag } from '../../store'
@@ -11,7 +11,7 @@ import { selectDarkMode, WordCloudTag } from '../../store'
   selector: 'word-cloud-echarts',
   template: `
     <div class="container">
-      <div echarts [options]="options"></div>
+      <div echarts [options]="options" (chartClick)="onClick($event)"></div>
     </div>
   `,
   styles: [
@@ -25,7 +25,7 @@ import { selectDarkMode, WordCloudTag } from '../../store'
 export class WordCloudEChartsComponent {
   @Input() title: string
   @Input() data: Array<WordCloudTag>
-  @Input() handleClick: (word: string) => void
+  @Output() handleClick = new EventEmitter()
 
   // eslint-disable-next-line prettier/prettier
   constructor(private store: Store) { }
@@ -89,6 +89,11 @@ export class WordCloudEChartsComponent {
         },
       ],
     }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  onClick(data): void {
+    this.handleClick.emit(data.name)
   }
 
   ngOnChanges(): void {

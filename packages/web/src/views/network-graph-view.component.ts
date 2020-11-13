@@ -7,6 +7,7 @@ import {
   getEmailAsync,
   getEmailSentByCustodian,
   selectCustodians,
+  setFrom,
   setTo,
 } from '../store'
 
@@ -30,6 +31,7 @@ import {
         title="Custodian Interaction"
         [data]="data"
         [nodes]="nodes"
+        (handleClick)="handleClick($event)"
       >
       </network-graph-echarts>
     </div>
@@ -50,9 +52,14 @@ export class NetworkGraphViewComponent {
   nodes = []
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  handleClick(name): void {
+  handleClick(names): void {
     this.store.dispatch(clearSearch())
-    this.store.dispatch(setTo(name.slice(0, name.search(/,/))))
+    if (names.from) {
+      this.store.dispatch(setFrom(names.from.slice(0, names.from.search(/,/))))
+    }
+    if (names.to) {
+      this.store.dispatch(setTo(names.to.slice(0, names.to.search(/,/))))
+    }
     getEmailAsync(this.store)
     this.router.navigateByUrl('/SearchView')
   }
