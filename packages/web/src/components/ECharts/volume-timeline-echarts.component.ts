@@ -6,11 +6,6 @@ import { EmailSentByDay, selectDarkMode } from '../../store'
 
 // https://www.npmjs.com/package/ngx-echarts
 
-interface EChartsDatum {
-  value: number
-  name: string
-  itemStyle: unknown
-}
 @Component({
   selector: 'volume-timeline-echarts',
   template: `

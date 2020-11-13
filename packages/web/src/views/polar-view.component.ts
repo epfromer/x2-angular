@@ -39,8 +39,18 @@ import {
       fxLayout.xs="column"
       fxLayout.sm="column"
     >
-      <polar-chartjs title="Senders" [data]="emailSenders"></polar-chartjs>
-      <polar-chartjs title="Receivers" [data]="emailReceivers"></polar-chartjs>
+      <polar-chartjs
+        title="Senders"
+        search="from"
+        [data]="emailSenders"
+        (handleClick)="handleClick($event)"
+      ></polar-chartjs>
+      <polar-chartjs
+        title="Receivers"
+        search="to"
+        [data]="emailReceivers"
+        (handleClick)="handleClick($event)"
+      ></polar-chartjs>
     </div>
     <div class="mat-headline">ECharts</div>
     <div

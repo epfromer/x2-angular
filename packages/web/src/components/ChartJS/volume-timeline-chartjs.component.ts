@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import { ChartOptions } from 'chart.js'
@@ -36,7 +36,7 @@ export class VolumeTimelineChartJSComponent {
   @Input() title: string
   @Input() search: string
   @Input() data: Array<EmailSentByDay>
-  @Input() handleClick: (search: string, name: string) => void
+  @Output() handleClick = new EventEmitter()
 
   constructor(private router: Router, private store: Store) {
     monkeyPatchChartJsTooltip()
@@ -87,12 +87,14 @@ export class VolumeTimelineChartJSComponent {
           },
         ],
       },
-
-      // TODO https://www.npmjs.com/package/ng2-charts#events
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      // onClick: (e: unknown, item: any) => {
-      //   if (item && item.length > 0) {
-      //     this.handleClick(this.search, this.data[item[0]._index].name)
+      // TODO onClick
+      // onClick: (e: any, item: any) => {
+      //   console.log(item)
+      //   if (item && item.length) {
+      //     this.handleClick.emit({
+      //       search: this.search,
+      //       value: this.labels[item[0]._index],
+      //     })
       //   }
       // },
     }
