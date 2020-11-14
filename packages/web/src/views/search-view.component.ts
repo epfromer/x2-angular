@@ -31,7 +31,7 @@ import { Email, selectEmail } from 'src/store'
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row
         *matRowDef="let row; columns: displayedColumns"
-        (click)="foo(row)"
+        (click)="onClick(row)"
       ></mat-row>
     </mat-table>
   `,
@@ -71,8 +71,9 @@ export class SearchViewComponent {
   displayedColumns: string[] = ['sentShort', 'from', 'to', 'subject']
   email: Email[]
 
-  foo(r) {
-    console.log(r)
+  onClick(row): void {
+    console.log(row)
+    this.router.navigate(['EmailDetailView', { id: row.id }])
   }
 
   ngOnInit(): void {
