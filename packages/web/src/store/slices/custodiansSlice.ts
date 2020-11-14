@@ -1,6 +1,16 @@
-import { Action, createAction, createReducer, on } from '@ngrx/store'
+import {
+  Action,
+  createAction,
+  createFeatureSelector,
+  createReducer,
+  createSelector,
+  on,
+  Store,
+} from '@ngrx/store'
+import request, { gql } from 'graphql-request'
 import cloneDeep from 'lodash.clonedeep'
-import { Custodian } from '../types'
+import { environment } from 'src/environments/environment'
+import { Custodian, EmailXferedDatum } from '../types'
 
 export interface CustodiansState {
   custodiansLoading: boolean
@@ -40,4 +50,116 @@ export function custodiansReducer(
     })
   )
   return reducer(state, action)
+}
+
+// selectors & getters
+export const selectCustodiansLoading = createSelector(
+  createFeatureSelector<CustodiansState>('custodians'),
+  (state) => state.custodiansLoading
+)
+export const selectCustodians = createSelector(
+  createFeatureSelector<CustodiansState>('custodians'),
+  (state) => state.custodians
+)
+export function getEmailSenders(
+  custodians: Array<Custodian>
+): Array<EmailXferedDatum> {
+  const data: Array<EmailXferedDatum> = []
+  if (custodians) {
+    custodians.forEach((custodian: Custodian) => {
+      if (custodian.senderTotal) {
+        data.push({
+          name: custodian.name,
+          value: custodian.senderTotal,
+          color: custodian.color,
+        })
+      }
+    })
+  }
+  return data
+}
+export function getEmailReceivers(
+  custodians: Array<Custodian>
+): Array<EmailXferedDatum> {
+  const data: Array<EmailXferedDatum> = []
+  if (custodians) {
+    custodians.forEach((custodian: Custodian) => {
+      if (custodian.receiverTotal) {
+        data.push({
+          name: custodian.name,
+          value: custodian.receiverTotal,
+          color: custodian.color,
+        })
+      }
+    })
+  }
+  return data
+}
+export interface IDColorKey {
+  id: string
+  color: string
+}
+export interface EmailSent {
+  source: string
+  target: string
+  value: number
+}
+export interface EmailSentByCustodian {
+  data: Array<EmailSent>
+  nodes: Array<IDColorKey>
+}
+export function getEmailSentByCustodian(
+  custodians: Array<Custodian>
+): EmailSentByCustodian {
+  const custodianNameFromId = (id: string) =>
+    custodians.find((c: Custodian) => c.id === id).name
+
+  const data: Array<EmailSent> = []
+  const nodes: Array<IDColorKey> = []
+
+  if (custodians) {
+    //  create array of [from, to, number sent]
+    custodians.forEach((fromCustodian: Custodian) => {
+      fromCustodian.toCustodians.forEach((toCustodian) => {
+        data.push({
+          source: fromCustodian.name,
+          target: custodianNameFromId(toCustodian.custodianId),
+          value: toCustodian.total,
+        })
+      })
+    })
+    // and array of color keys
+    custodians.forEach((custodian: Custodian) => {
+      nodes.push({ id: custodian.name, color: custodian.color })
+    })
+  }
+
+  return { data, nodes }
+}
+
+export function getCustodiansAsync(store: Store): void {
+  store.dispatch(setCustodiansLoading(true))
+  const server = environment.x2Server
+  const query = gql`
+    {
+      getCustodians {
+        id
+        name
+        title
+        color
+        senderTotal
+        receiverTotal
+        toCustodians {
+          custodianId
+          total
+        }
+      }
+    }
+  `
+  request(`${server}/graphql/`, query)
+    .then((data) => {
+      store.dispatch(setCustodians(data.getCustodians))
+      store.dispatch(setCustodiansLoading(false))
+    })
+    .catch((err) => console.error('getCustodiansAsync: ', err))
 }

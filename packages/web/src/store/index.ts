@@ -26,12 +26,7 @@ export const reducers: ActionReducerMap<AppState> = {
   wordCloud: wordCloudReducer,
 }
 
-export * from './appSettings'
 export * from './constants'
-export * from './custodians'
-export * from './email'
-export * from './initialData'
-export * from './selectors'
 export * from './slices/appSettingsSlice'
 export * from './slices/custodiansSlice'
 export * from './slices/emailSentByDaySlice'
