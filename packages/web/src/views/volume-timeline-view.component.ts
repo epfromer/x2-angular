@@ -5,7 +5,7 @@ import {
   clearSearch,
   EmailSentByDay,
   getEmailAsync,
-  selectEmailSentByDay,
+  getEmailSentByDay,
   setSent,
 } from 'src/store'
 
@@ -57,7 +57,7 @@ export class VolumeTimelineViewComponent {
 
   ngOnInit(): void {
     this.store
-      .pipe(select(selectEmailSentByDay))
+      .pipe(select(getEmailSentByDay))
       .subscribe((emailSentByDay: Array<EmailSentByDay>) => {
         this.data = emailSentByDay
       })

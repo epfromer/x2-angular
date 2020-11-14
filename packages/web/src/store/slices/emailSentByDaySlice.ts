@@ -50,11 +50,11 @@ export function emailSentByDayReducer(
 }
 
 // selectors & getters
-export const selectEmailSentByDayLoading = createSelector(
+export const getEmailSentByDayLoading = createSelector(
   createFeatureSelector<EmailSentByDayState>('emailSentByDay'),
   (state) => state.emailSentByDayLoading
 )
-export const selectEmailSentByDay = createSelector(
+export const getEmailSentByDay = createSelector(
   createFeatureSelector<EmailSentByDayState>('emailSentByDay'),
   (state) => state.emailSentByDay
 )

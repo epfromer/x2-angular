@@ -139,7 +139,7 @@ export const selectBody = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.body
 )
-export const selectEmailListPage = createSelector(
+export const getEmailListPage = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.emailListPage
 )

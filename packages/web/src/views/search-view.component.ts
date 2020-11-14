@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
-import { Email, selectEmail } from 'src/store'
+import { Email, getEmail } from 'src/store'
 
 @Component({
   template: `
@@ -71,13 +71,12 @@ export class SearchViewComponent {
   displayedColumns: string[] = ['sentShort', 'from', 'to', 'subject']
   email: Email[]
 
-  onClick(row): void {
-    console.log(row)
+  onClick(row: any): void {
     this.router.navigate(['EmailDetailView', { id: row.id }])
   }
 
   ngOnInit(): void {
-    this.store.pipe(select(selectEmail)).subscribe((email: Email[]) => {
+    this.store.pipe(select(getEmail)).subscribe((email: Email[]) => {
       this.email = email
     })
   }

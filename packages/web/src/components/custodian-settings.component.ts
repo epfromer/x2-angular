@@ -102,7 +102,7 @@ export class CustodianSettingsComponent {
           .then((data) =>
             this.store.dispatch(setCustodians(data.setCustodianColor))
           )
-          .catch((error) => console.error('CustodianSettings', error))
+          .catch((e) => console.error(e))
       }
     })
   }

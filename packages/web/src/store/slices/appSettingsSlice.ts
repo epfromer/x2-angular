@@ -162,5 +162,5 @@ export function getInitialDataAsync(store: Store): void {
       store.dispatch(setEmailSentByDayLoading(false))
       store.dispatch(setCustodiansLoading(false))
     })
-    .catch((err) => console.error('getInitialDataAsync: ', err))
+    .catch((e) => console.error(e))
 }

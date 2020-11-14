@@ -78,7 +78,7 @@ export class ImportLogComponent {
             .reverse()
           this.resultsLength = this.importLog.length
         })
-        .catch((err) => console.error('ImportLogComponent: ', err))
+        .catch((e) => console.error(e))
     })
   }
 

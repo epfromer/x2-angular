@@ -89,18 +89,59 @@ export function emailReducer(
 }
 
 // selectors & getters
-export const selectEmailLoading = createSelector(
+export const getEmailLoading = createSelector(
   createFeatureSelector<EmailState>('email'),
   (state) => state.emailLoading
 )
-export const selectEmail = createSelector(
+export const getEmail = createSelector(
   createFeatureSelector<EmailState>('email'),
   (state) => state.email
 )
-export const selectEmailTotal = createSelector(
+export const getEmailTotal = createSelector(
   createFeatureSelector<EmailState>('email'),
   (state) => state.emailTotal
 )
+export const getEmailById = createSelector(
+  createFeatureSelector<EmailState>('email'),
+  (state, props) => {
+    if (!state.email || !state.email.length) return undefined
+    return state.email.find((e: Email) => e.id === props.id)
+  }
+)
+
+// export const getNextEmailId = (
+//   store: Store,
+//   id: string
+// ): string | undefined => {
+//   const state = store.getState()
+//   if (!state.email.email || !state.email.email.length) return undefined
+//   const i = state.email.email.findIndex((e: Email) => e.id === id)
+//   return i < state.email.email.length - 1
+//     ? state.email.email[i + 1].id
+//     : undefined
+// }
+
+// export const getPreviousEmailId = (
+//   store: Store,
+//   id: string
+// ): string | undefined => {
+//   const state = store.getState()
+//   if (!state.email.email || !state.email.email.length) return undefined
+//   const i = state.email.email.findIndex((e: Email) => e.id === id)
+//   return i > 0 ? state.email.email[i - 1].id : undefined
+// }
+
+// export const getEmailIndex = (store: Store, id: string): number | undefined => {
+//   const state = store.getState()
+//   if (!state.email.email || !state.email.email.length) return undefined
+//   return state.email.email.findIndex((e: Email) => e.id === id) + 1
+// }
+
+// export const getDateStr = (date: Date): string => {
+//   const month = (date.getMonth() + 1 + '').padStart(2, '0')
+//   const day = (date.getDate() + '').padStart(2, '0')
+//   return `${date.getFullYear()}-${month}-${day}`
+// }
 
 // graphQl query
 async function makeQueryObj(store: Store): Promise<unknown> {
@@ -184,5 +225,5 @@ export async function getEmailAsync(
       store.dispatch(setEmailLoading(false))
       // getSearchHistoryAsync()
     })
-    .catch((err) => console.error('getEmailAsync: ', err))
+    .catch((e) => console.error(e))
 }
