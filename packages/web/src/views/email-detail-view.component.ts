@@ -37,6 +37,7 @@ import {
           aria-label="Previous email"
           matTooltip="Previous email"
           (click)="previousEmail()"
+          [disabled]="emailIndex <= 1"
         >
           <mat-icon>arrow_left</mat-icon>
         </button>
@@ -45,6 +46,7 @@ import {
           aria-label="Next email"
           matTooltip="Next email"
           (click)="nextEmail()"
+          [disabled]="emailIndex >= totalEmails"
         >
           <mat-icon>arrow_right</mat-icon>
         </button>
@@ -159,7 +161,7 @@ export class EmailDetailViewComponent {
   }
 
   backToList(): void {
-    console.log('back to list')
+    this.router.navigate(['SearchView'])
   }
 
   async nextEmail(): Promise<void> {
