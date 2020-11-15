@@ -83,7 +83,6 @@ export class EmailCardActionsComponent {
         this.setEmailIndex()
       }
     })
-    this.setEmailIndex()
   }
 
   ngOnChanges(): void {

@@ -23,7 +23,12 @@ interface LogEntry {
       <ng-container matColumnDef="entry">
         <mat-cell *matCellDef="let r">{{ r.last }} {{ r.entry }} </mat-cell>
       </ng-container>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns; let i = index"
+        inViewport
+        [inViewportOptions]="{ threshold: [0] }"
+        (inViewportAction)="onIntersection($event, i)"
+      ></mat-row>
     </mat-table>
   `,
   styles: [
@@ -70,12 +75,10 @@ export class ImportLogComponent {
       `
       request(`${server}/graphql/`, query)
         .then((data) => {
-          this.importLog = data.getImportStatus
-            .map((e) => ({
-              id: e.id,
-              entry: e.timestamp + ' ' + e.entry,
-            }))
-            .reverse()
+          this.importLog = data.getImportStatus.map((e) => ({
+            id: e.id,
+            entry: e.timestamp + ' ' + e.entry,
+          }))
           this.resultsLength = this.importLog.length
         })
         .catch((e) => console.error(e))
@@ -94,5 +97,14 @@ export class ImportLogComponent {
       }
     `
     request(`${server}/graphql/`, mutation, { loc: importLoc })
+  }
+
+  onIntersection(
+    { target, visible }: { target: Element; visible: boolean },
+    i: number
+  ): void {
+    if (!visible && i === this.importLog.length - 1) {
+      target.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 }

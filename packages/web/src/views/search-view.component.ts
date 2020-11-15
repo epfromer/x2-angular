@@ -1,39 +1,51 @@
-import { Component } from '@angular/core'
+import { Component, ElementRef, ViewChild } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
-import { Email, getEmail } from 'src/store'
+import {
+  Email,
+  getEmail,
+  getEmailAsync,
+  getEmailListPage,
+  getEmailLoading,
+  setEmailListPage,
+} from 'src/store'
 
 @Component({
   template: `
-    <mat-table [dataSource]="email" class="mat-elevation-z8">
-      <ng-container matColumnDef="sentShort">
-        <mat-header-cell *matHeaderCellDef>Sent</mat-header-cell>
-        <mat-cell *matCellDef="let email">
-          {{ email.sentShort }}
-        </mat-cell>
-      </ng-container>
+    <div class="mat-elevation-z8" #tableWrapper>
+      <mat-table [dataSource]="email">
+        <ng-container matColumnDef="sentShort">
+          <mat-header-cell *matHeaderCellDef>Sent</mat-header-cell>
+          <mat-cell *matCellDef="let email">
+            {{ email.sentShort }}
+          </mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="from">
-        <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
-        <mat-cell *matCellDef="let email">{{ email.from }}</mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="from">
+          <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
+          <mat-cell *matCellDef="let email">{{ email.from }}</mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="to">
-        <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
-        <mat-cell *matCellDef="let email">{{ email.to }}</mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="to">
+          <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
+          <mat-cell *matCellDef="let email">{{ email.to }}</mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="subject">
-        <mat-header-cell *matHeaderCellDef>Subject</mat-header-cell>
-        <mat-cell *matCellDef="let email">{{ email.subject }}</mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="subject">
+          <mat-header-cell *matHeaderCellDef>Subject</mat-header-cell>
+          <mat-cell *matCellDef="let email">{{ email.subject }}</mat-cell>
+        </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row
-        *matRowDef="let row; columns: displayedColumns"
-        (click)="onClick(row)"
-      ></mat-row>
-    </mat-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: displayedColumns; let i = index"
+          (click)="onClick(row)"
+          inViewport
+          [inViewportOptions]="{ threshold: [0] }"
+          (inViewportAction)="onIntersection($event, i)"
+        ></mat-row>
+      </mat-table>
+    </div>
   `,
   styles: [
     `
@@ -68,8 +80,13 @@ export class SearchViewComponent {
   // eslint-disable-next-line prettier/prettier
   constructor(private router: Router, private store: Store) { }
 
+  totalEmails = 0
+  emailLoading = false
+  emailListPage = 0
   displayedColumns: string[] = ['sentShort', 'from', 'to', 'subject']
   email: Email[]
+
+  @ViewChild('tableWrapper', { read: ElementRef }) rootElement: ElementRef
 
   onClick(row: { id: string }): void {
     this.router.navigate(['EmailDetailView', { id: row.id }])
@@ -78,6 +95,24 @@ export class SearchViewComponent {
   ngOnInit(): void {
     this.store.pipe(select(getEmail)).subscribe((email: Email[]) => {
       this.email = email
+      if (email) {
+        this.totalEmails = email.length
+      }
     })
+    this.store
+      .pipe(select(getEmailLoading))
+      .subscribe((emailLoading: boolean) => (this.emailLoading = emailLoading))
+    this.store
+      .pipe(select(getEmailListPage))
+      .subscribe(
+        (emailListPage: number) => (this.emailListPage = emailListPage)
+      )
+  }
+
+  onIntersection({ visible }: { visible: boolean }, i: number): void {
+    if (visible && i >= this.email.length - 1 && !this.emailLoading) {
+      this.store.dispatch(setEmailListPage(this.emailListPage + 1))
+      getEmailAsync(this.store, true)
+    }
   }
 }

@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatIconModule } from '@angular/material/icon'
+import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatSliderModule } from '@angular/material/slider'
 import { MatTableModule } from '@angular/material/table'
 import { MatToolbarModule } from '@angular/material/toolbar'
@@ -13,6 +14,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { InViewportModule } from 'ng-in-viewport'
 import { ColorPickerModule } from 'ngx-color-picker'
 import { AppComponent } from './app.component'
 import { AppToolbarComponent } from './components/app/app-toolbar.component'
@@ -20,8 +22,10 @@ import { ChartJSModule } from './components/ChartJS/chartjs.module'
 import { ColorPickerDlgComponent } from './components/color-picker-dlg.component'
 import { CustodianSettingsComponent } from './components/custodian-settings.component'
 import { EChartsModule } from './components/ECharts/echarts.module'
+import { EmailCardActionsComponent } from './components/emaillist/email-card-actions.component'
 import { HighchartsModule } from './components/Highcharts/highcharts.module'
 import { HomeCardComponent } from './components/home-card.component'
+import { ImportLogComponent } from './components/import-log.component'
 import { ThemePickerComponent } from './components/theme-picker.component'
 import { AppRoutingModule } from './router/app-routing.module'
 import { reducers } from './store'
@@ -39,9 +43,6 @@ import { SearchViewComponent } from './views/search-view.component'
 import { TreeMapViewComponent } from './views/tree-map-view.component'
 import { VolumeTimelineViewComponent } from './views/volume-timeline-view.component'
 import { WordCloudViewComponent } from './views/word-cloud-view.component'
-import { ImportLogComponent } from './components/import-log.component'
-import { MatPaginatorModule } from '@angular/material/paginator'
-import { EmailCardActionsComponent } from './components/emaillist/email-card-actions.component'
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import { EmailCardActionsComponent } from './components/emaillist/email-card-act
     MatTableModule,
     MatToolbarModule,
     MatTooltipModule,
+    InViewportModule,
     StoreDevtoolsModule.instrument(),
     StoreModule.forRoot(reducers),
   ],

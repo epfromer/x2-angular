@@ -48,7 +48,7 @@ export class EmailDetailViewComponent {
         this.email = email
       } else {
         const server = environment.x2Server
-        // setLoading(true)
+        // TODO setLoading(true)
         const query = gql`
           query getEmail($id: ID) {
             getEmail(id: $id) {
@@ -70,13 +70,7 @@ export class EmailDetailViewComponent {
           }
         `
         request(`${server}/graphql/`, query, { id: this.id })
-          .then(async (data) => {
-            // prevents update if component destroyed before request/fetch completes
-            // if (isSubscribed) {
-            this.email = data.getEmail.emails[0]
-            // setLoading(false)
-            // }
-          })
+          .then((data) => (this.email = data.getEmail.emails[0]))
           .catch((e) => console.error(e))
       }
       this.store.pipe(select(getQuery)).subscribe((query: QueryState) => {
@@ -105,7 +99,7 @@ export class EmailDetailViewComponent {
   }
 
   subject(): string {
-    return 'Subject: ' + this.highlight(this.email.subject)
+    return 'Subject: ' + this.highlight(this.email?.subject)
   }
 
   body(): string {
