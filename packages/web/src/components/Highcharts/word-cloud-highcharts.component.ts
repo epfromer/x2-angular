@@ -5,7 +5,7 @@ import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
 import noData from 'highcharts/modules/no-data-to-display'
 import HighchartWordCloud from 'highcharts/modules/wordcloud'
-import { selectDarkMode, WordCloudTag } from '../../store'
+import { getDarkMode, WordCloudTag } from '../../store'
 
 Boost(Highcharts)
 noData(Highcharts)
@@ -84,7 +84,7 @@ export class WordCloudHighchartsComponent {
 
   ngOnInit(): void {
     this.createChart()
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
       this.createChart()
     })

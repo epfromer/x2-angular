@@ -19,7 +19,6 @@ import {
 import { setWordCloud, setWordCloudLoading } from './wordCloudSlice'
 
 // TODO - get dark mode from OS
-// TODO - 'select' to get
 
 export interface AppSettingsState {
   darkMode: boolean
@@ -61,11 +60,11 @@ export function appSettingsReducer(
 }
 
 // selectors & getters
-export const selectDarkMode = createSelector(
+export const getDarkMode = createSelector(
   createFeatureSelector<AppSettingsState>('appSettings'),
   (state) => state.darkMode
 )
-export const selectThemeName = createSelector(
+export const getThemeName = createSelector(
   createFeatureSelector<AppSettingsState>('appSettings'),
   (state) => state.themeName
 )

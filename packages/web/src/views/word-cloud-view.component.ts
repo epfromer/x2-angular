@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store'
 import {
   clearSearch,
   getEmailAsync,
-  selectWordCloud,
+  getWordCloud,
   setAllText,
   WordCloudTag,
 } from 'src/store'
@@ -39,7 +39,7 @@ export class WordCloudViewComponent {
 
   ngOnInit(): void {
     this.store
-      .pipe(select(selectWordCloud))
+      .pipe(select(getWordCloud))
       .subscribe((wordCloud: WordCloudTag[]) => {
         this.wordCloud = wordCloud
       })

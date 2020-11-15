@@ -6,7 +6,7 @@ import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
 import HighchartNetworkGraph from 'highcharts/modules/networkgraph'
 import noData from 'highcharts/modules/no-data-to-display'
-import { EmailSent, IDColorKey, selectDarkMode } from '../../store'
+import { EmailSent, IDColorKey, getDarkMode } from '../../store'
 
 // https://www.highcharts.com/docs/chart-and-series-types/dependency-wheel
 
@@ -89,7 +89,7 @@ export class NetworkGraphHighchartsComponent {
 
   ngOnInit(): void {
     this.createChart()
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
       this.createChart()
     })

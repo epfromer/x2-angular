@@ -21,8 +21,6 @@ const initialState: CustodiansState = {
   custodians: [],
 }
 
-// TODO - 'select' to get
-
 // Actions
 export const setCustodiansLoading = createAction(
   'setCustodiansLoading',
@@ -55,11 +53,11 @@ export function custodiansReducer(
 }
 
 // selectors & getters
-export const selectCustodiansLoading = createSelector(
+export const getCustodiansLoading = createSelector(
   createFeatureSelector<CustodiansState>('custodians'),
   (state) => state.custodiansLoading
 )
-export const selectCustodians = createSelector(
+export const getCustodians = createSelector(
   createFeatureSelector<CustodiansState>('custodians'),
   (state) => state.custodians
 )

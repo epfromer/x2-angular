@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
 import * as Highcharts from 'highcharts'
 import treemap from 'highcharts/modules/treemap'
-import { EmailXferedDatum, selectDarkMode } from '../../store'
+import { EmailXferedDatum, getDarkMode } from '../../store'
 
 treemap(Highcharts)
 
@@ -89,7 +89,7 @@ export class TreeMapHighchartsComponent {
 
   ngOnInit(): void {
     this.createChart()
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
       this.createChart()
     })

@@ -8,7 +8,7 @@ import {
   monkeyPatchChartJsTooltip,
   SingleDataSet,
 } from 'ng2-charts'
-import { EmailSentByDay, selectDarkMode } from '../../store'
+import { EmailSentByDay, getDarkMode } from '../../store'
 
 // https://www.npmjs.com/package/ng2-charts
 // https://www.chartjs.org/docs/latest/configuration/
@@ -102,7 +102,7 @@ export class VolumeTimelineChartJSComponent {
 
   ngOnInit(): void {
     this.createChart()
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
       this.createChart()
     })

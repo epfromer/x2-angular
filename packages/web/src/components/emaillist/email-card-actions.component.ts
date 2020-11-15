@@ -8,7 +8,7 @@ import {
   getEmailIndex,
   getNextEmailId,
   getPreviousEmailId,
-  selectDarkMode,
+  getDarkMode,
 } from 'src/store'
 
 @Component({
@@ -74,7 +74,7 @@ export class EmailCardActionsComponent {
   totalEmails = 0
 
   ngOnInit(): void {
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
     })
     this.store.pipe(select(getEmail)).subscribe((email: Email[]) => {

@@ -8,7 +8,7 @@ import {
   getEmailAsync,
   getEmailReceivers,
   getEmailSenders,
-  selectCustodians,
+  getCustodians,
   setFrom,
   setTo,
 } from '../store'
@@ -93,7 +93,7 @@ export class PolarViewComponent {
 
   ngOnInit(): void {
     this.store
-      .pipe(select(selectCustodians))
+      .pipe(select(getCustodians))
       .subscribe((custodians: Custodian[]) => {
         this.emailSenders = getEmailSenders(custodians)
         this.emailReceivers = getEmailReceivers(custodians)

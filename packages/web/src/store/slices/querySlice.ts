@@ -131,11 +131,11 @@ export function queryReducer(
 }
 
 // selectors & getters
-export const selectAllText = createSelector(
+export const getAllText = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.allText
 )
-export const selectBody = createSelector(
+export const getBody = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.body
 )
@@ -143,35 +143,35 @@ export const getEmailListPage = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.emailListPage
 )
-export const selectFrom = createSelector(
+export const getFrom = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.from
 )
-export const selectOrder = createSelector(
+export const getOrder = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.order
 )
-export const selectSort = createSelector(
+export const getSort = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.sort
 )
-export const selectSent = createSelector(
+export const getSent = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.sent
 )
-export const selectSubject = createSelector(
+export const getSubject = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.subject
 )
-export const selectTimeSpan = createSelector(
+export const getTimeSpan = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.timeSpan
 )
-export const selectTo = createSelector(
+export const getTo = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.to
 )
-export const selectQuery = createSelector(
+export const getQuery = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => ({
     allText: state.allText,

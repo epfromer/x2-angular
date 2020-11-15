@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
 import * as Highcharts from 'highcharts'
 import HighchartTimeline from 'highcharts/modules/timeline'
-import { Custodian, selectCustodians, selectDarkMode } from '../store'
+import { Custodian, getCustodians, getDarkMode } from '../store'
 
 HighchartTimeline(Highcharts)
 
@@ -241,12 +241,12 @@ export class EventTimelineViewComponent {
 
   ngOnInit(): void {
     this.store
-      .pipe(select(selectCustodians))
+      .pipe(select(getCustodians))
       .subscribe((custodians: Custodian[]) => {
         this.custodians = custodians
         this.createChart()
       })
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
       this.createChart()
     })

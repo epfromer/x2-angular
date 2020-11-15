@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
-import { EmailSent, IDColorKey, selectDarkMode } from '../../store'
+import { EmailSent, IDColorKey, getDarkMode } from '../../store'
 
 // https://echarts.apache.org/examples/en/index.html#chart-type-graph
 
@@ -111,7 +111,7 @@ export class ChordEChartsComponent {
 
   ngOnInit(): void {
     this.createChart()
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
       this.createChart()
     })

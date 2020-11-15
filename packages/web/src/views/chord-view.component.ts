@@ -6,7 +6,7 @@ import {
   Custodian,
   getEmailAsync,
   getEmailSentByCustodian,
-  selectCustodians,
+  getCustodians,
   setFrom,
   setTo,
 } from '../store'
@@ -55,7 +55,7 @@ export class ChordViewComponent {
 
   ngOnInit(): void {
     this.store
-      .pipe(select(selectCustodians))
+      .pipe(select(getCustodians))
       .subscribe((custodians: Custodian[]) => {
         const emailSent = getEmailSentByCustodian(custodians)
         this.data = emailSent.data

@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store'
 import request, { gql } from 'graphql-request'
 import { take } from 'rxjs/internal/operators/take'
 import { environment } from 'src/environments/environment'
-import { Email, getEmailById, QueryState, selectQuery } from 'src/store'
+import { Email, getEmailById, QueryState, getQuery } from 'src/store'
 
 // TODO setLoading across the app
 
@@ -79,7 +79,7 @@ export class EmailDetailViewComponent {
           })
           .catch((e) => console.error(e))
       }
-      this.store.pipe(select(selectQuery)).subscribe((query: QueryState) => {
+      this.store.pipe(select(getQuery)).subscribe((query: QueryState) => {
         this.highlightedTerms.length = 0
         if (query.allText) this.highlightedTerms.push(query.allText)
         if (query.to) this.highlightedTerms.push(query.to)

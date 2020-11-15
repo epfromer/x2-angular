@@ -5,8 +5,8 @@ import {
   getEmailAsync,
   getInitialDataAsync,
   loadAppSettingsAsync,
-  selectDarkMode,
-  selectThemeName,
+  getDarkMode,
+  getThemeName,
   setDarkModeAsync,
   setThemeNameAsync,
 } from './store'
@@ -55,12 +55,12 @@ export class AppComponent implements OnInit {
     loadAppSettingsAsync(this.store)
     getInitialDataAsync(this.store)
     getEmailAsync(this.store)
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       setDarkModeAsync(this.store, darkMode)
       this.darkMode = darkMode
       this.setThemeClass()
     })
-    this.store.pipe(select(selectThemeName)).subscribe((themeName: string) => {
+    this.store.pipe(select(getThemeName)).subscribe((themeName: string) => {
       setThemeNameAsync(this.store, themeName)
       this.themeName = themeName
       this.setThemeClass()

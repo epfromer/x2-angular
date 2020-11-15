@@ -9,7 +9,7 @@ import {
   monkeyPatchChartJsTooltip,
   SingleDataSet,
 } from 'ng2-charts'
-import { EmailXferedDatum, selectDarkMode } from '../../store'
+import { EmailXferedDatum, getDarkMode } from '../../store'
 
 // https://www.npmjs.com/package/ng2-charts
 // https://www.chartjs.org/docs/latest/configuration/
@@ -104,7 +104,7 @@ export class BarChartJSComponent {
 
   ngOnInit(): void {
     this.createChart()
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
       this.createChart()
     })

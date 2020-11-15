@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { select, Store } from '@ngrx/store'
 import { gql, request } from 'graphql-request'
-import { Custodian, selectCustodians, setCustodians } from 'src/store'
+import { Custodian, getCustodians, setCustodians } from 'src/store'
 import { environment } from '../environments/environment'
 import { ColorPickerDlgComponent } from './color-picker-dlg.component'
 
@@ -65,7 +65,7 @@ export class CustodianSettingsComponent {
 
   ngOnInit(): void {
     this.store
-      .pipe(select(selectCustodians))
+      .pipe(select(getCustodians))
       .subscribe((custodians: Custodian[]) => (this.custodians = custodians))
   }
 

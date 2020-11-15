@@ -8,7 +8,7 @@ import {
   monkeyPatchChartJsTooltip,
   SingleDataSet,
 } from 'ng2-charts'
-import { EmailXferedDatum, selectDarkMode } from '../../store'
+import { EmailXferedDatum, getDarkMode } from '../../store'
 import { select, Store } from '@ngrx/store'
 
 // https://www.npmjs.com/package/ng2-charts
@@ -88,7 +88,7 @@ export class PolarChartJSComponent {
 
   ngOnInit(): void {
     this.createChart()
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
       this.createChart()
     })

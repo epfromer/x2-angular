@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
-import { selectDarkMode, setDarkMode } from '../../store'
+import { getDarkMode, setDarkMode } from '../../store'
 
 @Component({
   selector: 'app-toolbar',
@@ -76,7 +76,7 @@ export class AppToolbarComponent {
   darkMode = false
 
   ngOnInit(): void {
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
     })
   }

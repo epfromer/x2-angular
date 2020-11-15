@@ -5,7 +5,7 @@ import * as Highcharts from 'highcharts'
 import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
 import noData from 'highcharts/modules/no-data-to-display'
-import { EmailSentByDay, selectDarkMode } from '../../store'
+import { EmailSentByDay, getDarkMode } from '../../store'
 
 // https://www.highcharts.com/demo/line-time-series
 
@@ -100,7 +100,7 @@ export class VolumeTimelineHighchartsComponent {
 
   ngOnInit(): void {
     this.createChart()
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
       this.createChart()
     })

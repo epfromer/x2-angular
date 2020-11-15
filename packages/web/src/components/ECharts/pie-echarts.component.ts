@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
-import { EmailXferedDatum, selectDarkMode } from '../../store'
+import { EmailXferedDatum, getDarkMode } from '../../store'
 
 // https://www.npmjs.com/package/ngx-echarts
 
@@ -106,7 +106,7 @@ export class PieEChartsComponent {
 
   ngOnInit(): void {
     this.createChart()
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
       this.createChart()
     })

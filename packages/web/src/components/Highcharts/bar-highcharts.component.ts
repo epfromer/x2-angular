@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import * as Highcharts from 'highcharts'
-import { EmailXferedDatum, selectDarkMode } from '../../store'
+import { EmailXferedDatum, getDarkMode } from '../../store'
 
 // https://www.highcharts.com/demo/bar-basic
 
@@ -92,7 +92,7 @@ export class BarHighchartsComponent {
 
   ngOnInit(): void {
     this.createChart()
-    this.store.pipe(select(selectDarkMode)).subscribe((darkMode: boolean) => {
+    this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {
       this.darkMode = darkMode
       this.createChart()
     })

@@ -14,7 +14,7 @@ import { take } from 'rxjs/internal/operators/take'
 import { environment } from 'src/environments/environment'
 import { defaultLimit } from '../constants'
 import { Email } from '../types'
-import { selectQuery } from './querySlice'
+import { getQuery } from './querySlice'
 
 export interface EmailState {
   emailLoading: boolean
@@ -140,7 +140,7 @@ export const getEmailIndex = createSelector(
 
 // graphQl query
 async function makeQueryObj(store: Store): Promise<unknown> {
-  const state = await store.pipe(select(selectQuery), take(1)).toPromise()
+  const state = await store.pipe(select(getQuery), take(1)).toPromise()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const query: any = {
     skip: state.emailListPage * defaultLimit,

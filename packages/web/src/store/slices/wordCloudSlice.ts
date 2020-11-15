@@ -50,11 +50,11 @@ export function wordCloudReducer(
 }
 
 // selectors & getters
-export const selectWordCloudLoading = createSelector(
+export const getWordCloudLoading = createSelector(
   createFeatureSelector<WordCloudState>('wordCloud'),
   (state) => state.wordCloudLoading
 )
-export const selectWordCloud = createSelector(
+export const getWordCloud = createSelector(
   createFeatureSelector<WordCloudState>('wordCloud'),
   (state) => state.wordCloud
 )
