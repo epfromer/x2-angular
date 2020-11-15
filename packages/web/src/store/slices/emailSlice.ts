@@ -108,34 +108,29 @@ export const getEmailById = createSelector(
     return state.email.find((e: Email) => e.id === props.id)
   }
 )
-
-// export const getNextEmailId = (
-//   store: Store,
-//   id: string
-// ): string | undefined => {
-//   const state = store.getState()
-//   if (!state.email.email || !state.email.email.length) return undefined
-//   const i = state.email.email.findIndex((e: Email) => e.id === id)
-//   return i < state.email.email.length - 1
-//     ? state.email.email[i + 1].id
-//     : undefined
-// }
-
-// export const getPreviousEmailId = (
-//   store: Store,
-//   id: string
-// ): string | undefined => {
-//   const state = store.getState()
-//   if (!state.email.email || !state.email.email.length) return undefined
-//   const i = state.email.email.findIndex((e: Email) => e.id === id)
-//   return i > 0 ? state.email.email[i - 1].id : undefined
-// }
-
-// export const getEmailIndex = (store: Store, id: string): number | undefined => {
-//   const state = store.getState()
-//   if (!state.email.email || !state.email.email.length) return undefined
-//   return state.email.email.findIndex((e: Email) => e.id === id) + 1
-// }
+export const getNextEmailId = createSelector(
+  createFeatureSelector<EmailState>('email'),
+  (state, props) => {
+    if (!state.email || !state.email.length) return undefined
+    const i = state.email.findIndex((e: Email) => e.id === props.id)
+    return i < state.email.length - 1 ? state.email[i + 1].id : undefined
+  }
+)
+export const getPreviousEmailId = createSelector(
+  createFeatureSelector<EmailState>('email'),
+  (state, props) => {
+    if (!state.email || !state.email.length) return undefined
+    const i = state.email.findIndex((e: Email) => e.id === props.id)
+    return i > 0 ? state.email[i - 1].id : undefined
+  }
+)
+export const getEmailIndex = createSelector(
+  createFeatureSelector<EmailState>('email'),
+  (state, props) => {
+    if (!state.email || !state.email.length) return undefined
+    return state.email.findIndex((e: Email) => e.id === props.id) + 1
+  }
+)
 
 // export const getDateStr = (date: Date): string => {
 //   const month = (date.getMonth() + 1 + '').padStart(2, '0')

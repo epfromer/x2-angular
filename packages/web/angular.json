@@ -27,7 +27,8 @@
               "echarts",
               "chart.js",
               "zrender/lib/svg/svg",
-              "zrender/lib/vml/vml"
+              "zrender/lib/vml/vml",
+              "rxjs/internal/operators/take"
             ],
             "index": "src/index.html",
             "main": "src/main.ts",

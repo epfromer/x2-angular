@@ -71,7 +71,7 @@ export class SearchViewComponent {
   displayedColumns: string[] = ['sentShort', 'from', 'to', 'subject']
   email: Email[]
 
-  onClick(row: any): void {
+  onClick(row: { id: string }): void {
     this.router.navigate(['EmailDetailView', { id: row.id }])
   }
 
