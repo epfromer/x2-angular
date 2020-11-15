@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import request, { gql } from 'graphql-request'
 import { take } from 'rxjs/internal/operators/take'
@@ -80,6 +80,10 @@ export class EmailDetailViewComponent {
         if (query.from) this.highlightedTerms.push(query.from)
         if (query.subject) this.highlightedTerms.push(query.subject)
         if (query.body) this.highlightedTerms.push(query.body)
+      })
+      this.router.events.subscribe((evt) => {
+        // eslint-disable-next-line angular/window-service
+        if (evt instanceof NavigationEnd) window.scrollTo(0, 0)
       })
     })
   }
