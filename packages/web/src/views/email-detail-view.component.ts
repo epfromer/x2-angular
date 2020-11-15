@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store'
 import request, { gql } from 'graphql-request'
 import { take } from 'rxjs/internal/operators/take'
 import { environment } from 'src/environments/environment'
-import { Email, getEmailById, selectDarkMode } from 'src/store'
+import { Email, getEmailById, QueryState, selectQuery } from 'src/store'
 
 // TODO setLoading across the app
 
@@ -12,13 +12,13 @@ import { Email, getEmailById, selectDarkMode } from 'src/store'
   template: `
     <div class="card mat-elevation-z8">
       <email-card-actions [id]="id"></email-card-actions>
-      <div class="mat-h1">{{ email?.subject }}</div>
+      <div class="mat-h1" [innerHTML]="subject()"></div>
       <div>Sent: {{ email?.sent }}</div>
       <div>From: {{ from() }}</div>
       <div>To: {{ to() }}</div>
       <div>CC: {{ email?.cc }}</div>
       <div>BCC: {{ email?.bcc }}</div>
-      <div [innerHTML]="highlight(crlf2br(email?.body))"></div>
+      <div [innerHTML]="body()"></div>
       <email-card-actions [id]="id"></email-card-actions>
     </div>
   `,
@@ -26,12 +26,6 @@ import { Email, getEmailById, selectDarkMode } from 'src/store'
     `
       div {
         padding: 5px;
-      }
-      .spacer {
-        flex: 1 1 auto;
-      }
-      .total {
-        font-size: 15px;
       }
     `,
   ],
@@ -45,7 +39,6 @@ export class EmailDetailViewComponent {
   highlightedTerms = []
 
   ngOnInit(): void {
-    // TODO - 'select' to get
     this.route.params.subscribe(async (params) => {
       this.id = params['id']
       const email = await this.store
@@ -86,6 +79,14 @@ export class EmailDetailViewComponent {
           })
           .catch((e) => console.error(e))
       }
+      this.store.pipe(select(selectQuery)).subscribe((query: QueryState) => {
+        this.highlightedTerms.length = 0
+        if (query.allText) this.highlightedTerms.push(query.allText)
+        if (query.to) this.highlightedTerms.push(query.to)
+        if (query.from) this.highlightedTerms.push(query.from)
+        if (query.subject) this.highlightedTerms.push(query.subject)
+        if (query.body) this.highlightedTerms.push(query.body)
+      })
     })
   }
 
@@ -103,6 +104,14 @@ export class EmailDetailViewComponent {
     return s
   }
 
+  subject(): string {
+    return 'Subject: ' + this.highlight(this.email.subject)
+  }
+
+  body(): string {
+    return this.highlight(this.crlf2br(this.email?.body))
+  }
+
   crlf2br(str: string): string {
     return str?.replace(/\n/g, '<br />')
   }
@@ -117,7 +126,7 @@ export class EmailDetailViewComponent {
     this.highlightedTerms.forEach((term) => {
       s = s.replace(
         new RegExp(`(${term})`, 'gi'),
-        `<span style="background-color:yellow; color:black">$1</span>`
+        `<span class="highlight">$1</span>`
       )
     })
     return s

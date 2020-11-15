@@ -19,6 +19,7 @@ import {
 import { setWordCloud, setWordCloudLoading } from './wordCloudSlice'
 
 // TODO - get dark mode from OS
+// TODO - 'select' to get
 
 export interface AppSettingsState {
   darkMode: boolean

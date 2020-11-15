@@ -21,6 +21,8 @@ const initialState: CustodiansState = {
   custodians: [],
 }
 
+// TODO - 'select' to get
+
 // Actions
 export const setCustodiansLoading = createAction(
   'setCustodiansLoading',
