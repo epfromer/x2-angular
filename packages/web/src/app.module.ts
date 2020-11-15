@@ -41,6 +41,7 @@ import { VolumeTimelineViewComponent } from './views/volume-timeline-view.compon
 import { WordCloudViewComponent } from './views/word-cloud-view.component'
 import { ImportLogComponent } from './components/import-log.component'
 import { MatPaginatorModule } from '@angular/material/paginator'
+import { EmailCardActionsComponent } from './components/emaillist/email-card-actions.component'
 
 @NgModule({
   imports: [
@@ -73,6 +74,7 @@ import { MatPaginatorModule } from '@angular/material/paginator'
     ChordViewComponent,
     ColorPickerDlgComponent,
     CustodianSettingsComponent,
+    EmailCardActionsComponent,
     EmailDetailViewComponent,
     EventTimelineViewComponent,
     HomeCardComponent,
