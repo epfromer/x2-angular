@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core'
+import { MatSort } from '@angular/material/sort'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import {
@@ -13,7 +14,14 @@ import {
 @Component({
   template: `
     <div class="mat-elevation-z8" #tableWrapper>
-      <mat-table [dataSource]="email">
+      <mat-table [dataSource]="email" matSort>
+        <ng-container matColumnDef="allTextFilter">
+          <mat-header-cell *matHeaderCellDef
+            >Filter (all text fields)</mat-header-cell
+          >
+          <mat-cell *matCellDef="let email">{{ email.subject }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="sentShort">
           <mat-header-cell *matHeaderCellDef>Sent</mat-header-cell>
           <mat-cell *matCellDef="let email">
@@ -22,20 +30,30 @@ import {
         </ng-container>
 
         <ng-container matColumnDef="from">
-          <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            <mat-form-field>
+              <mat-label>Filter From</mat-label>
+              <input matInput />
+            </mat-form-field>
+          </mat-header-cell>
           <mat-cell *matCellDef="let email">{{ email.from }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="to">
-          <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            To
+          </mat-header-cell>
           <mat-cell *matCellDef="let email">{{ email.to }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="subject">
-          <mat-header-cell *matHeaderCellDef>Subject</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Subject
+          </mat-header-cell>
           <mat-cell *matCellDef="let email">{{ email.subject }}</mat-cell>
         </ng-container>
 
+        <mat-header-row *matHeaderRowDef="searchColumns"></mat-header-row>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row
           *matRowDef="let row; columns: displayedColumns; let i = index"
@@ -83,6 +101,7 @@ export class SearchViewComponent {
   totalEmails = 0
   emailLoading = false
   emailListPage = 0
+  searchColumns: string[] = ['allTextFilter']
   displayedColumns: string[] = ['sentShort', 'from', 'to', 'subject']
   email: Email[]
 
