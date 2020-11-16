@@ -76,14 +76,9 @@ import { Sort } from '@angular/material/sort'
         word-wrap: break-word !important;
         white-space: unset !important;
         flex: 0 0 80px !important;
-        min-widmat-header-cell: 80px !important;
-        widmat-header-cell: 80px !important;
         overflow-wrap: break-word;
         word-wrap: break-word;
         word-break: break-word;
-        -ms-hyphens: auto;
-        -moz-hyphens: auto;
-        -webkit-hyphens: auto;
         hyphens: auto;
       }
     `,
