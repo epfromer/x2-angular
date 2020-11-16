@@ -25,6 +25,7 @@ import { ColorPickerDlgComponent } from './components/color-picker-dlg.component
 import { CustodianSettingsComponent } from './components/custodian-settings.component'
 import { EChartsModule } from './components/ECharts/echarts.module'
 import { EmailCardActionsComponent } from './components/emaillist/email-card-actions.component'
+import { EmailTableHead } from './components/emaillist/email-table-head.component'
 import { HighchartsModule } from './components/Highcharts/highcharts.module'
 import { HomeCardComponent } from './components/home-card.component'
 import { ImportLogComponent } from './components/import-log.component'
@@ -82,6 +83,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     CustodianSettingsComponent,
     EmailCardActionsComponent,
     EmailDetailViewComponent,
+    EmailTableHead,
     EventTimelineViewComponent,
     HomeCardComponent,
     HomeViewComponent,

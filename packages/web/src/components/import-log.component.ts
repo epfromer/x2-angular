@@ -57,8 +57,8 @@ export class ImportLogComponent {
   constructor(private store: Store) { }
 
   displayedColumns: string[] = ['entry']
-  importLog: Array<LogEntry> = []
-  resultsLength = 0
+  importLog: Array<LogEntry> = [{ id: 'foo', entry: 'No log entries' }]
+  resultsLength = 1
   sub = undefined
 
   ngOnInit(): void {
@@ -75,11 +75,14 @@ export class ImportLogComponent {
       `
       request(`${server}/graphql/`, query)
         .then((data) => {
-          this.importLog = data.getImportStatus.map((e) => ({
+          const log = data.getImportStatus.map((e) => ({
             id: e.id,
             entry: e.timestamp + ' ' + e.entry,
           }))
-          this.resultsLength = this.importLog.length
+          if (log.length) {
+            this.importLog = log
+            this.resultsLength = this.importLog.length
+          }
         })
         .catch((e) => console.error(e))
     })

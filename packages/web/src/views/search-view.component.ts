@@ -1,5 +1,4 @@
 import { Component, ElementRef, ViewChild } from '@angular/core'
-import { MatSort } from '@angular/material/sort'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import {
@@ -9,21 +8,24 @@ import {
   getEmailListPage,
   getEmailLoading,
   setEmailListPage,
+  setOrder,
+  setSort,
 } from 'src/store'
+import { Sort } from '@angular/material/sort'
 
 @Component({
   template: `
     <div class="mat-elevation-z8" #tableWrapper>
-      <mat-table [dataSource]="email" matSort>
-        <ng-container matColumnDef="allTextFilter">
-          <mat-header-cell *matHeaderCellDef
-            >Filter (all text fields)</mat-header-cell
-          >
-          <mat-cell *matCellDef="let email">{{ email.subject }}</mat-cell>
-        </ng-container>
-
+      <email-table-head></email-table-head>
+      <mat-table
+        [dataSource]="email"
+        matSort
+        (matSortChange)="sortData($event)"
+      >
         <ng-container matColumnDef="sentShort">
-          <mat-header-cell *matHeaderCellDef>Sent</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Sent
+          </mat-header-cell>
           <mat-cell *matCellDef="let email">
             {{ email.sentShort }}
           </mat-cell>
@@ -31,10 +33,7 @@ import {
 
         <ng-container matColumnDef="from">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            <mat-form-field>
-              <mat-label>Filter From</mat-label>
-              <input matInput />
-            </mat-form-field>
+            From
           </mat-header-cell>
           <mat-cell *matCellDef="let email">{{ email.from }}</mat-cell>
         </ng-container>
@@ -53,7 +52,6 @@ import {
           <mat-cell *matCellDef="let email">{{ email.subject }}</mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="searchColumns"></mat-header-row>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row
           *matRowDef="let row; columns: displayedColumns; let i = index"
@@ -67,9 +65,6 @@ import {
   `,
   styles: [
     `
-      table {
-        widmat-header-cell: 100%;
-      }
       mat-header-cell.mat-header-cell {
         font-size: 15px;
         padding-right: 10px;
@@ -133,5 +128,14 @@ export class SearchViewComponent {
       this.store.dispatch(setEmailListPage(this.emailListPage + 1))
       getEmailAsync(this.store, true)
     }
+  }
+
+  sortData(sort: Sort): void {
+    this.store.dispatch(setEmailListPage(0))
+    this.store.dispatch(
+      setSort(sort.active === 'sentShort' ? 'sent' : sort.active)
+    )
+    this.store.dispatch(setOrder(sort.direction === 'desc' ? -1 : 1))
+    getEmailAsync(this.store)
   }
 }
