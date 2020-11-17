@@ -124,12 +124,6 @@ export const getEmailIndex = createSelector(
   }
 )
 
-// export const getDateStr = (date: Date): string => {
-//   const month = (date.getMonth() + 1 + '').padStart(2, '0')
-//   const day = (date.getDate() + '').padStart(2, '0')
-//   return `${date.getFullYear()}-${month}-${day}`
-// }
-
 // graphQl query
 async function makeQueryObj(store: Store): Promise<unknown> {
   const state = await store.pipe(select(getQuery), take(1)).toPromise()

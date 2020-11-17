@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
 import { select, Store } from '@ngrx/store'
 import debounce from 'lodash/debounce'
 import {
@@ -12,6 +13,7 @@ import {
   setSubject,
   setTo,
 } from 'src/store'
+import { getDateStr } from 'src/utils/dates'
 
 const DEBOUNCE_MS = 1000
 
@@ -27,7 +29,7 @@ const DEBOUNCE_MS = 1000
       >
         <mat-icon>history</mat-icon>
       </button>
-      <mat-form-field class="full-width">
+      <mat-form-field class="full-width" appearance="fill">
         <mat-label>Filter (all text fields)</mat-label>
         <input
           matInput
@@ -47,35 +49,20 @@ const DEBOUNCE_MS = 1000
       </mat-form-field>
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="space-around">
-      <div>
-        <button
-          mat-icon-button
-          aria-label="Select date range"
-          matTooltip="Select date range"
-          (click)="dateRange()"
-        >
-          <mat-icon>date_range</mat-icon>
-        </button>
-        <mat-form-field>
-          <mat-label>Filter Sent</mat-label>
-          <input
-            matInput
-            [(ngModel)]="sent"
-            (input)="debouncedSearch('sent', $event.target.value)"
-          />
-          <button
-            mat-button
-            *ngIf="sent"
-            matSuffix
-            mat-icon-button
-            aria-label="Clear"
-            (click)="clearSearch('sent')"
-          >
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-      <mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Filter Sent</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [min]="minDate"
+          [max]="maxDate"
+          [(ngModel)]="sent"
+          (dateInput)="doSearch('sent', $event.value)"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
         <mat-label>Filter From</mat-label>
         <input
           matInput
@@ -93,7 +80,7 @@ const DEBOUNCE_MS = 1000
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field appearance="fill">
         <mat-label>Filter To</mat-label>
         <input
           matInput
@@ -111,7 +98,7 @@ const DEBOUNCE_MS = 1000
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field appearance="fill">
         <mat-label>Filter Subject</mat-label>
         <input
           matInput
@@ -148,13 +135,18 @@ const DEBOUNCE_MS = 1000
 })
 export class EmailTableHead {
   // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store) { }
+  constructor(private store: Store, public dialog: MatDialog) {
+    this.minDate = new Date(1999, 6, 2)
+    this.maxDate = new Date(2002, 0, 30)
+  }
 
   allText = ''
   to = ''
   from = ''
   subject = ''
   sent = ''
+  minDate: Date // 1999-07-02
+  maxDate: Date // 2002-01-30
 
   ngOnInit(): void {
     this.store.pipe(select(getQuery)).subscribe((query: QueryState) => {
@@ -168,10 +160,6 @@ export class EmailTableHead {
 
   searchHistory(): void {
     console.log('search history')
-  }
-
-  dateRange(): void {
-    console.log('dateRange')
   }
 
   doSearch(field: string, term: string): void {

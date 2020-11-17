@@ -4,6 +4,8 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormsModule } from '@angular/forms'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
+import { MatNativeDateModule } from '@angular/material/core'
+import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
@@ -27,7 +29,6 @@ import { CustodianSettingsComponent } from './components/custodian-settings.comp
 import { EChartsModule } from './components/ECharts/echarts.module'
 import { EmailCardActionsComponent } from './components/emaillist/email-card-actions.component'
 import { EmailTableHead } from './components/emaillist/email-table-head.component'
-import { FilterDateDlgComponent } from './components/emaillist/filter-date-dlg.component'
 import { HighchartsModule } from './components/Highcharts/highcharts.module'
 import { HomeCardComponent } from './components/home-card.component'
 import { ImportLogComponent } from './components/import-log.component'
@@ -63,9 +64,11 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     HighchartsModule,
     MatButtonModule,
     MatCardModule,
+    MatDatepickerModule,
     MatDialogModule,
     MatIconModule,
     MatInputModule,
+    MatNativeDateModule,
     MatPaginatorModule,
     MatSliderModule,
     MatSortModule,
@@ -88,7 +91,6 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     EmailDetailViewComponent,
     EmailTableHead,
     EventTimelineViewComponent,
-    FilterDateDlgComponent,
     HomeCardComponent,
     HomeViewComponent,
     ImportLogComponent,

@@ -60,7 +60,6 @@ export class CustodianSettingsComponent {
 
   displayedColumns: string[] = ['name', 'title', 'color']
   custodians: Custodian[] = []
-  colorPickerDlgOpen = false
   defaultColor = ''
 
   ngOnInit(): void {
@@ -71,7 +70,6 @@ export class CustodianSettingsComponent {
 
   setCustodianColor(id: string, color: string): void {
     this.defaultColor = color
-    this.colorPickerDlgOpen = true
 
     const dialogRef = this.dialog.open(ColorPickerDlgComponent, {
       width: '280px',
