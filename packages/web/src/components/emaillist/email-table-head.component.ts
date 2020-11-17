@@ -1,6 +1,10 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
-import { Store } from '@ngrx/store'
+import { select, Store } from '@ngrx/store'
+import debounce from 'lodash/debounce'
+import { getAllText, getEmailAsync, setAllText, setEmailListPage } from 'src/store'
+
+const DEBOUNCE_MS = 1000
 
 @Component({
   selector: 'email-table-head',
@@ -16,7 +20,22 @@ import { Store } from '@ngrx/store'
       </button>
       <mat-form-field class="full-width">
         <mat-label>Filter (all text fields)</mat-label>
-        <input matInput />
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="allText"
+          (input)="debouncedSearch('allText', $event.target.value)"
+        />
+        <button
+          mat-button
+          *ngIf="allText"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearSearch('allText')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="space-around">
@@ -57,6 +76,7 @@ import { Store } from '@ngrx/store'
       }
       .full-width {
         margin-left: 10px;
+        padding-right: 10px;
         width: 100%;
       }
     `,
@@ -64,7 +84,15 @@ import { Store } from '@ngrx/store'
 })
 export class EmailTableHead {
   // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store) { }
+  constructor(private store: Store) { }
+
+  allText = ''
+
+  ngOnInit(): void {
+    this.store.pipe(select(getAllText)).subscribe((allText: string) => {
+      this.allText = allText
+    })
+  }
 
   searchHistory(): void {
     console.log('search history')
@@ -73,4 +101,24 @@ export class EmailTableHead {
   dateRange(): void {
     console.log('dateRange')
   }
+
+  clearSearch(field: string): void {
+    this.store.dispatch(setEmailListPage(0))
+    switch (field) {
+      case 'allText':
+        this.store.dispatch(setAllText(''))
+        break
+    }
+    getEmailAsync(this.store)
+  }
+
+  debouncedSearch = debounce((field: string, term: string) => {
+    this.store.dispatch(setEmailListPage(0))
+    switch (field) {
+      case 'allText':
+        this.store.dispatch(setAllText(term))
+        break
+    }
+    getEmailAsync(this.store)
+  }, DEBOUNCE_MS)
 }
