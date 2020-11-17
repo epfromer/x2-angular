@@ -13,7 +13,7 @@ import {
   setSubject,
   setTo,
 } from 'src/store'
-import { getDateStr } from 'src/utils/dates'
+import { getDateFromStr, getDateStr } from 'src/utils/dates'
 
 const DEBOUNCE_MS = 1000
 
@@ -57,7 +57,7 @@ const DEBOUNCE_MS = 1000
           [min]="minDate"
           [max]="maxDate"
           [(ngModel)]="sent"
-          (dateInput)="doSearch('sent', $event.value)"
+          (dateInput)="doSearch('sent', dateString($event.value))"
         />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -144,7 +144,7 @@ export class EmailTableHead {
   to = ''
   from = ''
   subject = ''
-  sent = ''
+  sent = new Date(2002, 0, 30)
   minDate: Date // 1999-07-02
   maxDate: Date // 2002-01-30
 
@@ -154,7 +154,7 @@ export class EmailTableHead {
       this.to = query.to
       this.from = query.from
       this.subject = query.subject
-      this.sent = query.sent
+      this.sent = getDateFromStr(query.sent)
     })
   }
 
@@ -183,6 +183,8 @@ export class EmailTableHead {
     }
     getEmailAsync(this.store)
   }
+
+  dateString = (date: Date): string => getDateStr(date)
 
   clearSearch = (field: string): void => this.doSearch(field, '')
 
