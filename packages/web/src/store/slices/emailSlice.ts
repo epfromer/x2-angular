@@ -30,27 +30,19 @@ const initialState: EmailState = {
 // Actions
 export const setEmailLoading = createAction(
   'setEmailLoading',
-  (emailLoading: boolean) => ({
-    emailLoading,
-  })
+  (emailLoading: boolean) => ({ emailLoading })
 )
 export const setEmail = createAction(
   'setEmail',
-  (email: Array<Email> | undefined) => ({
-    email,
-  })
+  (email: Array<Email> | undefined) => ({ email })
 )
 export const appendEmail = createAction(
   'appendEmail',
-  (email: Array<Email> | undefined) => ({
-    email,
-  })
+  (email: Array<Email> | undefined) => ({ email })
 )
 export const setEmailTotal = createAction(
-  'setEmailLoading',
-  (emailTotal: number) => ({
-    emailTotal,
-  })
+  'setEmailTotal',
+  (emailTotal: number) => ({ emailTotal })
 )
 
 // Reducer

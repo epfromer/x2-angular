@@ -2,11 +2,13 @@ import { Component, ElementRef, ViewChild } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import {
+  defaultLimit,
   Email,
   getEmail,
   getEmailAsync,
   getEmailListPage,
   getEmailLoading,
+  getEmailTotal,
   setEmailListPage,
   setOrder,
   setSort,
@@ -88,7 +90,7 @@ export class SearchViewComponent {
   // eslint-disable-next-line prettier/prettier
   constructor(private router: Router, private store: Store) { }
 
-  totalEmails = 0
+  emailTotal = 0
   emailLoading = false
   emailListPage = 0
   searchColumns: string[] = ['allTextFilter']
@@ -102,12 +104,12 @@ export class SearchViewComponent {
   }
 
   ngOnInit(): void {
-    this.store.pipe(select(getEmail)).subscribe((email: Email[]) => {
-      this.email = email
-      if (email) {
-        this.totalEmails = email.length
-      }
-    })
+    this.store
+      .pipe(select(getEmail))
+      .subscribe((email: Email[]) => (this.email = email))
+    this.store
+      .pipe(select(getEmailTotal))
+      .subscribe((emailTotal: number) => (this.emailTotal = emailTotal))
     this.store
       .pipe(select(getEmailLoading))
       .subscribe((emailLoading: boolean) => (this.emailLoading = emailLoading))
@@ -118,8 +120,16 @@ export class SearchViewComponent {
       )
   }
 
+  hasMore = (): boolean =>
+    (this.emailListPage + 1) * defaultLimit < this.emailTotal
+
   onIntersection({ visible }: { visible: boolean }, i: number): void {
-    if (visible && i >= this.email.length - 1 && !this.emailLoading) {
+    if (
+      visible &&
+      i >= this.email.length - 1 &&
+      !this.emailLoading &&
+      this.hasMore()
+    ) {
       this.store.dispatch(setEmailListPage(this.emailListPage + 1))
       getEmailAsync(this.store, true)
     }

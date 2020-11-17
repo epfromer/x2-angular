@@ -28,7 +28,8 @@
               "chart.js",
               "zrender/lib/svg/svg",
               "zrender/lib/vml/vml",
-              "rxjs/internal/operators/take"
+              "rxjs/internal/operators/take",
+              "lodash/debounce"
             ],
             "index": "src/index.html",
             "main": "src/main.ts",

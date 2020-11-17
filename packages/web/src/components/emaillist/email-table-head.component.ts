@@ -1,8 +1,14 @@
 import { Component } from '@angular/core'
-import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import debounce from 'lodash/debounce'
-import { getAllText, getEmailAsync, setAllText, setEmailListPage } from 'src/store'
+import {
+  getEmailAsync,
+  getQuery,
+  QueryState,
+  setAllText,
+  setEmailListPage,
+  setTo,
+} from 'src/store'
 
 const DEBOUNCE_MS = 1000
 
@@ -22,7 +28,6 @@ const DEBOUNCE_MS = 1000
         <mat-label>Filter (all text fields)</mat-label>
         <input
           matInput
-          type="text"
           [(ngModel)]="allText"
           (input)="debouncedSearch('allText', $event.target.value)"
         />
@@ -50,20 +55,76 @@ const DEBOUNCE_MS = 1000
         </button>
         <mat-form-field>
           <mat-label>Filter Sent</mat-label>
-          <input matInput />
+          <input
+            matInput
+            [(ngModel)]="sent"
+            (input)="debouncedSearch('sent', $event.target.value)"
+          />
+          <button
+            mat-button
+            *ngIf="sent"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="clearSearch('sent')"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
         </mat-form-field>
       </div>
       <mat-form-field>
         <mat-label>Filter From</mat-label>
-        <input matInput />
+        <input
+          matInput
+          [(ngModel)]="from"
+          (input)="debouncedSearch('from', $event.target.value)"
+        />
+        <button
+          mat-button
+          *ngIf="from"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearSearch('from')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Filter To</mat-label>
-        <input matInput />
+        <input
+          matInput
+          [(ngModel)]="to"
+          (input)="debouncedSearch('to', $event.target.value)"
+        />
+        <button
+          mat-button
+          *ngIf="to"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearSearch('to')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Filter Subject</mat-label>
-        <input matInput />
+        <input
+          matInput
+          [(ngModel)]="subject"
+          (input)="debouncedSearch('subject', $event.target.value)"
+        />
+        <button
+          mat-button
+          *ngIf="subject"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearSearch('subject')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
     </div>
   `,
@@ -87,10 +148,18 @@ export class EmailTableHead {
   constructor(private store: Store) { }
 
   allText = ''
+  to = ''
+  from = ''
+  subject = ''
+  sent = ''
 
   ngOnInit(): void {
-    this.store.pipe(select(getAllText)).subscribe((allText: string) => {
-      this.allText = allText
+    this.store.pipe(select(getQuery)).subscribe((query: QueryState) => {
+      this.allText = query.allText
+      this.to = query.to
+      this.from = query.from
+      this.subject = query.subject
+      this.sent = query.sent
     })
   }
 
@@ -102,23 +171,23 @@ export class EmailTableHead {
     console.log('dateRange')
   }
 
-  clearSearch(field: string): void {
-    this.store.dispatch(setEmailListPage(0))
-    switch (field) {
-      case 'allText':
-        this.store.dispatch(setAllText(''))
-        break
-    }
-    getEmailAsync(this.store)
-  }
-
-  debouncedSearch = debounce((field: string, term: string) => {
+  doSearch(field: string, term: string): void {
     this.store.dispatch(setEmailListPage(0))
     switch (field) {
       case 'allText':
         this.store.dispatch(setAllText(term))
         break
+      case 'to':
+        this.store.dispatch(setTo(term))
+        break
     }
     getEmailAsync(this.store)
-  }, DEBOUNCE_MS)
+  }
+
+  clearSearch = (field: string): void => this.doSearch(field, '')
+
+  debouncedSearch = debounce(
+    (field: string, term: string) => this.doSearch(field, term),
+    DEBOUNCE_MS
+  )
 }
