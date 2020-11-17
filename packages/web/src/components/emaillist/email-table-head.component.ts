@@ -7,6 +7,9 @@ import {
   QueryState,
   setAllText,
   setEmailListPage,
+  setFrom,
+  setSent,
+  setSubject,
   setTo,
 } from 'src/store'
 
@@ -174,11 +177,20 @@ export class EmailTableHead {
   doSearch(field: string, term: string): void {
     this.store.dispatch(setEmailListPage(0))
     switch (field) {
+      case 'sent':
+        this.store.dispatch(setSent(term))
+        break
       case 'allText':
         this.store.dispatch(setAllText(term))
         break
+      case 'from':
+        this.store.dispatch(setFrom(term))
+        break
       case 'to':
         this.store.dispatch(setTo(term))
+        break
+      case 'subject':
+        this.store.dispatch(setSubject(term))
         break
     }
     getEmailAsync(this.store)
