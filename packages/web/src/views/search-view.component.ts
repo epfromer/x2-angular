@@ -77,13 +77,13 @@ const EXPANDED_BODY_LENGTH = 1000
             [attr.colspan]="displayedColumns.length"
           >
             <div
-              class="example-element-detail"
+              class="email-detail"
               [@detailExpand]="
                 email == expandedEmail ? 'expanded' : 'collapsed'
               "
             >
-              <div class="example-element-diagram">
-                {{ email.subject }}
+              <div class="expanded-body-row">
+                {{ bodySlice(email.body) }}
               </div>
             </div>
           </td>
@@ -93,7 +93,7 @@ const EXPANDED_BODY_LENGTH = 1000
         <tr
           mat-row
           *matRowDef="let email; columns: displayedColumns; let i = dataIndex"
-          class="example-element-row"
+          class="email-row"
           [class.example-expanded-row]="expandedEmail === email"
           inViewport
           [inViewportOptions]="{ threshold: [0] }"
@@ -102,7 +102,7 @@ const EXPANDED_BODY_LENGTH = 1000
         <tr
           mat-row
           *matRowDef="let row; columns: ['expandedDetail']"
-          class="example-detail-row"
+          class="contracted-body-row"
         ></tr>
       </table>
     </div>
@@ -126,31 +126,22 @@ const EXPANDED_BODY_LENGTH = 1000
         word-break: break-word;
         hyphens: auto;
       }
-      tr.example-detail-row {
+      tr.contracted-body-row {
         height: 0;
       }
-      .example-element-row td {
+      .email-row td {
         border-bottom-width: 0;
       }
-      .example-element-detail {
+      .email-detail {
         overflow: hidden;
         display: flex;
       }
-      .example-element-diagram {
+      .expanded-body-row {
         min-width: 80px;
         border: 2px solid black;
         padding: 8px;
         font-weight: lighter;
         margin: 8px 0;
-        height: 104px;
-      }
-      .example-element-symbol {
-        font-weight: bold;
-        font-size: 40px;
-        line-height: normal;
-      }
-      .example-element-description {
-        padding: 16px;
       }
     `,
   ],
