@@ -3,13 +3,8 @@ import { Component } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { gql, request } from 'graphql-request'
 import { interval } from 'rxjs'
-import { importLoc } from 'src/store'
+import { importLoc, LogEntry } from 'src/store'
 import { environment } from '../environments/environment'
-
-interface LogEntry {
-  id: string
-  entry: string
-}
 
 @Component({
   selector: 'import-log',
@@ -21,7 +16,7 @@ interface LogEntry {
     </div>
     <mat-table [dataSource]="importLog" class="mat-elevation-z8 container">
       <ng-container matColumnDef="entry">
-        <mat-cell *matCellDef="let r">{{ r.last }} {{ r.entry }} </mat-cell>
+        <mat-cell *matCellDef="let r">{{ r.entry }} </mat-cell>
       </ng-container>
       <mat-row
         *matRowDef="let row; columns: displayedColumns; let i = index"

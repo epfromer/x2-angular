@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
+import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import debounce from 'lodash/debounce'
 import {
@@ -21,14 +22,16 @@ const DEBOUNCE_MS = 1000
   selector: 'email-table-head',
   template: `
     <div fxLayout="row">
-      <button
-        mat-icon-button
-        aria-label="Search history"
-        matTooltip="Search history"
-        (click)="searchHistory()"
-      >
-        <mat-icon>history</mat-icon>
-      </button>
+      <div fxLayout="column" fxLayoutAlign="center">
+        <button
+          mat-icon-button
+          aria-label="Search history"
+          matTooltip="Search history"
+          (click)="searchHistory()"
+        >
+          <mat-icon>history</mat-icon>
+        </button>
+      </div>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Filter (all text fields)</mat-label>
         <input
@@ -49,7 +52,7 @@ const DEBOUNCE_MS = 1000
       </mat-form-field>
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="space-around">
-      <mat-form-field appearance="fill">
+      <mat-form-field class="filter-sent" appearance="fill">
         <mat-label>Filter Sent</mat-label>
         <input
           matInput
@@ -120,6 +123,9 @@ const DEBOUNCE_MS = 1000
   `,
   styles: [
     `
+      .history-button {
+        padding-top: 10px;
+      }
       .form {
         padding-top: 10px;
         margin-left: 10px;
@@ -130,12 +136,15 @@ const DEBOUNCE_MS = 1000
         padding-right: 10px;
         width: 100%;
       }
+      .filter-sent {
+        width: 160px;
+      }
     `,
   ],
 })
 export class EmailTableHead {
   // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store, public dialog: MatDialog) {
+  constructor(private router: Router, private store: Store, public dialog: MatDialog) {
     this.minDate = new Date(1999, 6, 2)
     this.maxDate = new Date(2002, 0, 30)
   }
@@ -159,7 +168,7 @@ export class EmailTableHead {
   }
 
   searchHistory(): void {
-    console.log('search history')
+    this.router.navigate(['SearchHistoryView'])
   }
 
   doSearch(field: string, term: string): void {
