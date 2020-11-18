@@ -21,7 +21,7 @@ import { environment } from '../environments/environment'
 @Component({
   template: `
     <div>
-      <button mat-raised-button color="accent" (click)="clearHistory()">
+      <button mat-raised-button color="accent" (click)="onClearHistory()">
         Clear History
       </button>
     </div>
@@ -43,7 +43,7 @@ import { environment } from '../environments/environment'
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row
         *matRowDef="let row; columns: displayedColumns"
-        (click)="onClick(row.entry)"
+        (click)="onSearchHistory(row.entry)"
       ></mat-row>
     </mat-table>
   `,
@@ -56,15 +56,8 @@ import { environment } from '../environments/environment'
       button {
         margin-bottom: 10px;
       }
-      table {
-        width: 100%;
-      }
-      .last-row {
-        margin: 100px;
-      }
       .container {
         overflow: auto;
-        max-height: 400px;
       }
       .mat-cell {
         padding-right: 10px;
@@ -77,14 +70,16 @@ export class SearchHistoryViewComponent {
   constructor(private router: Router, private store: Store) { }
 
   displayedColumns: string[] = ['timestamp', 'entry']
-  log = new MatTableDataSource([
-    { id: 'foo', timestamp: '', entry: 'No log entries' },
-  ])
-  sub = undefined
+  emptyLog = [{ id: '', timestamp: '', entry: 'No log entries' }]
+  log = new MatTableDataSource(this.emptyLog)
 
   @ViewChild(MatSort) sort: MatSort
 
   ngOnInit(): void {
+    this.getSearchHistory()
+  }
+
+  getSearchHistory(): void {
     const server = environment.x2Server
     const query = gql`
       {
@@ -101,12 +96,14 @@ export class SearchHistoryViewComponent {
         if (log.length) {
           this.log = new MatTableDataSource(log)
           this.log.sort = this.sort
+        } else {
+          this.log = new MatTableDataSource(this.emptyLog)
         }
       })
       .catch((e) => console.error(e))
   }
 
-  onClick(search: string): void {
+  onSearchHistory(search: string): void {
     const o = JSON.parse(search)
     this.store.dispatch(clearSearch())
     if (o.hasOwnProperty('sort')) this.store.dispatch(setSort(o.sort))
@@ -121,7 +118,15 @@ export class SearchHistoryViewComponent {
     this.router.navigateByUrl('/SearchView')
   }
 
-  clearHistory(): void {
-    // this.store.dispatch(setThemeName(name))
+  onClearHistory(): void {
+    const server = environment.x2Server
+    const query = gql`
+      mutation {
+        clearSearchHistory
+      }
+    `
+    request(`${server}/graphql/`, query)
+      .then(() => this.getSearchHistory())
+      .catch((e) => console.error(e))
   }
 }

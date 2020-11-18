@@ -14,60 +14,81 @@ import {
   setSort,
 } from 'src/store'
 import { Sort } from '@angular/material/sort'
+import { animate, state, style, transition, trigger } from '@angular/animations'
 
 @Component({
   template: `
     <div class="mat-elevation-z8" #tableWrapper>
       <email-table-head></email-table-head>
-      <mat-table
+      <table
+        mat-table
         [dataSource]="email"
+        multiTemplateDataRows
         matSort
         (matSortChange)="sortData($event)"
       >
         <ng-container matColumnDef="sentShort">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Sent
-          </mat-header-cell>
-          <mat-cell *matCellDef="let email">
-            {{ email.sentShort }}
-          </mat-cell>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Sent</th>
+          <td mat-cell *matCellDef="let email">{{ email.sentShort }}</td>
         </ng-container>
 
         <ng-container matColumnDef="from">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            From
-          </mat-header-cell>
-          <mat-cell *matCellDef="let email">{{ email.from }}</mat-cell>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>From</th>
+          <td mat-cell *matCellDef="let email">{{ email.from }}</td>
         </ng-container>
 
         <ng-container matColumnDef="to">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            To
-          </mat-header-cell>
-          <mat-cell *matCellDef="let email">{{ email.to }}</mat-cell>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>To</th>
+          <td mat-cell *matCellDef="let email">{{ email.to }}</td>
         </ng-container>
 
         <ng-container matColumnDef="subject">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Subject
-          </mat-header-cell>
-          <mat-cell *matCellDef="let email">{{ email.subject }}</mat-cell>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Subject</th>
+          <td mat-cell *matCellDef="let email">{{ email.subject }}</td>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row
-          *matRowDef="let row; columns: displayedColumns; let i = index"
-          (click)="onClick(row)"
+        <!-- expanded detail row -->
+        <ng-container matColumnDef="expandedDetail">
+          <td
+            mat-cell
+            *matCellDef="let email"
+            [attr.colspan]="displayedColumns.length"
+          >
+            <div
+              class="example-element-detail"
+              [@detailExpand]="
+                email == expandedEmail ? 'expanded' : 'collapsed'
+              "
+            >
+              <div class="example-element-diagram">
+                {{ email.subject }}
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let email; columns: displayedColumns; let i = index"
+          class="example-element-row"
+          [class.example-expanded-row]="expandedEmail === email"
+          (click)="expandedEmail = expandedEmail === email ? null : email"
           inViewport
           [inViewportOptions]="{ threshold: [0] }"
           (inViewportAction)="onIntersection($event, i)"
-        ></mat-row>
-      </mat-table>
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: ['expandedDetail']"
+          class="example-detail-row"
+        ></tr>
+      </table>
     </div>
   `,
   styles: [
     `
-      mat-header-cell.mat-header-cell {
+      .mat-header-cell {
         font-size: 15px;
         padding-right: 10px;
       }
@@ -78,12 +99,52 @@ import { Sort } from '@angular/material/sort'
         word-wrap: break-word !important;
         white-space: unset !important;
         flex: 0 0 80px !important;
+        width: 80px !important;
         overflow-wrap: break-word;
         word-wrap: break-word;
         word-break: break-word;
         hyphens: auto;
       }
+      tr.example-detail-row {
+        height: 0;
+      }
+      .example-element-row td {
+        border-bottom-width: 0;
+      }
+      .example-element-detail {
+        overflow: hidden;
+        display: flex;
+      }
+      .example-element-diagram {
+        min-width: 80px;
+        border: 2px solid black;
+        padding: 8px;
+        font-weight: lighter;
+        margin: 8px 0;
+        height: 104px;
+      }
+      .example-element-symbol {
+        font-weight: bold;
+        font-size: 40px;
+        line-height: normal;
+      }
+      .example-element-description {
+        padding: 16px;
+      }
+      .example-element-description-attribution {
+        opacity: 0.5;
+      }
     `,
+  ],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
   ],
 })
 export class SearchViewComponent {
@@ -96,6 +157,7 @@ export class SearchViewComponent {
   searchColumns: string[] = ['allTextFilter']
   displayedColumns: string[] = ['sentShort', 'from', 'to', 'subject']
   email: Email[]
+  expandedEmail: Email | null
 
   @ViewChild('tableWrapper', { read: ElementRef }) rootElement: ElementRef
 
