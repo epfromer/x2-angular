@@ -27,24 +27,44 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         matSort
         (matSortChange)="sortData($event)"
       >
+        <!-- column to hold expand icon -->
+        <ng-container matColumnDef="expand">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td
+            mat-cell
+            *matCellDef="let email"
+            (click)="expandedEmail = expandedEmail === email ? null : email"
+          >
+            <div>foo</div>
+          </td>
+        </ng-container>
+
         <ng-container matColumnDef="sentShort">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Sent</th>
-          <td mat-cell *matCellDef="let email">{{ email.sentShort }}</td>
+          <td mat-cell *matCellDef="let email" (click)="onClick(email)">
+            {{ email.sentShort }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="from">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>From</th>
-          <td mat-cell *matCellDef="let email">{{ email.from }}</td>
+          <td mat-cell *matCellDef="let email" (click)="onClick(email)">
+            {{ email.from }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="to">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>To</th>
-          <td mat-cell *matCellDef="let email">{{ email.to }}</td>
+          <td mat-cell *matCellDef="let email" (click)="onClick(email)">
+            {{ email.to }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="subject">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Subject</th>
-          <td mat-cell *matCellDef="let email">{{ email.subject }}</td>
+          <td mat-cell *matCellDef="let email" (click)="onClick(email)">
+            {{ email.subject }}
+          </td>
         </ng-container>
 
         <!-- expanded detail row -->
@@ -73,7 +93,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
           *matRowDef="let email; columns: displayedColumns; let i = index"
           class="example-element-row"
           [class.example-expanded-row]="expandedEmail === email"
-          (click)="expandedEmail = expandedEmail === email ? null : email"
           inViewport
           [inViewportOptions]="{ threshold: [0] }"
           (inViewportAction)="onIntersection($event, i)"
@@ -155,14 +174,14 @@ export class SearchViewComponent {
   emailLoading = false
   emailListPage = 0
   searchColumns: string[] = ['allTextFilter']
-  displayedColumns: string[] = ['sentShort', 'from', 'to', 'subject']
+  displayedColumns: string[] = ['expand', 'sentShort', 'from', 'to', 'subject']
   email: Email[]
   expandedEmail: Email | null
 
   @ViewChild('tableWrapper', { read: ElementRef }) rootElement: ElementRef
 
-  onClick(row: { id: string }): void {
-    this.router.navigate(['EmailDetailView', { id: row.id }])
+  onClick(email: { id: string }): void {
+    this.router.navigate(['EmailDetailView', { id: email.id }])
   }
 
   ngOnInit(): void {
