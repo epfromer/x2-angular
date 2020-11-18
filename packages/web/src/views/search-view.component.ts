@@ -37,7 +37,13 @@ const EXPANDED_BODY_LENGTH = 1000
             *matCellDef="let email"
             (click)="expandedEmail = expandedEmail === email ? null : email"
           >
-            <div>foo</div>
+            <button
+              mat-icon-button
+              aria-label="Open drawer"
+              matTooltip="Open drawer"
+            >
+              <mat-icon>expand_more</mat-icon>
+            </button>
           </td>
         </ng-container>
 
@@ -140,8 +146,22 @@ const EXPANDED_BODY_LENGTH = 1000
         min-width: 80px;
         border: 2px solid black;
         padding: 8px;
-        font-weight: lighter;
         margin: 8px 0;
+      }
+      .close: {
+        transition: 300ms transform;
+      }
+      .open: {
+        animation: spin 300ms;
+        transform: rotate(180deg);
+      }
+      @keyframes spin: {
+        0%: {
+          transform: rotate(0deg);
+        }
+        100%: {
+          transform: rotate(180deg);
+        }
       }
     `,
   ],

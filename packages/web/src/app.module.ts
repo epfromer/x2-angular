@@ -29,6 +29,7 @@ import { CustodianSettingsComponent } from './components/custodian-settings.comp
 import { EChartsModule } from './components/ECharts/echarts.module'
 import { EmailCardActionsComponent } from './components/emaillist/email-card-actions.component'
 import { EmailTableHead } from './components/emaillist/email-table-head.component'
+import { ExpandMoreButton } from './components/emaillist/expand-more-button.component'
 import { HighchartsModule } from './components/Highcharts/highcharts.module'
 import { HomeCardComponent } from './components/home-card.component'
 import { ImportLogComponent } from './components/import-log.component'
@@ -91,6 +92,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     EmailDetailViewComponent,
     EmailTableHead,
     EventTimelineViewComponent,
+    ExpandMoreButton,
     HomeCardComponent,
     HomeViewComponent,
     ImportLogComponent,
