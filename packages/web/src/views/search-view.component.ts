@@ -16,6 +16,8 @@ import {
 import { Sort } from '@angular/material/sort'
 import { animate, state, style, transition, trigger } from '@angular/animations'
 
+const EXPANDED_BODY_LENGTH = 1000
+
 @Component({
   template: `
     <div class="mat-elevation-z8" #tableWrapper>
@@ -90,7 +92,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr
           mat-row
-          *matRowDef="let email; columns: displayedColumns; let i = index"
+          *matRowDef="let email; columns: displayedColumns; let i = dataIndex"
           class="example-element-row"
           [class.example-expanded-row]="expandedEmail === email"
           inViewport
@@ -149,9 +151,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       }
       .example-element-description {
         padding: 16px;
-      }
-      .example-element-description-attribution {
-        opacity: 0.5;
       }
     `,
   ],
@@ -215,6 +214,8 @@ export class SearchViewComponent {
       getEmailAsync(this.store, true)
     }
   }
+
+  bodySlice = (body: string): string => body.slice(0, EXPANDED_BODY_LENGTH)
 
   sortData(sort: Sort): void {
     this.store.dispatch(setEmailListPage(0))
