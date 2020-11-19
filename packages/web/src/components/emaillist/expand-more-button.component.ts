@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { animate, state, style, transition, trigger } from '@angular/animations'
 
 // https://angular.io/guide/animations
+// https://stackoverflow.com/questions/44330983/angular-animation-rotation-180-click-image
 
 @Component({
   selector: 'expand-more-component',
@@ -41,7 +42,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       state('opened', style({ backgroundColor: 'yellow' })),
       state('closed', style({ backgroundColor: 'green' })),
       transition(
-        'expanded <=> collapsed',
+        'opened <=> closed',
         animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
       ),
     ]),
