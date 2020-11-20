@@ -22,5 +22,6 @@ import { VolumeTimelineChartJSComponent } from './volume-timeline-chartjs.compon
     VolumeTimelineChartJSComponent,
   ],
 })
-// eslint-disable-next-line prettier/prettier
-export class ChartJSModule { }
+export class ChartJSModule {
+  // empty constructor
+}

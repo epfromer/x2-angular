@@ -27,8 +27,9 @@ export class HomeCardComponent {
   @Input() description: string
   @Input() link: string
 
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    // empty constructor
+  }
 
   navTo(url: string): void {
     this.router.navigateByUrl('/' + url)

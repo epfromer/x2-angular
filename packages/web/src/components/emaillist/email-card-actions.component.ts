@@ -4,11 +4,11 @@ import { select, Store } from '@ngrx/store'
 import { take } from 'rxjs/internal/operators/take'
 import {
   Email,
+  getDarkMode,
   getEmail,
   getEmailIndex,
   getNextEmailId,
   getPreviousEmailId,
-  getDarkMode,
 } from 'src/store'
 
 @Component({
@@ -64,8 +64,9 @@ import {
 export class EmailCardActionsComponent {
   @Input() id: string
 
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store) { }
+  constructor(private router: Router, private store: Store) {
+    // empty constructor
+  }
 
   previousEmailId = ''
   nextEmailId = ''

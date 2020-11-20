@@ -11,46 +11,25 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       mat-icon-button
       aria-label="Open / Close"
       matTooltip="Open / Close"
-      (click)="closed = !closed"
+      (click)="rotate()"
+      [@rotatedState]="state"
     >
-      <div [@expand]="closed ? 'closed' : 'opened'">
-        <mat-icon>expand_more</mat-icon>
-      </div>
+      <mat-icon>expand_more</mat-icon>
     </button>
   `,
-  styles: [
-    `
-      .close: {
-        transition: 300ms transform;
-      }
-      .open: {
-        animation: spin 300ms;
-        transform: rotate(180deg);
-      }
-      @keyframes spin: {
-        0%: {
-          transform: rotate(0deg);
-        }
-        100%: {
-          transform: rotate(180deg);
-        }
-      }
-    `,
-  ],
   animations: [
-    trigger('expand', [
-      state('opened', style({ backgroundColor: 'yellow' })),
-      state('closed', style({ backgroundColor: 'green' })),
-      transition(
-        'opened <=> closed',
-        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
-      ),
+    trigger('rotatedState', [
+      state('default', style({ transform: 'rotate(0)' })),
+      state('rotated', style({ transform: 'rotate(180deg)' })),
+      transition('rotated => default', animate('300ms ease-out')),
+      transition('default => rotated', animate('300ms ease-in')),
     ]),
   ],
 })
 export class ExpandMoreButton {
-  // eslint-disable-next-line prettier/prettier
-  constructor() { }
+  state = 'default'
 
-  closed = true
+  rotate(): void {
+    this.state = this.state === 'default' ? 'rotated' : 'default'
+  }
 }

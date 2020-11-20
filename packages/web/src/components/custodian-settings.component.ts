@@ -55,8 +55,9 @@ import { ColorPickerDlgComponent } from './color-picker-dlg.component'
   ],
 })
 export class CustodianSettingsComponent {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store, public dialog: MatDialog) { }
+  constructor(private store: Store, public dialog: MatDialog) {
+    // empty constructor
+  }
 
   displayedColumns: string[] = ['name', 'title', 'color']
   custodians: Custodian[] = []

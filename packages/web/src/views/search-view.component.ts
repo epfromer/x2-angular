@@ -156,8 +156,9 @@ const EXPANDED_BODY_LENGTH = 1000
   ],
 })
 export class SearchViewComponent {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store) { }
+  constructor(private router: Router, private store: Store) {
+    // empty constructor
+  }
 
   emailTotal = 0
   emailLoading = false

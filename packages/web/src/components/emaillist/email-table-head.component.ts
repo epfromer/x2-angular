@@ -143,8 +143,11 @@ const DEBOUNCE_MS = 1000
   ],
 })
 export class EmailTableHead {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store, public dialog: MatDialog) {
+  constructor(
+    private router: Router,
+    private store: Store,
+    public dialog: MatDialog
+  ) {
     this.minDate = new Date(1999, 6, 2)
     this.maxDate = new Date(2002, 0, 30)
   }

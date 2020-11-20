@@ -37,5 +37,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-// eslint-disable-next-line prettier/prettier
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  // empty constructor
+}

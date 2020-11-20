@@ -42,8 +42,9 @@ import { appThemes } from '../utils/appThemes'
   ],
 })
 export class ThemePickerComponent {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+    // empty constructor
+  }
 
   displayedColumns: string[] = ['primary']
   dataSource = appThemes

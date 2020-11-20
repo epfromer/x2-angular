@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { Component } from '@angular/core'
-import { Store } from '@ngrx/store'
 import { gql, request } from 'graphql-request'
 import { interval } from 'rxjs'
 import { importLoc, LogEntry } from 'src/store'
@@ -48,8 +46,9 @@ import { environment } from '../environments/environment'
   ],
 })
 export class ImportLogComponent {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store) { }
+  constructor() {
+    // empty constructor
+  }
 
   displayedColumns: string[] = ['entry']
   importLog: Array<LogEntry> = [{ id: 'foo', entry: 'No log entries' }]

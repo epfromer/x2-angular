@@ -66,8 +66,9 @@ import { environment } from '../environments/environment'
   ],
 })
 export class SearchHistoryViewComponent {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store) { }
+  constructor(private router: Router, private store: Store) {
+    // empty constructor
+  }
 
   displayedColumns: string[] = ['timestamp', 'entry']
   emptyLog = [{ id: '', timestamp: '', entry: 'No log entries' }]

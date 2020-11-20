@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
-import { EmailSent, IDColorKey, getDarkMode } from '../../store'
+import { EmailSent, getDarkMode, IDColorKey } from '../../store'
 
 // https://echarts.apache.org/examples/en/index.html#chart-type-graph
 
@@ -26,8 +26,9 @@ export class ChordEChartsComponent {
   @Input() nodes: Array<IDColorKey>
   @Output() handleClick = new EventEmitter()
 
-  // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+    // empty constructor
+  }
 
   darkMode = false
   options: EChartOption = {}

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import { ChartOptions } from 'chart.js'
 import {
@@ -40,7 +39,7 @@ export class BarChartJSComponent {
   @Input() data: Array<EmailXferedDatum>
   @Output() handleClick = new EventEmitter()
 
-  constructor(private router: Router, private store: Store) {
+  constructor(private store: Store) {
     monkeyPatchChartJsTooltip()
     monkeyPatchChartJsLegend()
   }

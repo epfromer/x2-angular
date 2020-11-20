@@ -37,7 +37,9 @@ export class ColorPickerDlgComponent {
   constructor(
     public dialogRef: MatDialogRef<ColorPickerDlgComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ColorPickerDlgData
-  ) { }
+  ) {
+    // empty constructor
+  }
 
   onNoClick(): void {
     this.dialogRef.close()

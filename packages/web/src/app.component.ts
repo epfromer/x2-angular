@@ -39,8 +39,9 @@ import {
   ],
 })
 export class AppComponent implements OnInit {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+    // empty constructor
+  }
 
   @HostBinding('class') className = ''
   darkMode = false

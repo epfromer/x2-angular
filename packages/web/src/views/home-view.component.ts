@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core'
-import { Router } from '@angular/router'
 import { HomeCardComponent } from '../components/home-card.component'
 
 export interface Card {
@@ -28,8 +27,9 @@ export interface Card {
 export class HomeViewComponent {
   @Input() homeCard: HomeCardComponent
 
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router) { }
+  constructor() {
+    // empty constructor
+  }
 
   cards: Card[] = [
     {

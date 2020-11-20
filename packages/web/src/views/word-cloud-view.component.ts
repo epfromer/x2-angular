@@ -25,8 +25,9 @@ import {
   styles: [``],
 })
 export class WordCloudViewComponent {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store) { }
+  constructor(private router: Router, private store: Store) {
+    // empty constructor
+  }
 
   wordCloud: WordCloudTag[]
 

@@ -31,8 +31,13 @@ import { Email, getEmailById, QueryState, getQuery } from 'src/store'
   ],
 })
 export class EmailDetailViewComponent {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private route: ActivatedRoute, private store: Store) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private store: Store
+  ) {
+    // empty constructor
+  }
 
   id = ''
   email: Email = undefined

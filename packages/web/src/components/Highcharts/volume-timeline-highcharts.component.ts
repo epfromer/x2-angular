@@ -23,8 +23,9 @@ export class VolumeTimelineHighchartsComponent {
   @Input() data: Array<EmailSentByDay>
   @Output() handleClick = new EventEmitter()
 
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store) { }
+  constructor(private router: Router, private store: Store) {
+    // empty constructor
+  }
 
   darkMode = false
   chart = undefined

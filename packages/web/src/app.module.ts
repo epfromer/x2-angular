@@ -109,5 +109,6 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
   providers: [],
   bootstrap: [AppComponent],
 })
-// eslint-disable-next-line prettier/prettier
-export class AppModule { }
+export class AppModule {
+  // empty constructor
+}

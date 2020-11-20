@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
 import * as Highcharts from 'highcharts'
@@ -20,8 +19,9 @@ export class TreeMapHighchartsComponent {
   @Input() data: Array<EmailXferedDatum>
   @Output() handleClick = new EventEmitter()
 
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store) { }
+  constructor(private store: Store) {
+    // empty constructor
+  }
 
   darkMode = false
   options: EChartOption = {}

@@ -23,8 +23,9 @@ export class PieHighchartsComponent {
   @Input() data: Array<EmailXferedDatum>
   @Output() handleClick = new EventEmitter()
 
-  // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+    // empty constructor
+  }
 
   darkMode = false
   chart = undefined

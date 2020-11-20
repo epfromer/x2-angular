@@ -33,5 +33,6 @@ import { WordCloudHighchartsComponent } from './word-cloud-highcharts.component'
     WordCloudHighchartsComponent,
   ],
 })
-// eslint-disable-next-line prettier/prettier
-export class HighchartsModule { }
+export class HighchartsModule {
+  // empty constructor
+}

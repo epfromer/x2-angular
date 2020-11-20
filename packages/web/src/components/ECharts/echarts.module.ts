@@ -33,5 +33,6 @@ import { WordCloudEChartsComponent } from './word-cloud-echarts.component'
     WordCloudEChartsComponent,
   ],
 })
-// eslint-disable-next-line prettier/prettier
-export class EChartsModule { }
+export class EChartsModule {
+  // empty constructor
+}

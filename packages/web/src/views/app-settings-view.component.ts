@@ -25,6 +25,7 @@ import { Component } from '@angular/core'
   ],
 })
 export class AppSettingsViewComponent {
-  // eslint-disable-next-line prettier/prettier
-  constructor() { }
+  constructor() {
+    // empty constructor
+  }
 }

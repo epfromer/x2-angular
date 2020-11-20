@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import * as Highcharts from 'highcharts'
 import More from 'highcharts/highcharts-more'
@@ -7,7 +6,7 @@ import Boost from 'highcharts/modules/boost'
 import HighchartsWheel from 'highcharts/modules/dependency-wheel'
 import noData from 'highcharts/modules/no-data-to-display'
 import HighchartSankey from 'highcharts/modules/sankey'
-import { EmailSent, IDColorKey, getDarkMode } from '../../store'
+import { EmailSent, getDarkMode, IDColorKey } from '../../store'
 
 // https://www.highcharts.com/docs/chart-and-series-types/dependency-wheel
 
@@ -28,8 +27,9 @@ export class ChordHighchartsComponent {
   @Input() nodes: Array<IDColorKey>
   @Output() handleClick = new EventEmitter()
 
-  // eslint-disable-next-line prettier/prettier
-  constructor(private router: Router, private store: Store) { }
+  constructor(private store: Store) {
+    // empty constructor
+  }
 
   darkMode = false
   chart = undefined

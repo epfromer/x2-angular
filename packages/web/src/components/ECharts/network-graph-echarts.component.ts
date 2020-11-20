@@ -26,8 +26,9 @@ export class NetworkGraphEChartsComponent {
   @Input() nodes: Array<IDColorKey>
   @Output() handleClick = new EventEmitter()
 
-  // eslint-disable-next-line prettier/prettier
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+    // empty constructor
+  }
 
   darkMode = false
   options: EChartOption = {}
