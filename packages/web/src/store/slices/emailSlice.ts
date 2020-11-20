@@ -135,7 +135,6 @@ async function makeQueryObj(store: Store): Promise<unknown> {
     order: state.order,
   }
   if (state.sent) query.sent = state.sent
-  if (state.timeSpan) query.timeSpan = state.timeSpan
   if (state.from) query.from = state.from
   if (state.to) query.to = state.to
   if (state.subject) query.subject = state.subject
@@ -157,7 +156,6 @@ export async function getEmailAsync(
       $sort: String
       $order: Int
       $sent: String
-      $timeSpan: Int
       $from: String
       $to: String
       $subject: String
@@ -170,7 +168,6 @@ export async function getEmailAsync(
         sort: $sort
         order: $order
         sent: $sent
-        timeSpan: $timeSpan
         from: $from
         to: $to
         subject: $subject

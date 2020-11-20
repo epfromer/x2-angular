@@ -12,7 +12,6 @@ export interface QueryState {
   sort: string
   order: number
   sent: string
-  timeSpan: number
   from: string
   to: string
   subject: string
@@ -24,7 +23,6 @@ const initialState: QueryState = {
   sort: 'sent',
   order: 1,
   sent: '',
-  timeSpan: 0,
   from: '',
   to: '',
   subject: '',
@@ -37,9 +35,6 @@ const initialState: QueryState = {
 export const setSort = createAction('setSort', (sort: string) => ({ sort }))
 export const setOrder = createAction('setOrder', (order: number) => ({ order }))
 export const setSent = createAction('setSent', (sent: string) => ({ sent }))
-export const setTimeSpan = createAction('setTimeSpan', (timeSpan: number) => ({
-  timeSpan,
-}))
 export const setFrom = createAction('setFrom', (from: string) => ({ from }))
 export const setTo = createAction('setTo', (to: string) => ({ to }))
 export const setSubject = createAction('setSubject', (subject: string) => ({
@@ -75,11 +70,6 @@ export function queryReducer(
     on(setSent, (state, val) => {
       const s = cloneDeep(state)
       s.sent = val.sent
-      return s
-    }),
-    on(setTimeSpan, (state, val) => {
-      const s = cloneDeep(state)
-      s.timeSpan = val.timeSpan
       return s
     }),
     on(setFrom, (state, val) => {
@@ -122,7 +112,6 @@ export function queryReducer(
       s.sort = 'sent'
       s.sent = ''
       s.subject = ''
-      s.timeSpan = 0
       s.to = ''
       return s
     })
@@ -163,10 +152,6 @@ export const getSubject = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.subject
 )
-export const getTimeSpan = createSelector(
-  createFeatureSelector<QueryState>('query'),
-  (state) => state.timeSpan
-)
 export const getTo = createSelector(
   createFeatureSelector<QueryState>('query'),
   (state) => state.to
@@ -182,7 +167,6 @@ export const getQuery = createSelector(
     sent: state.sent,
     sort: state.sort,
     subject: state.subject,
-    timeSpan: state.timeSpan,
     to: state.to,
   })
 )
