@@ -22,9 +22,23 @@ import { ColorPickerDlgComponent } from './color-picker-dlg.component'
         <td mat-cell *matCellDef="let custodian">{{ custodian.title }}</td>
       </ng-container>
 
+      <ng-container matColumnDef="sent">
+        <th mat-header-cell *matHeaderCellDef class="align-right">Sent</th>
+        <td mat-cell *matCellDef="let custodian" class="align-right">
+          {{ custodian.senderTotal }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="received">
+        <th mat-header-cell *matHeaderCellDef class="align-right">Received</th>
+        <td mat-cell *matCellDef="let custodian" class="align-right">
+          {{ custodian.receiverTotal }}
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="color">
-        <th mat-header-cell *matHeaderCellDef>Color</th>
-        <td mat-cell *matCellDef="let custodian">
+        <th mat-header-cell *matHeaderCellDef class="align-center">Color</th>
+        <td mat-cell *matCellDef="let custodian" class="align-center">
           <button
             mat-raised-button
             [ngStyle]="{ 'background-color': custodian.color }"
@@ -41,15 +55,16 @@ import { ColorPickerDlgComponent } from './color-picker-dlg.component'
   `,
   styles: [
     `
-      table {
-        width: 100%;
-      }
       th.mat-header-cell {
         font-size: 15px;
         min-width: 150px;
       }
-      .mat-cell {
-        padding-right: 10px;
+      .align-right {
+        padding-right: 20px;
+        text-align: right;
+      }
+      .align-center {
+        text-align: center;
       }
     `,
   ],
@@ -59,7 +74,7 @@ export class CustodianSettingsComponent {
     // empty constructor
   }
 
-  displayedColumns: string[] = ['name', 'title', 'color']
+  displayedColumns: string[] = ['name', 'title', 'sent', 'received', 'color']
   custodians: Custodian[] = []
   defaultColor = ''
 
