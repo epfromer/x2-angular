@@ -35,7 +35,11 @@ import {
       >
       </volume-timeline-chartjs>
       <div class="mat-headline">ECharts</div>
-      <volume-timeline-echarts title="Email Volume per Day" [data]="data">
+      <volume-timeline-echarts
+        title="Email Volume per Day"
+        [data]="data"
+        (handleClick)="handleClick($event)"
+      >
       </volume-timeline-echarts>
     </div>
   `,

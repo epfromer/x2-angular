@@ -74,7 +74,7 @@ export class PieChartJSComponent {
         if (item && item.length) {
           this.handleClick.emit({
             search: this.search,
-            value: this.data[item[0]._index],
+            value: this.data[item[0]._index].name,
           })
         }
       },

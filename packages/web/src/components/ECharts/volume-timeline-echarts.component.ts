@@ -92,7 +92,7 @@ export class VolumeTimelineEChartsComponent {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   onClick(data): void {
-    this.handleClick.emit(data.name)
+    this.handleClick.emit(this.data[data.dataIndex].sent)
   }
 
   ngOnChanges(): void {
