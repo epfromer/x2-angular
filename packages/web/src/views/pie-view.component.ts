@@ -11,66 +11,72 @@ import {
   getCustodians,
   setFrom,
   setTo,
+  getCustodiansLoading,
 } from '../store'
 
 @Component({
   template: `
-    <div class="mat-headline">Highcharts</div>
-    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
-      <pie-highcharts
-        id="highcharts-pie-Senders"
-        title="Senders"
-        search="from"
-        [data]="emailSenders"
-        (handleClick)="handleClick($event)"
-      ></pie-highcharts>
-      <pie-highcharts
-        id="highcharts-pie-Receivers"
-        title="Receivers"
-        search="to"
-        [data]="emailReceivers"
-        (handleClick)="handleClick($event)"
-      ></pie-highcharts>
+    <div *ngIf="custodiansLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
-    <div class="mat-headline">ChartJS</div>
-    <div
-      fxLayout="row wrap"
-      fxLayoutAlign="space-around center"
-      fxLayout.xs="column"
-      fxLayout.sm="column"
-    >
-      <pie-chartjs
-        title="Senders"
-        search="from"
-        [data]="emailSenders"
-        (handleClick)="handleClick($event)"
-      ></pie-chartjs>
-      <pie-chartjs
-        title="Receivers"
-        search="to"
-        [data]="emailReceivers"
-        (handleClick)="handleClick($event)"
-      ></pie-chartjs>
-    </div>
-    <div class="mat-headline">ECharts</div>
-    <div
-      fxLayout="row wrap"
-      fxLayoutAlign="space-around center"
-      fxLayout.xs="column"
-      fxLayout.sm="column"
-    >
-      <pie-echarts
-        title="Senders"
-        search="from"
-        [data]="emailSenders"
-        (handleClick)="handleClick($event)"
-      ></pie-echarts>
-      <pie-echarts
-        title="Receivers"
-        search="to"
-        [data]="emailReceivers"
-        (handleClick)="handleClick($event)"
-      ></pie-echarts>
+    <div *ngIf="!custodiansLoading">
+      <div class="mat-headline">Highcharts</div>
+      <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <pie-highcharts
+          id="highcharts-pie-Senders"
+          title="Senders"
+          search="from"
+          [data]="emailSenders"
+          (handleClick)="handleClick($event)"
+        ></pie-highcharts>
+        <pie-highcharts
+          id="highcharts-pie-Receivers"
+          title="Receivers"
+          search="to"
+          [data]="emailReceivers"
+          (handleClick)="handleClick($event)"
+        ></pie-highcharts>
+      </div>
+      <div class="mat-headline">ChartJS</div>
+      <div
+        fxLayout="row wrap"
+        fxLayoutAlign="space-around center"
+        fxLayout.xs="column"
+        fxLayout.sm="column"
+      >
+        <pie-chartjs
+          title="Senders"
+          search="from"
+          [data]="emailSenders"
+          (handleClick)="handleClick($event)"
+        ></pie-chartjs>
+        <pie-chartjs
+          title="Receivers"
+          search="to"
+          [data]="emailReceivers"
+          (handleClick)="handleClick($event)"
+        ></pie-chartjs>
+      </div>
+      <div class="mat-headline">ECharts</div>
+      <div
+        fxLayout="row wrap"
+        fxLayoutAlign="space-around center"
+        fxLayout.xs="column"
+        fxLayout.sm="column"
+      >
+        <pie-echarts
+          title="Senders"
+          search="from"
+          [data]="emailSenders"
+          (handleClick)="handleClick($event)"
+        ></pie-echarts>
+        <pie-echarts
+          title="Receivers"
+          search="to"
+          [data]="emailReceivers"
+          (handleClick)="handleClick($event)"
+        ></pie-echarts>
+      </div>
     </div>
   `,
   styles: [``],
@@ -80,6 +86,7 @@ export class PieViewComponent {
     // empty constructor
   }
 
+  custodiansLoading = false
   emailSenders: EmailXferedDatum[]
   emailReceivers: EmailXferedDatum[]
 
@@ -99,5 +106,11 @@ export class PieViewComponent {
         this.emailSenders = getEmailSenders(custodians)
         this.emailReceivers = getEmailReceivers(custodians)
       })
+    this.store
+      .pipe(select(getCustodiansLoading))
+      .subscribe(
+        (custodiansLoading: boolean) =>
+          (this.custodiansLoading = custodiansLoading)
+      )
   }
 }

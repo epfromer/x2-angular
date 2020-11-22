@@ -5,21 +5,27 @@ import {
   clearSearch,
   getEmailAsync,
   getWordCloud,
+  getWordCloudLoading,
   setAllText,
   WordCloudTag,
 } from 'src/store'
 
 @Component({
   template: `
-    <div class="mat-headline">Highcharts</div>
-    <div fxLayout="row" fxLayoutAlign="center">
-      <word-cloud-highcharts
-        id="highcharts-word-cloud"
-        title="Enron Project Names"
-        [data]="wordCloud"
-        (handleClick)="handleClick($event)"
-      >
-      </word-cloud-highcharts>
+    <div *ngIf="wordCloudLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div *ngIf="!wordCloudLoading">
+      <div class="mat-headline">Highcharts</div>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <word-cloud-highcharts
+          id="highcharts-word-cloud"
+          title="Enron Project Names"
+          [data]="wordCloud"
+          (handleClick)="handleClick($event)"
+        >
+        </word-cloud-highcharts>
+      </div>
     </div>
   `,
   styles: [``],
@@ -29,6 +35,7 @@ export class WordCloudViewComponent {
     // empty constructor
   }
 
+  wordCloudLoading = false
   wordCloud: WordCloudTag[]
 
   handleClick(word: string): void {
@@ -44,5 +51,11 @@ export class WordCloudViewComponent {
       .subscribe((wordCloud: WordCloudTag[]) => {
         this.wordCloud = wordCloud
       })
+    this.store
+      .pipe(select(getWordCloudLoading))
+      .subscribe(
+        (wordCloudLoading: boolean) =>
+          (this.wordCloudLoading = wordCloudLoading)
+      )
   }
 }

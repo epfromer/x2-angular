@@ -11,66 +11,72 @@ import {
   getCustodians,
   setFrom,
   setTo,
+  getCustodiansLoading,
 } from '../store'
 
 @Component({
   template: `
-    <div class="mat-headline">Highcharts</div>
-    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
-      <polar-highcharts
-        id="highcharts-polar-Senders"
-        title="Senders"
-        search="from"
-        [data]="emailSenders"
-        (handleClick)="handleClick($event)"
-      ></polar-highcharts>
-      <polar-highcharts
-        id="highcharts-polar-Receivers"
-        title="Receivers"
-        search="to"
-        [data]="emailReceivers"
-        (handleClick)="handleClick($event)"
-      ></polar-highcharts>
+    <div *ngIf="custodiansLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
-    <div class="mat-headline">ChartJS</div>
-    <div
-      fxLayout="row wrap"
-      fxLayoutAlign="space-around center"
-      fxLayout.xs="column"
-      fxLayout.sm="column"
-    >
-      <polar-chartjs
-        title="Senders"
-        search="from"
-        [data]="emailSenders"
-        (handleClick)="handleClick($event)"
-      ></polar-chartjs>
-      <polar-chartjs
-        title="Receivers"
-        search="to"
-        [data]="emailReceivers"
-        (handleClick)="handleClick($event)"
-      ></polar-chartjs>
-    </div>
-    <div class="mat-headline">ECharts</div>
-    <div
-      fxLayout="row wrap"
-      fxLayoutAlign="space-around center"
-      fxLayout.xs="column"
-      fxLayout.sm="column"
-    >
-      <polar-echarts
-        title="Senders"
-        search="from"
-        [data]="emailSenders"
-        (handleClick)="handleClick($event)"
-      ></polar-echarts>
-      <polar-echarts
-        title="Receivers"
-        search="to"
-        [data]="emailReceivers"
-        (handleClick)="handleClick($event)"
-      ></polar-echarts>
+    <div *ngIf="!custodiansLoading">
+      <div class="mat-headline">Highcharts</div>
+      <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <polar-highcharts
+          id="highcharts-polar-Senders"
+          title="Senders"
+          search="from"
+          [data]="emailSenders"
+          (handleClick)="handleClick($event)"
+        ></polar-highcharts>
+        <polar-highcharts
+          id="highcharts-polar-Receivers"
+          title="Receivers"
+          search="to"
+          [data]="emailReceivers"
+          (handleClick)="handleClick($event)"
+        ></polar-highcharts>
+      </div>
+      <div class="mat-headline">ChartJS</div>
+      <div
+        fxLayout="row wrap"
+        fxLayoutAlign="space-around center"
+        fxLayout.xs="column"
+        fxLayout.sm="column"
+      >
+        <polar-chartjs
+          title="Senders"
+          search="from"
+          [data]="emailSenders"
+          (handleClick)="handleClick($event)"
+        ></polar-chartjs>
+        <polar-chartjs
+          title="Receivers"
+          search="to"
+          [data]="emailReceivers"
+          (handleClick)="handleClick($event)"
+        ></polar-chartjs>
+      </div>
+      <div class="mat-headline">ECharts</div>
+      <div
+        fxLayout="row wrap"
+        fxLayoutAlign="space-around center"
+        fxLayout.xs="column"
+        fxLayout.sm="column"
+      >
+        <polar-echarts
+          title="Senders"
+          search="from"
+          [data]="emailSenders"
+          (handleClick)="handleClick($event)"
+        ></polar-echarts>
+        <polar-echarts
+          title="Receivers"
+          search="to"
+          [data]="emailReceivers"
+          (handleClick)="handleClick($event)"
+        ></polar-echarts>
+      </div>
     </div>
   `,
   styles: [``],
@@ -80,6 +86,7 @@ export class PolarViewComponent {
     // empty constructor
   }
 
+  custodiansLoading = false
   emailSenders: EmailXferedDatum[]
   emailReceivers: EmailXferedDatum[]
 
@@ -99,5 +106,11 @@ export class PolarViewComponent {
         this.emailSenders = getEmailSenders(custodians)
         this.emailReceivers = getEmailReceivers(custodians)
       })
+    this.store
+      .pipe(select(getCustodiansLoading))
+      .subscribe(
+        (custodiansLoading: boolean) =>
+          (this.custodiansLoading = custodiansLoading)
+      )
   }
 }

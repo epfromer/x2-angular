@@ -6,32 +6,38 @@ import {
   EmailSentByDay,
   getEmailAsync,
   getEmailSentByDay,
+  getEmailSentByDayLoading,
   setSent,
 } from 'src/store'
 
 @Component({
   template: `
-    <div class="mat-headline">Highcharts</div>
-    <div fxLayout="row" fxLayoutAlign="center">
-      <volume-timeline-highcharts
-        class="highcharts"
-        id="volume-timeline-highcharts"
+    <div *ngIf="emailSentByDayLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div *ngIf="!emailSentByDayLoading">
+      <div class="mat-headline">Highcharts</div>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <volume-timeline-highcharts
+          class="highcharts"
+          id="volume-timeline-highcharts"
+          title="Email Volume per Day"
+          [data]="data"
+          (handleClick)="handleClick($event)"
+        >
+        </volume-timeline-highcharts>
+      </div>
+      <div class="mat-headline">ChartJS</div>
+      <volume-timeline-chartjs
         title="Email Volume per Day"
         [data]="data"
         (handleClick)="handleClick($event)"
       >
-      </volume-timeline-highcharts>
+      </volume-timeline-chartjs>
+      <div class="mat-headline">ECharts</div>
+      <volume-timeline-echarts title="Email Volume per Day" [data]="data">
+      </volume-timeline-echarts>
     </div>
-    <div class="mat-headline">ChartJS</div>
-    <volume-timeline-chartjs
-      title="Email Volume per Day"
-      [data]="data"
-      (handleClick)="handleClick($event)"
-    >
-    </volume-timeline-chartjs>
-    <div class="mat-headline">ECharts</div>
-    <volume-timeline-echarts title="Email Volume per Day" [data]="data">
-    </volume-timeline-echarts>
   `,
   styles: [
     `
@@ -46,6 +52,7 @@ export class VolumeTimelineViewComponent {
     // empty constructor
   }
 
+  emailSentByDayLoading = false
   data = []
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -62,5 +69,11 @@ export class VolumeTimelineViewComponent {
       .subscribe((emailSentByDay: Array<EmailSentByDay>) => {
         this.data = emailSentByDay
       })
+    this.store
+      .pipe(select(getEmailSentByDayLoading))
+      .subscribe(
+        (emailSentByDayLoading: boolean) =>
+          (this.emailSentByDayLoading = emailSentByDayLoading)
+      )
   }
 }

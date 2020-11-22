@@ -11,46 +11,52 @@ import {
   getCustodians,
   setFrom,
   setTo,
+  getCustodiansLoading,
 } from '../store'
 
 @Component({
   template: `
-    <div class="mat-headline">Highcharts</div>
-    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
-      <tree-map-highcharts
-        id="container-Senders"
-        title="Senders"
-        search="from"
-        [data]="emailSenders"
-        (handleClick)="handleClick($event)"
-      ></tree-map-highcharts>
-      <tree-map-highcharts
-        id="container-Receivers"
-        title="Receivers"
-        search="to"
-        [data]="emailReceivers"
-        (handleClick)="handleClick($event)"
-      ></tree-map-highcharts>
+    <div *ngIf="custodiansLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
-    <div class="mat-headline">ECharts</div>
-    <div
-      fxLayout="row wrap"
-      fxLayoutAlign="space-around center"
-      fxLayout.xs="column"
-      fxLayout.sm="column"
-    >
-      <tree-map-echarts
-        title="Senders"
-        search="from"
-        [data]="emailSenders"
-        (handleClick)="handleClick($event)"
-      ></tree-map-echarts>
-      <tree-map-echarts
-        title="Receivers"
-        search="to"
-        [data]="emailReceivers"
-        (handleClick)="handleClick($event)"
-      ></tree-map-echarts>
+    <div *ngIf="!custodiansLoading">
+      <div class="mat-headline">Highcharts</div>
+      <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <tree-map-highcharts
+          id="container-Senders"
+          title="Senders"
+          search="from"
+          [data]="emailSenders"
+          (handleClick)="handleClick($event)"
+        ></tree-map-highcharts>
+        <tree-map-highcharts
+          id="container-Receivers"
+          title="Receivers"
+          search="to"
+          [data]="emailReceivers"
+          (handleClick)="handleClick($event)"
+        ></tree-map-highcharts>
+      </div>
+      <div class="mat-headline">ECharts</div>
+      <div
+        fxLayout="row wrap"
+        fxLayoutAlign="space-around center"
+        fxLayout.xs="column"
+        fxLayout.sm="column"
+      >
+        <tree-map-echarts
+          title="Senders"
+          search="from"
+          [data]="emailSenders"
+          (handleClick)="handleClick($event)"
+        ></tree-map-echarts>
+        <tree-map-echarts
+          title="Receivers"
+          search="to"
+          [data]="emailReceivers"
+          (handleClick)="handleClick($event)"
+        ></tree-map-echarts>
+      </div>
     </div>
   `,
   styles: [``],
@@ -60,6 +66,7 @@ export class TreeMapViewComponent {
     // empty constructor
   }
 
+  custodiansLoading = false
   emailSenders: EmailXferedDatum[]
   emailReceivers: EmailXferedDatum[]
 
@@ -77,11 +84,13 @@ export class TreeMapViewComponent {
       .pipe(select(getCustodians))
       .subscribe((custodians: Custodian[]) => {
         this.emailSenders = getEmailSenders(custodians)
-      })
-    this.store
-      .pipe(select(getCustodians))
-      .subscribe((custodians: Custodian[]) => {
         this.emailReceivers = getEmailReceivers(custodians)
       })
+    this.store
+      .pipe(select(getCustodiansLoading))
+      .subscribe(
+        (custodiansLoading: boolean) =>
+          (this.custodiansLoading = custodiansLoading)
+      )
   }
 }

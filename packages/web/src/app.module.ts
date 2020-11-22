@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
 import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatSliderModule } from '@angular/material/slider'
 import { MatSortModule } from '@angular/material/sort'
 import { MatTableModule } from '@angular/material/table'
@@ -71,6 +72,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     MatInputModule,
     MatNativeDateModule,
     MatPaginatorModule,
+    MatProgressBarModule,
     MatSliderModule,
     MatSortModule,
     MatTableModule,

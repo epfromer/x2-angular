@@ -9,31 +9,37 @@ import {
   getCustodians,
   setFrom,
   setTo,
+  getCustodiansLoading,
 } from '../store'
 
 @Component({
   template: `
-    <div class="mat-headline">Highcharts</div>
-    <div fxLayout="row" fxLayoutAlign="center">
-      <network-graph-highcharts
-        class="highcharts"
-        id="network-graph-highcharts"
-        title="Custodian Interaction"
-        [data]="data"
-        [nodes]="nodes"
-        (handleClick)="handleClick($event)"
-      >
-      </network-graph-highcharts>
+    <div *ngIf="custodiansLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
-    <div class="mat-headline">ECharts</div>
-    <div fxLayout="row" fxLayoutAlign="center">
-      <network-graph-echarts
-        title="Custodian Interaction"
-        [data]="data"
-        [nodes]="nodes"
-        (handleClick)="handleClick($event)"
-      >
-      </network-graph-echarts>
+    <div *ngIf="!custodiansLoading">
+      <div class="mat-headline">Highcharts</div>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <network-graph-highcharts
+          class="highcharts"
+          id="network-graph-highcharts"
+          title="Custodian Interaction"
+          [data]="data"
+          [nodes]="nodes"
+          (handleClick)="handleClick($event)"
+        >
+        </network-graph-highcharts>
+      </div>
+      <div class="mat-headline">ECharts</div>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <network-graph-echarts
+          title="Custodian Interaction"
+          [data]="data"
+          [nodes]="nodes"
+          (handleClick)="handleClick($event)"
+        >
+        </network-graph-echarts>
+      </div>
     </div>
   `,
   styles: [
@@ -49,6 +55,7 @@ export class NetworkGraphViewComponent {
     // empty constructor
   }
 
+  custodiansLoading = false
   data = []
   nodes = []
 
@@ -73,5 +80,11 @@ export class NetworkGraphViewComponent {
         this.data = emailSent.data
         this.nodes = emailSent.nodes
       })
+    this.store
+      .pipe(select(getCustodiansLoading))
+      .subscribe(
+        (custodiansLoading: boolean) =>
+          (this.custodiansLoading = custodiansLoading)
+      )
   }
 }

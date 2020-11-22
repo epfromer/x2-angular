@@ -9,32 +9,36 @@ import {
   getCustodians,
   setFrom,
   setTo,
+  getCustodiansLoading,
 } from '../store'
-
-// TODO custodiansloading, linearprogress, ngIf
 
 @Component({
   template: `
-    <div class="mat-headline">Highcharts</div>
-    <div fxLayout="row" fxLayoutAlign="center">
-      <chord-highcharts
-        id="chord-highcharts"
-        title="Custodian Interaction"
-        [data]="data"
-        [nodes]="nodes"
-        (handleClick)="handleClick($event)"
-      >
-      </chord-highcharts>
+    <div *ngIf="custodiansLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
-    <div class="mat-headline">ECharts</div>
-    <div fxLayout="row" fxLayoutAlign="center">
-      <chord-echarts
-        title="Custodian Interaction"
-        [data]="data"
-        [nodes]="nodes"
-        (handleClick)="handleClick($event)"
-      >
-      </chord-echarts>
+    <div *ngIf="!custodiansLoading">
+      <div class="mat-headline">Highcharts</div>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <chord-highcharts
+          id="chord-highcharts"
+          title="Custodian Interaction"
+          [data]="data"
+          [nodes]="nodes"
+          (handleClick)="handleClick($event)"
+        >
+        </chord-highcharts>
+      </div>
+      <div class="mat-headline">ECharts</div>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <chord-echarts
+          title="Custodian Interaction"
+          [data]="data"
+          [nodes]="nodes"
+          (handleClick)="handleClick($event)"
+        >
+        </chord-echarts>
+      </div>
     </div>
   `,
   styles: [],
@@ -44,6 +48,7 @@ export class ChordViewComponent {
     // empty constructor
   }
 
+  custodiansLoading = false
   data = []
   nodes = []
 
@@ -64,5 +69,11 @@ export class ChordViewComponent {
         this.data = emailSent.data
         this.nodes = emailSent.nodes
       })
+    this.store
+      .pipe(select(getCustodiansLoading))
+      .subscribe(
+        (custodiansLoading: boolean) =>
+          (this.custodiansLoading = custodiansLoading)
+      )
   }
 }
