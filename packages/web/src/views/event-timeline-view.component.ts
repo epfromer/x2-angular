@@ -1,9 +1,19 @@
 import { Component, Input } from '@angular/core'
+import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
 import * as Highcharts from 'highcharts'
 import HighchartTimeline from 'highcharts/modules/timeline'
-import { Custodian, getCustodians, getDarkMode } from '../store'
+import {
+  clearSearch,
+  Custodian,
+  getCustodians,
+  getDarkMode,
+  getEmailAsync,
+  setAllText,
+  setFrom,
+  setTo,
+} from '../store'
 
 HighchartTimeline(Highcharts)
 
@@ -14,7 +24,7 @@ HighchartTimeline(Highcharts)
 export class EventTimelineViewComponent {
   @Input() title: string
 
-  constructor(private store: Store) {
+  constructor(private router: Router, private store: Store) {
     // empty constructor
   }
 
@@ -46,10 +56,14 @@ export class EventTimelineViewComponent {
       plotOptions: {
         series: {
           cursor: 'pointer',
-          // events: {
-          //   click: (e: any) =>
-          //     handleClick(e.point.options.queryKey, e.point.options.queryValue),
-          // },
+          events: {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            click: (e: any) =>
+              this.handleClick(
+                e.point.options.queryKey,
+                e.point.options.queryValue
+              ),
+          },
         },
       },
       xAxis: {
@@ -93,8 +107,8 @@ export class EventTimelineViewComponent {
               x: new Date('2001-08-22').getTime(),
               label: 'Watkins meeting',
               description: 'Watkins meets with Lay',
-              queryKey: 'from',
-              queryValue: '(Watkins, Sherron)',
+              queryKey: 'allText',
+              queryValue: 'Watkins',
               color: this.getCustodianColor('Watkins, Sherron'),
             },
             {
@@ -163,7 +177,7 @@ export class EventTimelineViewComponent {
               description:
                 'Fastow indicted on charges of conspiracy, fraud, money laundering and other counts.',
               queryKey: 'from',
-              queryValue: '(Fastow, Andrew)',
+              queryValue: 'Fastow',
               color: this.getCustodianColor('Fastow, Andrew'),
             },
             {
@@ -172,7 +186,7 @@ export class EventTimelineViewComponent {
               description:
                 'Fastow pleads guilty to two counts of conspiracy and agrees to serve 10 years in prison.',
               queryKey: 'from',
-              queryValue: '(Fastow, Andrew)',
+              queryValue: 'Fastow',
               color: this.getCustodianColor('Fastow, Andrew'),
             },
             {
@@ -180,7 +194,7 @@ export class EventTimelineViewComponent {
               label: 'Causey indicted',
               description: 'Causey indicted for wire fraud and conspiracy',
               queryKey: 'from',
-              queryValue: '(Causey, Richard)',
+              queryValue: 'Causey',
               color: this.getCustodianColor('Causey, Richard'),
             },
             {
@@ -189,7 +203,7 @@ export class EventTimelineViewComponent {
               description:
                 'Skilling added to Causey indictment, pleads innocent to more than 30 counts.',
               queryKey: 'from',
-              queryValue: '(Skilling, Jeff)',
+              queryValue: 'Skilling',
               color: this.getCustodianColor('Skilling, Jeff'),
             },
             {
@@ -198,7 +212,7 @@ export class EventTimelineViewComponent {
               description:
                 'Lay surrenders after being indicted. He pleads innocent.',
               queryKey: 'from',
-              queryValue: '(Lay, Kenneth)',
+              queryValue: 'Lay',
               color: this.getCustodianColor('Lay, Kenneth'),
             },
             {
@@ -207,7 +221,7 @@ export class EventTimelineViewComponent {
               description:
                 'Causey pleads guilty, agrees to testify against Lay and Skilling',
               queryKey: 'from',
-              queryValue: '(Causey, Richard)',
+              queryValue: 'Causey',
               color: this.getCustodianColor('Causey, Richard'),
             },
             {
@@ -216,7 +230,7 @@ export class EventTimelineViewComponent {
               description:
                 'Lay dies of heart attack while vacationing in Aspen',
               queryKey: 'from',
-              queryValue: '(Lay, Kenneth)',
+              queryValue: 'Lay',
               color: this.getCustodianColor('Lay, Kenneth'),
             },
             {
@@ -224,7 +238,7 @@ export class EventTimelineViewComponent {
               label: 'Skilling sentenced',
               description: 'Skilling sentenced to 24 years in prison',
               queryKey: 'from',
-              queryValue: '(Skilling, Jeff)',
+              queryValue: 'Skilling',
               color: this.getCustodianColor('Skilling, Jeff'),
             },
           ],
@@ -237,6 +251,20 @@ export class EventTimelineViewComponent {
 
   ngOnChanges(): void {
     this.createChart()
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  handleClick(key: string, value: string): void {
+    this.store.dispatch(clearSearch())
+    if (key === 'to') {
+      this.store.dispatch(setTo(value))
+    } else if (key === 'from') {
+      this.store.dispatch(setFrom(value))
+    } else if (key === 'allText') {
+      this.store.dispatch(setAllText(value))
+    }
+    getEmailAsync(this.store)
+    this.router.navigateByUrl('/SearchView')
   }
 
   ngOnInit(): void {
