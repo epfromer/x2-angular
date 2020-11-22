@@ -35,43 +35,43 @@ export class HomeViewComponent {
     {
       image: 'assets/pie.png',
       title: 'Pie',
-      description: 'Pie chart of email volume of Enron custodians.',
+      description: 'Email volume of Enron custodians.',
       link: 'PieView',
     },
     {
       image: 'assets/barchart.png',
       title: 'Bar',
-      description: 'Bar chart of email volume of Enron custodians.',
+      description: 'Email volume of Enron custodians.',
       link: 'BarView',
     },
     {
       image: 'assets/chord.png',
       title: 'Chord',
-      description: 'Chord diagram of Enron custodian communication.',
+      description: 'Enron custodian communication.',
       link: 'ChordView',
     },
     {
       image: 'assets/wordcloud.png',
       title: 'Word Cloud',
-      description: 'Word cloud of mentions of fraudulent project names.',
+      description: 'Mentions of fraudulent project names.',
       link: 'WordCloudView',
     },
     {
       image: 'assets/volumetimeline.png',
       title: 'Volume Timeline',
-      description: 'XY timeline of Enron email per day with drill down.',
+      description: 'Enron email per day with drill down.',
       link: 'VolumeTimelineView',
     },
     {
       image: 'assets/networkgraph.png',
       title: 'Network Graph',
-      description: 'Network graph of Enron custodian communication.',
+      description: 'Enron custodian communication.',
       link: 'NetworkGraphView',
     },
     {
       image: 'assets/treemap.png',
       title: 'Tree Map',
-      description: 'Tree map of email volume of Enron custodians.',
+      description: 'Email volume of Enron custodians.',
       link: 'TreeMapView',
     },
     {
@@ -83,14 +83,13 @@ export class HomeViewComponent {
     {
       image: 'assets/polar.png',
       title: 'Polar',
-      description: 'Polar chart of email volume of Enron custodians.',
+      description: 'Email volume of Enron custodians.',
       link: 'PolarView',
     },
     {
       image: 'assets/search.png',
       title: 'Search',
-      description:
-        'Full text search with field filtering and hit highlighting.',
+      description: 'Full text search with hit highlighting.',
       link: 'SearchView',
     },
   ]
