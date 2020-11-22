@@ -12,7 +12,7 @@ import request, { gql } from 'graphql-request'
 import cloneDeep from 'lodash.clonedeep'
 import { take } from 'rxjs/internal/operators/take'
 import { environment } from 'src/environments/environment'
-import { defaultLimit } from '../constants'
+import { defaultLimit } from '../../constants'
 import { Email } from '../types'
 import { getQuery } from './querySlice'
 

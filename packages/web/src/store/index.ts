@@ -9,6 +9,14 @@ import { emailReducer, EmailState } from './slices/emailSlice'
 import { queryReducer, QueryState } from './slices/querySlice'
 import { wordCloudReducer, WordCloudState } from './slices/wordCloudSlice'
 
+export * from './slices/appSettingsSlice'
+export * from './slices/custodiansSlice'
+export * from './slices/emailSentByDaySlice'
+export * from './slices/emailSlice'
+export * from './slices/querySlice'
+export * from './slices/wordCloudSlice'
+export * from './types'
+
 export interface AppState {
   appSettings: AppSettingsState
   custodians: CustodiansState
@@ -25,12 +33,3 @@ export const reducers: ActionReducerMap<AppState> = {
   query: queryReducer,
   wordCloud: wordCloudReducer,
 }
-
-export * from './constants'
-export * from './slices/appSettingsSlice'
-export * from './slices/custodiansSlice'
-export * from './slices/emailSentByDaySlice'
-export * from './slices/emailSlice'
-export * from './slices/querySlice'
-export * from './slices/wordCloudSlice'
-export * from './types'

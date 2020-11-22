@@ -10,7 +10,7 @@ import {
 import request, { gql } from 'graphql-request'
 import cloneDeep from 'lodash.clonedeep'
 import { environment } from 'src/environments/environment'
-import { defaultThemeName } from '../constants'
+import { defaultThemeName } from '../../constants'
 import { setCustodians, setCustodiansLoading } from './custodiansSlice'
 import {
   setEmailSentByDay,
