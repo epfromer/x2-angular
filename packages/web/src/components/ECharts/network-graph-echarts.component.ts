@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
-import { EmailSent, IDColorKey, getDarkMode } from '../../store'
+import { EmailSent, IDColorKey, getDarkMode } from 'src/store'
 
 // https://echarts.apache.org/examples/en/index.html#chart-type-graph
 

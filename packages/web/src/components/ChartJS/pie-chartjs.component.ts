@@ -8,7 +8,7 @@ import {
   monkeyPatchChartJsTooltip,
   SingleDataSet,
 } from 'ng2-charts'
-import { EmailXferedDatum, getDarkMode } from '../../store'
+import { EmailXferedDatum, getDarkMode } from 'src/store'
 
 // https://www.npmjs.com/package/ng2-charts
 // https://www.chartjs.org/docs/latest/configuration/

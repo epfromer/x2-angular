@@ -5,7 +5,7 @@ import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
 import HighchartNetworkGraph from 'highcharts/modules/networkgraph'
 import noData from 'highcharts/modules/no-data-to-display'
-import { EmailSent, getDarkMode, IDColorKey } from '../../store'
+import { EmailSent, getDarkMode, IDColorKey } from 'src/store'
 
 // https://www.highcharts.com/docs/chart-and-series-types/dependency-wheel
 

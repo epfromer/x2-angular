@@ -5,7 +5,7 @@ import * as Highcharts from 'highcharts'
 import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
 import noData from 'highcharts/modules/no-data-to-display'
-import { EmailSentByDay, getDarkMode } from '../../store'
+import { EmailSentByDay, getDarkMode } from 'src/store'
 
 // https://www.highcharts.com/demo/line-time-series
 

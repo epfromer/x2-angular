@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
 import * as Highcharts from 'highcharts'
 import treemap from 'highcharts/modules/treemap'
-import { EmailXferedDatum, getDarkMode } from '../../store'
+import { EmailXferedDatum, getDarkMode } from 'src/store'
 
 treemap(Highcharts)
 

@@ -5,7 +5,7 @@ import * as Highcharts from 'highcharts'
 import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
 import noData from 'highcharts/modules/no-data-to-display'
-import { EmailXferedDatum, getDarkMode } from '../../store'
+import { EmailXferedDatum, getDarkMode } from 'src/store'
 
 // https://www.highcharts.com/demo/pie-basic
 

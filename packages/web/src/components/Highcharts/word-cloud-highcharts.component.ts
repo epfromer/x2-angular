@@ -5,15 +5,13 @@ import More from 'highcharts/highcharts-more'
 import Boost from 'highcharts/modules/boost'
 import noData from 'highcharts/modules/no-data-to-display'
 import HighchartWordCloud from 'highcharts/modules/wordcloud'
-import { getDarkMode, WordCloudTag } from '../../store'
+import { getDarkMode, WordCloudTag } from 'src/store'
 
 Boost(Highcharts)
 noData(Highcharts)
 More(Highcharts)
 noData(Highcharts)
 HighchartWordCloud(Highcharts)
-
-const chartHeight = '500px'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -47,7 +45,6 @@ export class WordCloudHighchartsComponent {
 
     const options: unknown = {
       chart: {
-        height: chartHeight,
         backgroundColor: this.darkMode ? '#303030' : '#FAFAFA',
       },
       title: {

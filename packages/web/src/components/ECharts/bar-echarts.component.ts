@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
-import { EmailXferedDatum, getDarkMode } from '../../store'
+import { EmailXferedDatum, getDarkMode } from 'src/store'
 
 // https://www.npmjs.com/package/ngx-echarts
 

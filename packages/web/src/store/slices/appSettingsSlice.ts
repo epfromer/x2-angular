@@ -10,7 +10,7 @@ import {
 import request, { gql } from 'graphql-request'
 import cloneDeep from 'lodash.clonedeep'
 import { environment } from 'src/environments/environment'
-import { defaultThemeName } from '../../constants'
+import { defaultThemeName } from 'src/constants'
 import { setCustodians, setCustodiansLoading } from './custodiansSlice'
 import {
   setEmailSentByDay,
@@ -123,6 +123,9 @@ export async function setThemeNameAsync(
   store.dispatch(setThemeName(themeName))
 }
 
+// eslint-disable-next-line angular/timeout-service
+const sleep = (ms = 0) => new Promise((r) => setTimeout(r, ms))
+
 // graphQl query
 export function getInitialDataAsync(store: Store): void {
   store.dispatch(setWordCloudLoading(true))
@@ -154,7 +157,8 @@ export function getInitialDataAsync(store: Store): void {
     }
   `
   request(`${server}/graphql/`, query)
-    .then((data) => {
+    .then(async (data) => {
+      await sleep(5000)
       store.dispatch(setWordCloud(data.getWordCloud))
       store.dispatch(setEmailSentByDay(data.getEmailSentByDay))
       store.dispatch(setCustodians(data.getCustodians))

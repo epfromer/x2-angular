@@ -6,7 +6,7 @@ import Boost from 'highcharts/modules/boost'
 import HighchartsWheel from 'highcharts/modules/dependency-wheel'
 import noData from 'highcharts/modules/no-data-to-display'
 import HighchartSankey from 'highcharts/modules/sankey'
-import { EmailSent, getDarkMode, IDColorKey } from '../../store'
+import { EmailSent, getDarkMode, IDColorKey } from 'src/store'
 
 // https://www.highcharts.com/docs/chart-and-series-types/dependency-wheel
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
-import { getDarkMode, setDarkMode } from '../../store'
+import { getDarkMode, setDarkMode } from 'src/store'
 
 @Component({
   selector: 'app-toolbar',

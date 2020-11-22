@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { EChartOption } from 'echarts'
-import { getDarkMode, WordCloudTag } from '../../store'
+import { getDarkMode, WordCloudTag } from 'src/store'
 
 // https://www.npmjs.com/package/ngx-echarts
 
