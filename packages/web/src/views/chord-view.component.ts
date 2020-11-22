@@ -11,6 +11,8 @@ import {
   setTo,
 } from '../store'
 
+// TODO custodiansloading, linearprogress, ngIf
+
 @Component({
   template: `
     <div class="mat-headline">Highcharts</div>

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core'
 import { gql, request } from 'graphql-request'
 import { interval } from 'rxjs'
-import { importLoc, LogEntry } from 'src/store'
+import { importLoc } from 'src/constants'
+import { LogEntry } from 'src/store'
 import { environment } from '../environments/environment'
 
 @Component({

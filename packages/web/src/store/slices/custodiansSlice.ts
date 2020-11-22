@@ -118,7 +118,6 @@ export function getEmailSentByCustodian(
   const nodes: Array<IDColorKey> = []
 
   if (custodians) {
-    //  create array of [from, to, number sent]
     custodians.forEach((fromCustodian: Custodian) => {
       fromCustodian.toCustodians.forEach((toCustodian) => {
         data.push({

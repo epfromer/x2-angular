@@ -2,7 +2,6 @@ import { Component, ElementRef, ViewChild } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import {
-  defaultLimit,
   Email,
   getEmail,
   getEmailAsync,
@@ -15,6 +14,7 @@ import {
 } from 'src/store'
 import { Sort } from '@angular/material/sort'
 import { animate, state, style, transition, trigger } from '@angular/animations'
+import { defaultLimit } from 'src/constants'
 
 const EXPANDED_BODY_LENGTH = 1000
 

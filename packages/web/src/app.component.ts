@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core'
 import { select, Store } from '@ngrx/store'
+import { defaultThemeName } from './constants'
 import {
-  defaultThemeName,
   getEmailAsync,
   getInitialDataAsync,
   loadAppSettingsAsync,
