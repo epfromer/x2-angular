@@ -77,7 +77,7 @@ export class HomeViewComponent {
     {
       image: 'assets/eventTimeline.png',
       title: 'Event Timeline',
-      description: 'Event timeline of Enron fraud and litigation.',
+      description: 'Enron fraud and litigation events.',
       link: 'EventTimelineView',
     },
     {
