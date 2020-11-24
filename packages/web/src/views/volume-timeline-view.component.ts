@@ -12,9 +12,7 @@ import {
 
 @Component({
   template: `
-    <div *ngIf="emailSentByDayLoading">
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </div>
+    <loading-indicator *ngIf="emailSentByDayLoading"></loading-indicator>
     <div *ngIf="!emailSentByDayLoading">
       <div class="mat-headline">Highcharts</div>
       <div fxLayout="row" fxLayoutAlign="center">

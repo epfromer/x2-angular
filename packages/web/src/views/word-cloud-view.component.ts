@@ -12,9 +12,7 @@ import {
 
 @Component({
   template: `
-    <div *ngIf="wordCloudLoading">
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </div>
+    <loading-indicator *ngIf="wordCloudLoading"></loading-indicator>
     <div *ngIf="!wordCloudLoading">
       <div class="mat-headline">Highcharts</div>
       <div fxLayout="row" fxLayoutAlign="center">

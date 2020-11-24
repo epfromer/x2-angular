@@ -14,9 +14,7 @@ import {
 
 @Component({
   template: `
-    <div *ngIf="custodiansLoading">
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </div>
+    <loading-indicator *ngIf="custodiansLoading"></loading-indicator>
     <div *ngIf="!custodiansLoading">
       <div class="mat-headline">Highcharts</div>
       <div fxLayout="row" fxLayoutAlign="center">

@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSliderModule } from '@angular/material/slider'
 import { MatSortModule } from '@angular/material/sort'
 import { MatTableModule } from '@angular/material/table'
@@ -34,6 +35,7 @@ import { ExpandMoreButton } from './components/emaillist/expand-more-button.comp
 import { HighchartsModule } from './components/Highcharts/highcharts.module'
 import { HomeCardComponent } from './components/home-card.component'
 import { ImportLogComponent } from './components/import-log.component'
+import { LoadingIndicatorComponent } from './components/loading-indicator.component'
 import { ThemePickerComponent } from './components/theme-picker.component'
 import { AppRoutingModule } from './router/app-routing.module'
 import { reducers } from './store'
@@ -73,6 +75,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     MatSliderModule,
     MatSortModule,
     MatTableModule,
@@ -98,6 +101,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     HomeCardComponent,
     HomeViewComponent,
     ImportLogComponent,
+    LoadingIndicatorComponent,
     NetworkGraphViewComponent,
     PieViewComponent,
     PolarViewComponent,
