@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common'
+import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormsModule } from '@angular/forms'
@@ -7,8 +8,10 @@ import { MatCardModule } from '@angular/material/card'
 import { MatNativeDateModule } from '@angular/material/core'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatDialogModule } from '@angular/material/dialog'
+import { MatDividerModule } from '@angular/material/divider'
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
+import { MatMenuModule } from '@angular/material/menu'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
@@ -19,12 +22,15 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { AuthModule } from '@auth0/auth0-angular'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { InViewportModule } from 'ng-in-viewport'
+import { AvatarModule } from 'ngx-avatar'
 import { ColorPickerModule } from 'ngx-color-picker'
 import { AppComponent } from './app.component'
 import { AppToolbarComponent } from './components/app/app-toolbar.component'
+import { SettingsButtonComponent } from './components/app/settings-button.component'
 import { ChartJSModule } from './components/ChartJS/chartjs.module'
 import { ColorPickerDlgComponent } from './components/color-picker-dlg.component'
 import { CustodianSettingsComponent } from './components/custodian-settings.component'
@@ -37,6 +43,7 @@ import { HomeCardComponent } from './components/home-card.component'
 import { ImportLogComponent } from './components/import-log.component'
 import { LoadingIndicatorComponent } from './components/loading-indicator.component'
 import { ThemePickerComponent } from './components/theme-picker.component'
+import { environment } from './environments/environment'
 import { AppRoutingModule } from './router/app-routing.module'
 import { reducers } from './store'
 import { AppSettingsViewComponent } from './views/app-settings-view.component'
@@ -56,9 +63,15 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
 
 @NgModule({
   imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
     BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    AuthModule.forRoot({
+      domain: environment.auth0Domain,
+      clientId: environment.auth0ClientId,
+    }),
+    AvatarModule,
+    BrowserAnimationsModule,
     ChartJSModule,
     ColorPickerModule,
     CommonModule,
@@ -70,8 +83,10 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     MatCardModule,
     MatDatepickerModule,
     MatDialogModule,
+    MatDividerModule,
     MatIconModule,
     MatInputModule,
+    MatMenuModule,
     MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
@@ -107,6 +122,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     PolarViewComponent,
     SearchHistoryViewComponent,
     SearchViewComponent,
+    SettingsButtonComponent,
     ThemePickerComponent,
     TreeMapViewComponent,
     VolumeTimelineViewComponent,

@@ -23,17 +23,10 @@ import { getDarkMode, setDarkMode } from 'src/store'
         matTooltip="Toggle light/dark theme"
         (click)="onDark()"
       >
-        <mat-icon *ngIf="!darkMode">brightness_high</mat-icon>
-        <mat-icon *ngIf="darkMode">brightness_low</mat-icon>
+        <mat-icon *ngIf="darkMode">brightness_high</mat-icon>
+        <mat-icon *ngIf="!darkMode">brightness_4</mat-icon>
       </button>
-      <button
-        mat-icon-button
-        aria-label="Settings"
-        matTooltip="Settings"
-        (click)="onSettings()"
-      >
-        <mat-icon>build</mat-icon>
-      </button>
+      <settings-button></settings-button>
       <button
         mat-icon-button
         aria-label="Search"
@@ -87,9 +80,6 @@ export class AppToolbarComponent {
   }
   onDark(): void {
     this.store.dispatch(setDarkMode(!this.darkMode))
-  }
-  onSettings(): void {
-    this.router.navigateByUrl('/AppSettingsView')
   }
   onSearch(): void {
     this.router.navigateByUrl('/SearchView')

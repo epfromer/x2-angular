@@ -37,6 +37,7 @@
     "material": "^0.4.3",
     "ng-in-viewport": "^6.1.4",
     "ng2-charts": "^2.4.2",
+    "ngx-avatar": "^4.0.0",
     "ngx-color-picker": "^10.1.0",
     "ngx-echarts": "^5.2.1",
     "rxjs": "~6.6.3",
