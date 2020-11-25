@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, EventEmitter, Output } from '@angular/core'
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import { getDarkMode, setDarkMode } from 'src/store'
@@ -11,7 +11,7 @@ import { getDarkMode, setDarkMode } from 'src/store'
         mat-icon-button
         aria-label="Open drawer"
         matTooltip="Open drawer"
-        (click)="onDrawer()"
+        (click)="openDrawer.emit()"
       >
         <mat-icon>menu</mat-icon>
       </button>
@@ -63,11 +63,14 @@ import { getDarkMode, setDarkMode } from 'src/store'
   ],
 })
 export class AppToolbarComponent {
+  @Output() openDrawer = new EventEmitter()
+
   constructor(private router: Router, private store: Store) {
     // empty constructor
   }
 
   darkMode = false
+  drawerOpen = false
 
   ngOnInit(): void {
     this.store.pipe(select(getDarkMode)).subscribe((darkMode: boolean) => {

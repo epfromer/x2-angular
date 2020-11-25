@@ -14,12 +14,19 @@ import {
 @Component({
   selector: 'app-root',
   template: `
-    <div class="container mat-app-background" role="main">
-      <app-toolbar></app-toolbar>
-      <div class="content mat-app-background">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
+    <mat-drawer-container
+      class="container mat-app-background"
+      hasBackdrop="true"
+      role="main"
+    >
+      <mat-drawer #drawer mode="over"> <app-drawer></app-drawer> </mat-drawer>
+      <mat-drawer-content>
+        <app-toolbar (openDrawer)="drawer.toggle()"></app-toolbar>
+        <div class="content mat-app-background">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-drawer-content>
+    </mat-drawer-container>
   `,
   styles: [
     `

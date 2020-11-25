@@ -15,6 +15,7 @@ import { MatMenuModule } from '@angular/material/menu'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatSliderModule } from '@angular/material/slider'
 import { MatSortModule } from '@angular/material/sort'
 import { MatTableModule } from '@angular/material/table'
@@ -29,6 +30,7 @@ import { InViewportModule } from 'ng-in-viewport'
 import { AvatarModule } from 'ngx-avatar'
 import { ColorPickerModule } from 'ngx-color-picker'
 import { AppComponent } from './app.component'
+import { AppDrawerComponent } from './components/app/app-drawer.component'
 import { AppToolbarComponent } from './components/app/app-toolbar.component'
 import { SettingsButtonComponent } from './components/app/settings-button.component'
 import { ChartJSModule } from './components/ChartJS/chartjs.module'
@@ -91,6 +93,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatSidenavModule,
     MatSliderModule,
     MatSortModule,
     MatTableModule,
@@ -102,6 +105,7 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
   ],
   declarations: [
     AppComponent,
+    AppDrawerComponent,
     AppSettingsViewComponent,
     AppToolbarComponent,
     BarViewComponent,
