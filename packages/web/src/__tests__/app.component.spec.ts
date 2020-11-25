@@ -22,7 +22,6 @@ import { AppRoutingModule } from 'src/router/app-routing.module'
 
 describe('AppComponent', () => {
   let store: MockStore
-  const initialState = {}
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -46,16 +45,13 @@ describe('AppComponent', () => {
         AppComponent,
         AppDrawerComponent,
         AppToolbarComponent,
-        HomeCardComponent,
         SettingsButtonComponent,
       ],
-      providers: [provideMockStore(initialState)],
+      providers: [provideMockStore()],
     }).compileComponents()
-
-    store = TestBed.inject(MockStore)
   })
 
-  it('should create the app', () => {
+  it('should create the app', async () => {
     const fixture = TestBed.createComponent(AppComponent)
     const app = fixture.componentInstance
     expect(app).toBeTruthy()
