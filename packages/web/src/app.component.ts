@@ -56,6 +56,7 @@ export class AppComponent implements OnInit {
   }
 
   @HostBinding('class') className = ''
+  title = 'x2 Angular'
   darkMode = false
   themeName = defaultThemeName
 
