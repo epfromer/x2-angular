@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import { defaultThemeName } from './constants'
 import {
@@ -19,7 +20,11 @@ import {
       hasBackdrop="true"
       role="main"
     >
-      <mat-drawer #drawer mode="over"> <app-drawer></app-drawer> </mat-drawer>
+      <mat-drawer #drawer mode="over">
+        <app-drawer
+          (routeClicked)="drawer.toggle(); navTo($event)"
+        ></app-drawer>
+      </mat-drawer>
       <mat-drawer-content>
         <app-toolbar (openDrawer)="drawer.toggle()"></app-toolbar>
         <div class="content mat-app-background">
@@ -46,7 +51,7 @@ import {
   ],
 })
 export class AppComponent implements OnInit {
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
     // empty constructor
   }
 
@@ -57,6 +62,10 @@ export class AppComponent implements OnInit {
   setThemeClass(): void {
     this.className =
       'theme' + this.themeName + (this.darkMode ? 'Dark' : 'Light')
+  }
+
+  navTo(loc: string): void {
+    this.router.navigateByUrl(loc)
   }
 
   ngOnInit(): void {
