@@ -17,6 +17,7 @@ import { SettingsButtonComponent } from 'src/components/app/settings-button.comp
 import { HomeCardComponent } from 'src/components/home-card.component'
 import { environment } from 'src/environments/environment'
 import { AppRoutingModule } from 'src/router/app-routing.module'
+import { SearchViewComponent } from 'src/views/search-view.component'
 
 // https://ngrx.io/guide/store/testing
 
@@ -39,7 +40,9 @@ describe('AppComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
-        RouterTestingModule,
+        RouterTestingModule.withRoutes([
+          { path: 'SearchView', component: SearchViewComponent },
+        ]),
       ],
       declarations: [
         AppComponent,

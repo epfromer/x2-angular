@@ -4,13 +4,17 @@ import { MatCardModule } from '@angular/material/card'
 import { BrowserModule } from '@angular/platform-browser'
 import { RouterTestingModule } from '@angular/router/testing'
 import { provideMockStore } from '@ngrx/store/testing'
-import { HomeCardComponent } from 'src/components/home-card.component'
-import { HomeViewComponent } from '../home-view.component'
+import { EventTimelineViewComponent } from '../event-timeline-view.component'
 import { SearchViewComponent } from '../search-view.component'
 
-describe('HomeViewComponent', () => {
-  let component: HomeViewComponent
-  let fixture: ComponentFixture<HomeViewComponent>
+describe('EventTimelineViewComponent', () => {
+  let component: EventTimelineViewComponent
+  let fixture: ComponentFixture<EventTimelineViewComponent>
+  const initialState = {
+    appSettings: { darkMode: true },
+    custodians: { custodians: [] },
+    query: { allText: 'foo' },
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,18 +26,22 @@ describe('HomeViewComponent', () => {
           { path: 'SearchView', component: SearchViewComponent },
         ]),
       ],
-      declarations: [HomeViewComponent, HomeCardComponent],
-      providers: [provideMockStore()],
+      providers: [provideMockStore({ initialState })],
     }).compileComponents()
   })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeViewComponent)
+    fixture = TestBed.createComponent(EventTimelineViewComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
 
   it('should create', () => {
+    expect(component).toBeTruthy()
+  })
+
+  it('should handleClick', () => {
+    component.handleClick('allText', 'Causey, Foo')
     expect(component).toBeTruthy()
   })
 })
