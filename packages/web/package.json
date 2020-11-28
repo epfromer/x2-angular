@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "build": "ng build",
-    "start": "ng serve",
+    "start": "serve -s dist/x2-angular",
     "test": "ng test",
     "watch": "ng serve --watch --open"
   },
@@ -42,6 +42,7 @@
     "ngx-echarts": "^5.2.1",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.3",
+    "serve": "^11.3.2",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
