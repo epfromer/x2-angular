@@ -1,1 +1,1 @@
-web: serve -s packages/web/build
+web: serve -s packages/web/dist/x2-angular
