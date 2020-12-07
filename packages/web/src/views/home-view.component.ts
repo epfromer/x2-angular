@@ -35,13 +35,13 @@ export class HomeViewComponent {
     {
       image: 'assets/pie.png',
       title: 'Pie',
-      description: 'Email volume of Enron custodians.',
+      description: 'Enron custodian email volume.',
       link: 'PieView',
     },
     {
       image: 'assets/barchart.png',
       title: 'Bar',
-      description: 'Email volume of Enron custodians.',
+      description: 'Enron custodian email volume.',
       link: 'BarView',
     },
     {
@@ -53,13 +53,13 @@ export class HomeViewComponent {
     {
       image: 'assets/wordcloud.png',
       title: 'Word Cloud',
-      description: 'Mentions of fraudulent project names.',
+      description: 'Fraudulent project names.',
       link: 'WordCloudView',
     },
     {
       image: 'assets/volumetimeline.png',
       title: 'Volume Timeline',
-      description: 'Enron email per day with drill down.',
+      description: 'Enron email per day.',
       link: 'VolumeTimelineView',
     },
     {
@@ -71,11 +71,11 @@ export class HomeViewComponent {
     {
       image: 'assets/treemap.png',
       title: 'Tree Map',
-      description: 'Email volume of Enron custodians.',
+      description: 'Enron custodian email volume.',
       link: 'TreeMapView',
     },
     {
-      image: 'assets/eventTimeline.png',
+      image: 'assets/eventtimeline.png',
       title: 'Event Timeline',
       description: 'Enron fraud and litigation events.',
       link: 'EventTimelineView',
@@ -83,13 +83,13 @@ export class HomeViewComponent {
     {
       image: 'assets/polar.png',
       title: 'Polar',
-      description: 'Email volume of Enron custodians.',
+      description: 'Enron custodian email volume.',
       link: 'PolarView',
     },
     {
       image: 'assets/search.png',
       title: 'Search',
-      description: 'Full text search with hit highlighting.',
+      description: 'Full text search.',
       link: 'SearchView',
     },
   ]
