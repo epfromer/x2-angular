@@ -44,7 +44,6 @@ export class AppDrawerComponent {
     { icon: 'view_quilt', name: 'Tree Map', route: '/TreeMapView' },
     { icon: 'timeline', name: 'Event Timeline', route: '/EventTimelineView' },
     { icon: 'bar_chart', name: 'Bar', route: '/BarView' },
-    { icon: 'pie_chart', name: 'Polar', route: '/PolarView' },
     { icon: 'pie_chart', name: 'Pie', route: '/PieView' },
   ]
 }

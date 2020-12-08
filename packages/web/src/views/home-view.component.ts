@@ -80,17 +80,5 @@ export class HomeViewComponent {
       description: 'Enron fraud and litigation events.',
       link: 'EventTimelineView',
     },
-    {
-      image: 'assets/polar.png',
-      title: 'Polar',
-      description: 'Enron custodian email volume.',
-      link: 'PolarView',
-    },
-    {
-      image: 'assets/search.png',
-      title: 'Search',
-      description: 'Full text search.',
-      link: 'SearchView',
-    },
   ]
 }

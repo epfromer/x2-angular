@@ -4,7 +4,6 @@ import { BarEChartsComponent } from './bar-echarts.component'
 import { ChordEChartsComponent } from './chord-echarts.component'
 import { NetworkGraphEChartsComponent } from './network-graph-echarts.component'
 import { PieEChartsComponent } from './pie-echarts.component'
-import { PolarEChartsComponent } from './polar-echarts.component'
 import { TreeMapEChartsComponent } from './tree-map-echarts.component'
 import { VolumeTimelineEChartsComponent } from './volume-timeline-echarts.component'
 import { WordCloudEChartsComponent } from './word-cloud-echarts.component'
@@ -16,7 +15,6 @@ import { WordCloudEChartsComponent } from './word-cloud-echarts.component'
     ChordEChartsComponent,
     NetworkGraphEChartsComponent,
     PieEChartsComponent,
-    PolarEChartsComponent,
     TreeMapEChartsComponent,
     VolumeTimelineEChartsComponent,
     WordCloudEChartsComponent,
@@ -27,7 +25,6 @@ import { WordCloudEChartsComponent } from './word-cloud-echarts.component'
     ChordEChartsComponent,
     NetworkGraphEChartsComponent,
     PieEChartsComponent,
-    PolarEChartsComponent,
     TreeMapEChartsComponent,
     VolumeTimelineEChartsComponent,
     WordCloudEChartsComponent,

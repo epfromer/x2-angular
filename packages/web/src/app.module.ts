@@ -57,7 +57,6 @@ import { EventTimelineViewComponent } from './views/event-timeline-view.componen
 import { HomeViewComponent } from './views/home-view.component'
 import { NetworkGraphViewComponent } from './views/network-graph-view.component'
 import { PieViewComponent } from './views/pie-view.component'
-import { PolarViewComponent } from './views/polar-view.component'
 import { SearchHistoryViewComponent } from './views/search-history-view.component'
 import { SearchViewComponent } from './views/search-view.component'
 import { TreeMapViewComponent } from './views/tree-map-view.component'
@@ -125,7 +124,6 @@ import { WordCloudViewComponent } from './views/word-cloud-view.component'
     LoadingIndicatorComponent,
     NetworkGraphViewComponent,
     PieViewComponent,
-    PolarViewComponent,
     SearchHistoryViewComponent,
     SearchViewComponent,
     SettingsButtonComponent,

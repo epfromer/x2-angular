@@ -8,7 +8,6 @@ import { EventTimelineViewComponent } from '../views/event-timeline-view.compone
 import { HomeViewComponent } from '../views/home-view.component'
 import { NetworkGraphViewComponent } from '../views/network-graph-view.component'
 import { PieViewComponent } from '../views/pie-view.component'
-import { PolarViewComponent } from '../views/polar-view.component'
 import { SearchHistoryViewComponent } from '../views/search-history-view.component'
 import { SearchViewComponent } from '../views/search-view.component'
 import { TreeMapViewComponent } from '../views/tree-map-view.component'
@@ -24,7 +23,6 @@ const routes: Routes = [
   { path: 'HomeView', component: HomeViewComponent },
   { path: 'NetworkGraphView', component: NetworkGraphViewComponent },
   { path: 'PieView', component: PieViewComponent },
-  { path: 'PolarView', component: PolarViewComponent },
   { path: 'SearchHistoryView', component: SearchHistoryViewComponent },
   { path: 'SearchView', component: SearchViewComponent },
   { path: 'TreeMapView', component: TreeMapViewComponent },
